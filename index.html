@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>সাপ্তাহিক বার্তা - LIVE</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="topbar">সত্যের সন্ধানে, মানুষের পাশে <span>লাইভ সংবাদ | যোগাযোগ: 01634831253</span></div>
+  <div class="brand">
+    <img src="logo-live.png" alt="সাপ্তাহিক বার্তা LIVE Logo">
+    <div class="search"><input id="searchInput" placeholder="খবর খুঁজুন..."><button onclick="searchNews()">🔍</button></div>
+  </div>
+</header>
+
+<nav>
+  <a href="#home">⌂ হোম</a><a href="#জাতীয়">জাতীয়</a><a href="#রাজনীতি">রাজনীতি</a>
+  <a href="#আন্তর্জাতিক">আন্তর্জাতিক</a><a href="#অর্থনীতি">অর্থনীতি</a>
+  <a href="#খেলাধুলা">খেলাধুলা</a><a href="#প্রযুক্তি">বিজ্ঞান ও প্রযুক্তি</a>
+  <a href="#মতামত">মতামত</a><a href="#contact">যোগাযোগ</a>
+</nav>
+
+<main id="home">
+  <div class="breaking"><b>⚡ ব্রেকিং নিউজ:</b> <span id="breakingText">সর্বশেষ সংবাদ জানতে চোখ রাখুন সাপ্তাহিক বার্তায়</span></div>
+
+  <section class="hero">
+    <article class="heroStory">
+      <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1200&q=80" alt="সংবাদ">
+      <div class="overlay">
+        <span class="tag">জাতীয়</span>
+        <h1>দেশের সর্বশেষ গুরুত্বপূর্ণ সংবাদ ও ঘটনাপ্রবাহ</h1>
+        <p>দেশ ও বিশ্বের গুরুত্বপূর্ণ খবর, তথ্য ও বিশ্লেষণ এক জায়গায়।</p>
+        <button onclick="openStory('দেশের সর্বশেষ গুরুত্বপূর্ণ সংবাদ ও ঘটনাপ্রবাহ')">বিস্তারিত পড়ুন →</button>
+      </div>
+    </article>
+
+    <aside class="sideStories">
+      <article><img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=500&q=80"><div><span class="tag">রাজনীতি</span><h3>রাজনৈতিক অঙ্গনের সর্বশেষ খবর</h3><button onclick="openStory('রাজনৈতিক অঙ্গনের সর্বশেষ খবর')">বিস্তারিত পড়ুন</button></div></article>
+      <article><img src="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?auto=format&fit=crop&w=500&q=80"><div><span class="tag">আন্তর্জাতিক</span><h3>বিশ্বের গুরুত্বপূর্ণ ঘটনাবলি</h3><button onclick="openStory('বিশ্বের গুরুত্বপূর্ণ ঘটনাবলি')">বিস্তারিত পড়ুন</button></div></article>
+      <article><img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=500&q=80"><div><span class="tag">অর্থনীতি</span><h3>অর্থনীতি ও বাজারের সর্বশেষ খবর</h3><button onclick="openStory('অর্থনীতি ও বাজারের সর্বশেষ খবর')">বিস্তারিত পড়ুন</button></div></article>
+    </aside>
+  </section>
+
+  <section class="section" id="জাতীয়"><h2>জাতীয় সংবাদ</h2><div class="cards">
+    <article class="card"><img src="https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?auto=format&fit=crop&w=700&q=80"><span class="tag">জাতীয়</span><h3>দেশের বিভিন্ন এলাকার গুরুত্বপূর্ণ খবর</h3><p>সর্বশেষ তথ্য ও সংবাদ জানতে বিস্তারিত পড়ুন।</p><button onclick="openStory('দেশের বিভিন্ন এলাকার গুরুত্বপূর্ণ খবর')">বিস্তারিত পড়ুন →</button></article>
+    <article class="card"><img src="https://images.unsplash.com/photo-1575320181282-9afab399332c?auto=format&fit=crop&w=700&q=80"><span class="tag">জাতীয়</span><h3>উন্নয়ন ও জনজীবনের খবর</h3><p>দেশের উন্নয়ন, জনজীবন ও প্রশাসনের সংবাদ।</p><button onclick="openStory('উন্নয়ন ও জনজীবনের খবর')">বিস্তারিত পড়ুন →</button></article>
+    <article class="card"><img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=700&q=80"><span class="tag">প্রযুক্তি</span><h3>নতুন প্রযুক্তির দুনিয়ায় অগ্রগতি</h3><p>বিজ্ঞান ও প্রযুক্তির নতুন খবর ও বিশ্লেষণ।</p><button onclick="openStory('নতুন প্রযুক্তির দুনিয়ায় অগ্রগতি')">বিস্তারিত পড়ুন →</button></article>
+  </div></section>
+
+  <section class="section" id="রাজনীতি"><h2>রাজনীতি</h2><div class="cards"><article class="card"><img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=700&q=80"><span class="tag">রাজনীতি</span><h3>রাজনৈতিক অঙ্গনের নতুন আলোচনা</h3><p>দেশের রাজনীতির গুরুত্বপূর্ণ খবর ও বিশ্লেষণ।</p><button onclick="openStory('রাজনৈতিক অঙ্গনের নতুন আলোচনা')">বিস্তারিত পড়ুন →</button></article></div></section>
+
+  <section class="section" id="আন্তর্জাতিক"><h2>আন্তর্জাতিক</h2><div class="cards"><article class="card"><img src="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?auto=format&fit=crop&w=700&q=80"><span class="tag">আন্তর্জাতিক</span><h3>বিশ্ব রাজনীতির গুরুত্বপূর্ণ সংবাদ</h3><p>আন্তর্জাতিক অঙ্গনের সর্বশেষ ঘটনাবলি।</p><button onclick="openStory('বিশ্ব রাজনীতির গুরুত্বপূর্ণ সংবাদ')">বিস্তারিত পড়ুন →</button></article></div></section>
+
+  <section class="section" id="অর্থনীতি"><h2>অর্থনীতি</h2><div class="cards"><article class="card"><img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=700&q=80"><span class="tag">অর্থনীতি</span><h3>অর্থনীতি ও বাজারের খবর</h3><p>ব্যবসা-বাণিজ্য ও অর্থনীতির সর্বশেষ সংবাদ।</p><button onclick="openStory('অর্থনীতি ও বাজারের খবর')">বিস্তারিত পড়ুন →</button></article></div></section>
+
+  <section class="facebook">
+    <div><h2>আমাদের Facebook Page</h2><p>সাপ্তাহিক বার্তার সর্বশেষ আপডেট পেতে Facebook Page-এ যুক্ত থাকুন।</p></div>
+    <a href="https://www.facebook.com/" target="_blank">Facebook Page খুলুন →</a>
+  </section>
+
+  <section class="about" id="contact">
+    <h2>সাপ্তাহিক বার্তা</h2>
+    <p><b>সম্পাদক:</b> মোঃ নুরুল ইসলাম</p>
+    <p><b>সহ সম্পাদক ও প্রকাশক:</b> মোঃ আরিফুল ইসলাম</p>
+    <p><b>ঠিকানা:</b> Delduar, Tangail</p>
+    <p><b>ই-মেইল:</b> pressarif160@gmail.com</p>
+    <p><b>যোগাযোগ:</b> 01634831253</p>
+    <p><a class="adminLink" href="admin.html">🔐 Admin / News Publish</a></p>
+  </section>
+</main>
+
+<footer>© 2026 সাপ্তাহিক বার্তা | সর্বস্বত্ব সংরক্ষিত<br>সত্যের সন্ধানে, মানুষের পাশে</footer>
+
+<script>
+function openStory(title){
+  alert(title + "\\n\\nএখানে পূর্ণ সংবাদ লেখা দেখানো হবে।");
+}
+function searchNews(){
+  const q=document.getElementById('searchInput').value.trim();
+  if(q) alert('আপনি খুঁজছেন: '+q);
+}
+</script>
+</body>
+</html>
