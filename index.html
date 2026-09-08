@@ -1,87 +1,705 @@
 <!DOCTYPE html>
 <html lang="bn">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
+
 <title>সাপ্তাহিক বার্তা - LIVE</title>
-<link rel="stylesheet" href="style.css">
+
+<style>
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+body{
+font-family:Arial,sans-serif;
+background:#f3f3f3;
+color:#222;
+}
+
+.topbar{
+background:#111;
+color:white;
+padding:8px 4%;
+font-size:14px;
+}
+
+.topbar span{
+float:right;
+}
+
+.brand{
+background:white;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:15px 4%;
+gap:20px;
+}
+
+.brand img{
+width:520px;
+max-width:70%;
+height:auto;
+}
+
+.search{
+display:flex;
+}
+
+.search input{
+padding:12px;
+width:220px;
+border:1px solid #ccc;
+}
+
+.search button{
+background:#c90000;
+color:white;
+border:0;
+padding:0 16px;
+font-size:18px;
+}
+
+nav{
+background:#171717;
+display:flex;
+overflow-x:auto;
+white-space:nowrap;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+padding:14px 16px;
+font-weight:bold;
+}
+
+nav a:hover{
+background:#c90000;
+}
+
+.breaking{
+margin:15px 2%;
+background:#d00000;
+color:white;
+padding:13px;
+border-radius:4px;
+}
+
+.section{
+margin:25px 2%;
+}
+
+.section h2{
+border-left:5px solid #d00000;
+padding-left:10px;
+border-bottom:2px solid #ddd;
+padding-bottom:8px;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+margin-top:15px;
+}
+
+.card{
+background:white;
+padding:10px;
+box-shadow:0 1px 4px #ccc;
+}
+
+.card img{
+width:100%;
+height:200px;
+object-fit:cover;
+}
+
+.card h3{
+font-size:20px;
+margin:8px 0;
+}
+
+.card p{
+color:#555;
+line-height:1.7;
+margin-bottom:10px;
+}
+
+.tag{
+display:inline-block;
+background:#d00000;
+color:white;
+padding:4px 9px;
+font-size:13px;
+margin-top:8px;
+}
+
+.card button{
+background:#d00000;
+color:white;
+border:0;
+padding:9px 12px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.video{
+width:100%;
+aspect-ratio:16/9;
+margin-top:10px;
+border:0;
+}
+
+.newsDate{
+color:#777;
+font-size:13px;
+margin:5px 0;
+}
+
+.facebook{
+margin:25px 2%;
+padding:20px;
+background:white;
+border-left:5px solid #1877f2;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.facebook a{
+background:#1877f2;
+color:white;
+text-decoration:none;
+padding:12px 16px;
+}
+
+.about{
+margin:25px 2%;
+background:white;
+padding:25px;
+border-top:4px solid #d00000;
+line-height:2;
+}
+
+.about h2{
+color:#d00000;
+margin-bottom:10px;
+}
+
+.adminLink{
+display:inline-block;
+background:#222;
+color:white;
+text-decoration:none;
+padding:10px 15px;
+margin-top:8px;
+}
+
+footer{
+background:#111;
+color:white;
+text-align:center;
+padding:25px;
+line-height:2;
+}
+
+@media(max-width:750px){
+
+.topbar span{
+float:none;
+display:block;
+}
+
+.brand{
+flex-direction:column;
+}
+
+.brand img{
+width:100%;
+max-width:100%;
+}
+
+.search{
+width:100%;
+}
+
+.search input{
+width:100%;
+}
+
+.cards{
+grid-template-columns:1fr;
+}
+
+.facebook{
+flex-direction:column;
+align-items:flex-start;
+gap:15px;
+}
+
+}
+
+</style>
+
 </head>
+
+
 <body>
 
-<header class="top">
-  <div class="topbar">সত্যের সন্ধানে, মানুষের পাশে <span>লাইভ সংবাদ | যোগাযোগ: 01634831253</span></div>
-  <div class="brand">
-    <img src="logo-live.png" alt="সাপ্তাহিক বার্তা LIVE Logo">
-    <div class="search"><input id="searchInput" placeholder="খবর খুঁজুন..."><button onclick="searchNews()">🔍</button></div>
-  </div>
-</header>
+
+<div class="topbar">
+
+সাপ্তাহিক বার্তা — LIVE
+
+<span>
+যোগাযোগ: 01634831253
+</span>
+
+</div>
+
+
+<div class="brand">
+
+<img
+src="logo-live.png"
+alt="সাপ্তাহিক বার্তা LIVE">
+
+<div class="search">
+
+<input
+id="searchInput"
+type="text"
+placeholder="খবর খুঁজুন..."
+onkeyup="searchNews()">
+
+<button onclick="searchNews()">
+🔍
+</button>
+
+</div>
+
+</div>
+
 
 <nav>
-  <a href="#home">⌂ হোম</a><a href="#জাতীয়">জাতীয়</a><a href="#রাজনীতি">রাজনীতি</a>
-  <a href="#আন্তর্জাতিক">আন্তর্জাতিক</a><a href="#অর্থনীতি">অর্থনীতি</a>
-  <a href="#খেলাধুলা">খেলাধুলা</a><a href="#প্রযুক্তি">বিজ্ঞান ও প্রযুক্তি</a>
-  <a href="#মতামত">মতামত</a><a href="#contact">যোগাযোগ</a>
+
+<a href="#">হোম</a>
+<a href="#news">সর্বশেষ</a>
+<a href="#জাতীয়">জাতীয়</a>
+<a href="#রাজনীতি">রাজনীতি</a>
+<a href="#আন্তর্জাতিক">আন্তর্জাতিক</a>
+<a href="#অর্থনীতি">অর্থনীতি</a>
+<a href="#খেলাধুলা">খেলাধুলা</a>
+<a href="#বিজ্ঞান">বিজ্ঞান ও প্রযুক্তি</a>
+
 </nav>
 
-<main id="home">
-  <div class="breaking"><b>⚡ ব্রেকিং নিউজ:</b> <span id="breakingText">সর্বশেষ সংবাদ জানতে চোখ রাখুন সাপ্তাহিক বার্তায়</span></div>
 
-  <section class="hero">
-    <article class="heroStory">
-      <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1200&q=80" alt="সংবাদ">
-      <div class="overlay">
-        <span class="tag">জাতীয়</span>
-        <h1>দেশের সর্বশেষ গুরুত্বপূর্ণ সংবাদ ও ঘটনাপ্রবাহ</h1>
-        <p>দেশ ও বিশ্বের গুরুত্বপূর্ণ খবর, তথ্য ও বিশ্লেষণ এক জায়গায়।</p>
-        <button onclick="openStory('দেশের সর্বশেষ গুরুত্বপূর্ণ সংবাদ ও ঘটনাপ্রবাহ')">বিস্তারিত পড়ুন →</button>
-      </div>
-    </article>
+<div class="breaking">
 
-    <aside class="sideStories">
-      <article><img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=500&q=80"><div><span class="tag">রাজনীতি</span><h3>রাজনৈতিক অঙ্গনের সর্বশেষ খবর</h3><button onclick="openStory('রাজনৈতিক অঙ্গনের সর্বশেষ খবর')">বিস্তারিত পড়ুন</button></div></article>
-      <article><img src="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?auto=format&fit=crop&w=500&q=80"><div><span class="tag">আন্তর্জাতিক</span><h3>বিশ্বের গুরুত্বপূর্ণ ঘটনাবলি</h3><button onclick="openStory('বিশ্বের গুরুত্বপূর্ণ ঘটনাবলি')">বিস্তারিত পড়ুন</button></div></article>
-      <article><img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=500&q=80"><div><span class="tag">অর্থনীতি</span><h3>অর্থনীতি ও বাজারের সর্বশেষ খবর</h3><button onclick="openStory('অর্থনীতি ও বাজারের সর্বশেষ খবর')">বিস্তারিত পড়ুন</button></div></article>
-    </aside>
-  </section>
+⚡ <b>BREAKING NEWS:</b>
 
-  <section class="section" id="জাতীয়"><h2>জাতীয় সংবাদ</h2><div class="cards">
-    <article class="card"><img src="https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?auto=format&fit=crop&w=700&q=80"><span class="tag">জাতীয়</span><h3>দেশের বিভিন্ন এলাকার গুরুত্বপূর্ণ খবর</h3><p>সর্বশেষ তথ্য ও সংবাদ জানতে বিস্তারিত পড়ুন।</p><button onclick="openStory('দেশের বিভিন্ন এলাকার গুরুত্বপূর্ণ খবর')">বিস্তারিত পড়ুন →</button></article>
-    <article class="card"><img src="https://images.unsplash.com/photo-1575320181282-9afab399332c?auto=format&fit=crop&w=700&q=80"><span class="tag">জাতীয়</span><h3>উন্নয়ন ও জনজীবনের খবর</h3><p>দেশের উন্নয়ন, জনজীবন ও প্রশাসনের সংবাদ।</p><button onclick="openStory('উন্নয়ন ও জনজীবনের খবর')">বিস্তারিত পড়ুন →</button></article>
-    <article class="card"><img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=700&q=80"><span class="tag">প্রযুক্তি</span><h3>নতুন প্রযুক্তির দুনিয়ায় অগ্রগতি</h3><p>বিজ্ঞান ও প্রযুক্তির নতুন খবর ও বিশ্লেষণ।</p><button onclick="openStory('নতুন প্রযুক্তির দুনিয়ায় অগ্রগতি')">বিস্তারিত পড়ুন →</button></article>
-  </div></section>
+<span id="breakingText">
+সর্বশেষ সংবাদ জানতে চোখ রাখুন সাপ্তাহিক বার্তায়
+</span>
 
-  <section class="section" id="রাজনীতি"><h2>রাজনীতি</h2><div class="cards"><article class="card"><img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=700&q=80"><span class="tag">রাজনীতি</span><h3>রাজনৈতিক অঙ্গনের নতুন আলোচনা</h3><p>দেশের রাজনীতির গুরুত্বপূর্ণ খবর ও বিশ্লেষণ।</p><button onclick="openStory('রাজনৈতিক অঙ্গনের নতুন আলোচনা')">বিস্তারিত পড়ুন →</button></article></div></section>
+</div>
 
-  <section class="section" id="আন্তর্জাতিক"><h2>আন্তর্জাতিক</h2><div class="cards"><article class="card"><img src="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?auto=format&fit=crop&w=700&q=80"><span class="tag">আন্তর্জাতিক</span><h3>বিশ্ব রাজনীতির গুরুত্বপূর্ণ সংবাদ</h3><p>আন্তর্জাতিক অঙ্গনের সর্বশেষ ঘটনাবলি।</p><button onclick="openStory('বিশ্ব রাজনীতির গুরুত্বপূর্ণ সংবাদ')">বিস্তারিত পড়ুন →</button></article></div></section>
 
-  <section class="section" id="অর্থনীতি"><h2>অর্থনীতি</h2><div class="cards"><article class="card"><img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=700&q=80"><span class="tag">অর্থনীতি</span><h3>অর্থনীতি ও বাজারের খবর</h3><p>ব্যবসা-বাণিজ্য ও অর্থনীতির সর্বশেষ সংবাদ।</p><button onclick="openStory('অর্থনীতি ও বাজারের খবর')">বিস্তারিত পড়ুন →</button></article></div></section>
+<section class="section" id="news">
 
-  <section class="facebook">
-    <div><h2>আমাদের Facebook Page</h2><p>সাপ্তাহিক বার্তার সর্বশেষ আপডেট পেতে Facebook Page-এ যুক্ত থাকুন।</p></div>
-    <a href="https://www.facebook.com/" target="_blank">Facebook Page খুলুন →</a>
-  </section>
+<h2>
+📰 সর্বশেষ সংবাদ
+</h2>
 
-  <section class="about" id="contact">
-    <h2>সাপ্তাহিক বার্তা</h2>
-    <p><b>সম্পাদক:</b> মোঃ নুরুল ইসলাম</p>
-    <p><b>সহ সম্পাদক ও প্রকাশক:</b> মোঃ আরিফুল ইসলাম</p>
-    <p><b>ঠিকানা:</b> Delduar, Tangail</p>
-    <p><b>ই-মেইল:</b> pressarif160@gmail.com</p>
-    <p><b>যোগাযোগ:</b> 01634831253</p>
-    <p><a class="adminLink" href="admin.html">🔐 Admin / News Publish</a></p>
-  </section>
-</main>
+<div
+id="newsContainer"
+class="cards">
 
-<footer>© 2026 সাপ্তাহিক বার্তা | সর্বস্বত্ব সংরক্ষিত<br>সত্যের সন্ধানে, মানুষের পাশে</footer>
+<p>
+সংবাদ লোড হচ্ছে...
+</p>
 
-<script>
-function openStory(title){
-  alert(title + "\\n\\nএখানে পূর্ণ সংবাদ লেখা দেখানো হবে।");
+</div>
+
+</section>
+
+
+<section class="facebook">
+
+<div>
+
+<h2>
+📘 আমাদের Facebook Page
+</h2>
+
+<p>
+সাপ্তাহিক বার্তার সর্বশেষ আপডেট পেতে
+Facebook Page-এ যুক্ত থাকুন।
+</p>
+
+</div>
+
+<a
+href="https://www.facebook.com/"
+target="_blank">
+
+Facebook Page খুলুন →
+
+</a>
+
+</section>
+
+
+<section class="about">
+
+<h2>
+📰 সাপ্তাহিক বার্তা
+</h2>
+
+<p>
+<b>সম্পাদক:</b>
+মোঃ নুরুল ইসলাম
+</p>
+
+<p>
+<b>সহ সম্পাদক ও প্রকাশক:</b>
+মোঃ আরিফুল ইসলাম
+</p>
+
+<p>
+<b>ঠিকানা:</b>
+Delduar, Tangail
+</p>
+
+<p>
+<b>ই-মেইল:</b>
+pressarif160@gmail.com
+</p>
+
+<p>
+<b>যোগাযোগ:</b>
+01634831253
+</p>
+
+<p>
+
+<a
+class="adminLink"
+href="admin.html">
+
+🔐 Admin
+
+</a>
+
+</p>
+
+</section>
+
+
+<footer>
+
+© 2026 সাপ্তাহিক বার্তা
+
+<br>
+
+সর্বস্বত্ব সংরক্ষিত
+
+<br>
+
+সত্যের সন্ধানে, মানুষের পাশে
+
+</footer>
+
+
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getFirestore,
+collection,
+getDocs,
+query,
+orderBy
 }
-function searchNews(){
-  const q=document.getElementById('searchInput').value.trim();
-  if(q) alert('আপনি খুঁজছেন: '+q);
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+const firebaseConfig={
+
+apiKey:"AIzaSyDugMsCaCtCZwKzBHhYQJbgsySRwA6ikXg",
+
+authDomain:"saptahik-barta.firebaseapp.com",
+
+projectId:"saptahik-barta",
+
+storageBucket:"saptahik-barta.firebasestorage.app",
+
+messagingSenderId:"64482849817",
+
+appId:"1:64482849817:web:67af4e2b46d9bf2b7f2688",
+
+measurementId:"G-L100GNJ7JM"
+
+};
+
+
+const app=initializeApp(firebaseConfig);
+
+const db=getFirestore(app);
+
+
+let allNews=[];
+
+
+/* LOAD NEWS */
+
+async function loadNews(){
+
+const container=
+document.getElementById("newsContainer");
+
+try{
+
+const q=query(
+collection(db,"news"),
+orderBy("createdAt","desc")
+);
+
+const snapshot=await getDocs(q);
+
+allNews=[];
+
+snapshot.forEach(doc=>{
+
+allNews.push({
+
+id:doc.id,
+...doc.data()
+
+});
+
+});
+
+
+showNews(allNews);
+
+
+/* BREAKING */
+
+const breaking=
+allNews.find(n=>n.breaking===true);
+
+if(breaking){
+
+document.getElementById(
+"breakingText"
+).textContent=
+breaking.title;
+
 }
+
+}
+
+catch(error){
+
+console.error(error);
+
+container.innerHTML=
+"<p>সংবাদ লোড করা যাচ্ছে না।</p>";
+
+}
+
+}
+
+
+/* SHOW NEWS */
+
+function showNews(news){
+
+const container=
+document.getElementById("newsContainer");
+
+container.innerHTML="";
+
+
+if(news.length===0){
+
+container.innerHTML=
+"<p>এখনো কোনো সংবাদ প্রকাশ করা হয়নি।</p>";
+
+return;
+
+}
+
+
+news.forEach(n=>{
+
+const card=
+document.createElement("article");
+
+card.className="card";
+
+
+let videoHTML="";
+
+if(n.video){
+
+const videoId=
+getYouTubeId(n.video);
+
+if(videoId){
+
+videoHTML=`
+
+<iframe
+class="video"
+src="https://www.youtube.com/embed/${videoId}"
+allowfullscreen>
+</iframe>
+
+`;
+
+}
+
+}
+
+
+card.innerHTML=`
+
+${n.image ? `
+<img
+src="${escapeHtml(n.image)}"
+alt="সংবাদ ছবি"
+onerror="this.style.display='none'">
+` : ""}
+
+<span class="tag">
+${escapeHtml(n.category || "সংবাদ")}
+</span>
+
+<h3>
+${escapeHtml(n.title || "")}
+</h3>
+
+<div class="newsDate">
+সাপ্তাহিক বার্তা LIVE
+</div>
+
+${videoHTML}
+
+<p>
+${escapeHtml(n.body || "")}
+</p>
+
+`;
+
+
+container.appendChild(card);
+
+});
+
+}
+
+
+/* YOUTUBE */
+
+function getYouTubeId(url){
+
+try{
+
+const u=new URL(url);
+
+if(u.hostname.includes("youtu.be")){
+
+return u.pathname.substring(1);
+
+}
+
+if(u.hostname.includes("youtube.com")){
+
+return u.searchParams.get("v");
+
+}
+
+}
+
+catch(e){}
+
+return null;
+
+}
+
+
+/* SEARCH */
+
+window.searchNews=function(){
+
+const q=
+document.getElementById(
+"searchInput"
+).value
+.toLowerCase()
+.trim();
+
+
+if(!q){
+
+showNews(allNews);
+
+return;
+
+}
+
+
+const result=
+allNews.filter(n=>
+(n.title||"")
+.toLowerCase()
+.includes(q)
+||
+(n.body||"")
+.toLowerCase()
+.includes(q)
+);
+
+
+showNews(result);
+
+};
+
+
+/* BASIC HTML SAFETY */
+
+function escapeHtml(text){
+
+const div=
+document.createElement("div");
+
+div.textContent=text;
+
+return div.innerHTML;
+
+}
+
+
+loadNews();
+
 </script>
+
 </body>
+
 </html>
