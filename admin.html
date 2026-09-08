@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="bn"><head><meta charset="UTF-8"><meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
-<title>Admin - সময়ের বার্তা</title><style>
+<title>Admin - সাপ্তাহিক বার্তা</title><style>
 
 *{
     box-sizing:border-box;
@@ -9,16 +9,26 @@ content="width=device-width, initial-scale=1.0">
 
 body{
     margin:0;
-    font-family:Arial,"Noto Sans Bengali",sans-serif;
+
+    font-family:
+    Arial,
+    "Noto Sans Bengali",
+    sans-serif;
+
     background:#f3f3f3;
 }
 
 .box{
     max-width:700px;
+
     margin:25px auto;
+
     background:#fff;
+
     padding:22px;
-    box-shadow:0 2px 10px #ccc;
+
+    box-shadow:
+    0 2px 10px #ccc;
 }
 
 h1{
@@ -28,20 +38,32 @@ h1{
 input,
 textarea,
 select{
+
     width:100%;
+
     padding:12px;
+
     margin:7px 0 14px;
+
     border:1px solid #ccc;
+
     border-radius:4px;
 }
 
 button{
+
     background:#c00;
+
     color:#fff;
+
     border:0;
+
     padding:11px 17px;
+
     font-weight:bold;
+
     cursor:pointer;
+
     border-radius:4px;
 }
 
@@ -63,21 +85,31 @@ button:hover{
 
 .logout{
     background:#555;
+
     float:right;
 }
 
 .newsItem{
+
     border:1px solid #ddd;
+
     margin-top:15px;
+
     padding:15px;
+
     background:#fafafa;
 }
 
 .newsItem img{
+
     width:120px;
+
     height:80px;
+
     object-fit:cover;
+
     float:left;
+
     margin-right:12px;
 }
 
@@ -87,7 +119,9 @@ button:hover{
 
 .date{
     color:#777;
+
     font-size:13px;
+
     margin:6px 0;
 }
 
@@ -100,53 +134,60 @@ button:hover{
 }
 
 #message{
+
     margin:15px 0;
+
     font-weight:bold;
 }
 
-.preview{
-    background:#eee;
-    padding:10px;
-    margin-bottom:10px;
-}
-
 #previewImage{
+
     max-width:100%;
+
     max-height:300px;
+
     display:none;
+
     margin-top:10px;
 }
 
 .uploadInfo{
-    font-size:13px;
-    color:#666;
-    line-height:1.7;
-}
 
-.breakingText{
-    color:#d00000;
-    font-weight:bold;
+    font-size:13px;
+
+    color:#666;
+
+    line-height:1.7;
+
+    margin-bottom:10px;
 }
 
 @media(max-width:600px){
 
     .box{
+
         margin:0;
+
         min-height:100vh;
+
         padding:15px;
     }
 
     .newsItem img{
+
         width:100%;
+
         height:180px;
+
         float:none;
+
         margin:0 0 10px;
     }
 
 }
 
 </style></head><body><div class="box"><h1>
-📰 সময়ের বার্তা — Admin
+📰 সাপ্তাহিক বার্তা — Admin
 </h1><!-- LOGIN --><div id="loginBox"><p>
 Admin Email দিয়ে Login করুন।
 </p><label>
@@ -165,7 +206,7 @@ placeholder="Password">
 
 <button id="loginBtn">
 Login
-</button><p id="loginMessage"></p></div><!-- PANEL --><div id="panel"><button
+</button><p id="loginMessage"></p></div><!-- ADMIN PANEL --><div id="panel"><button
 class="logout"
 id="logoutBtn">
 
@@ -173,52 +214,45 @@ Logout
 
 </button><div style="clear:both"></div><hr><h2 id="formTitle">
 নতুন সংবাদ প্রকাশ
-</h2><!-- TITLE --><label>
+</h2><label>
 শিরোনাম
 </label><input
 id="title"
 type="text"
 placeholder="সংবাদের শিরোনাম লিখুন">
 
-<!-- CATEGORY --><label>
+<label>
 বিভাগ
-</label><select id="cat"><option>জাতীয়</option>
-<option>রাজনীতি</option>
-<option>আন্তর্জাতিক</option>
-<option>অর্থনীতি</option>
-<option>খেলাধুলা</option>
-<option>বিজ্ঞান ও প্রযুক্তি</option>
-<option>মতামত</option></select><!-- IMAGE --><label>
+</label><select id="cat"><option>জাতীয়</option><option>রাজনীতি</option><option>আন্তর্জাতিক</option><option>অর্থনীতি</option><option>খেলাধুলা</option><option>বিজ্ঞান ও প্রযুক্তি</option><option>মতামত</option></select><!-- IMAGE --><label>
 🖼️ সংবাদ ছবি
 </label><input
 id="imageFile"
 type="file"
 accept="image/*">
 
-<div class="uploadInfo">ছবি নির্বাচন করুন।
-<br>
+<div class="uploadInfo">মোবাইল থেকে Gallery/Photos থেকে ছবি নির্বাচন করুন।
 
-ছবিটি স্বয়ংক্রিয়ভাবে ছোট করে সংরক্ষণ করা হবে।
-
-<br>সাধারণত ১টি ছবি ২০০–৩০০ KB-এর মধ্যে রাখা ভালো।
+<br>ছবি স্বয়ংক্রিয়ভাবে ছোট করে সংরক্ষণ করা হবে।
 
 </div><img
 id="previewImage"
 alt="ছবির Preview">
 
-<!-- BODY --><label>
+<label>
 সংবাদের বিস্তারিত
 </label><textarea
 id="body"
 rows="10"
 placeholder="সম্পূর্ণ সংবাদ লিখুন">
-</textarea><!-- BREAKING --><label>
+</textarea><label>
 Breaking News?
 </label><select id="breaking"><option value="false">
 না
 </option><option value="true">
 হ্যাঁ
-</option></select><br><button id="publishBtn">
+</option></select><br><br>
+
+<button id="publishBtn">
 সংবাদ প্রকাশ করুন
 </button><button
 id="cancelBtn"
@@ -236,7 +270,7 @@ Edit বাতিল
 </a></p></div><script type="module">
 
 
-/* FIREBASE APP */
+/* FIREBASE */
 
 import {
     initializeApp
@@ -312,30 +346,36 @@ const db =
 getFirestore(app);
 
 
+/* VARIABLES */
+
+let editingId =
+null;
+
+let selectedImageData =
+"";
+
+
 /* ELEMENTS */
 
 const loginBox =
-document.getElementById("loginBox");
-
+document.getElementById(
+    "loginBox"
+);
 
 const panel =
-document.getElementById("panel");
-
+document.getElementById(
+    "panel"
+);
 
 const loginMessage =
-document.getElementById("loginMessage");
-
+document.getElementById(
+    "loginMessage"
+);
 
 const message =
-document.getElementById("message");
-
-
-let editingId = null;
-
-
-/* IMAGE DATA */
-
-let selectedImageData = "";
+document.getElementById(
+    "message"
+);
 
 
 /* IMAGE SELECT */
@@ -354,7 +394,11 @@ document.getElementById(
             return;
 
 
-        if(!file.type.startsWith("image/")){
+        if(
+            !file.type.startsWith(
+                "image/"
+            )
+        ){
 
             alert(
                 "শুধু ছবি নির্বাচন করুন।"
@@ -385,18 +429,21 @@ document.getElementById(
                 );
 
 
-                const maxWidth = 1000;
+                const maxWidth =
+                1000;
 
 
                 let width =
                 img.width;
 
-
                 let height =
                 img.height;
 
 
-                if(width > maxWidth){
+                if(
+                    width >
+                    maxWidth
+                ){
 
                     height =
                     height *
@@ -434,7 +481,7 @@ document.getElementById(
                 selectedImageData =
                 canvas.toDataURL(
                     "image/jpeg",
-                    0.65
+                    0.60
                 );
 
 
@@ -485,7 +532,10 @@ async function(){
     ).value;
 
 
-    if(!email || !password){
+    if(
+        !email ||
+        !password
+    ){
 
         loginMessage.textContent =
         "Email ও Password দিন।";
@@ -533,7 +583,7 @@ function(){
 };
 
 
-/* AUTH */
+/* AUTH STATE */
 
 onAuthStateChanged(
     auth,
@@ -594,7 +644,10 @@ async function(){
     ).value === "true";
 
 
-    if(!title || !body){
+    if(
+        !title ||
+        !body
+    ){
 
         message.textContent =
         "শিরোনাম ও বিস্তারিত সংবাদ লিখুন।";
@@ -604,22 +657,16 @@ async function(){
     }
 
 
-    /* IMAGE SIZE CHECK */
+    if(
+        selectedImageData &&
+        selectedImageData.length >
+        900000
+    ){
 
-    if(selectedImageData){
+        message.textContent =
+        "ছবিটি অনেক বড়। অন্য ছবি নির্বাচন করুন।";
 
-        if(
-            selectedImageData.length
-            >
-            900000
-        ){
-
-            message.textContent =
-            "ছবিটি অনেক বড়। অন্য ছবি নির্বাচন করুন।";
-
-            return;
-
-        }
+        return;
 
     }
 
@@ -699,7 +746,6 @@ async function(){
 
         else{
 
-
             await addDoc(
 
                 collection(
@@ -738,7 +784,6 @@ async function(){
 
 
         clearForm();
-
 
     }
 
@@ -791,7 +836,7 @@ function clearForm(){
 }
 
 
-/* CANCEL */
+/* CANCEL EDIT */
 
 document.getElementById(
     "cancelBtn"
@@ -847,7 +892,8 @@ onSnapshot(
         );
 
 
-        list.innerHTML = "";
+        list.innerHTML =
+        "";
 
 
         if(snapshot.empty){
@@ -877,7 +923,8 @@ onSnapshot(
                 "newsItem";
 
 
-                let date = "";
+                let date =
+                "";
 
 
                 if(news.createdAt){
@@ -918,18 +965,14 @@ onSnapshot(
 
 
                     <div class="date">
-
                         প্রকাশ:
                         ${date}
-
                     </div>
 
 
                     <div>
-
                         বিভাগ:
                         ${escapeHtml(news.cat || "")}
-
                     </div>
 
 
