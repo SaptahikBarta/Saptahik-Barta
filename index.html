@@ -1,16 +1,21 @@
-<!DOCTYPE html><html lang="bn"><head>
+<!DOCTYPE html><html lang="bn">
+<head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>সময়ের বার্তা - LIVE</title><link rel="stylesheet" href="style.css">
-</head><body><!-- TOPBAR --><div class="topbar">
-    সময়ের বার্তা — LIVE
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>সাপ্তাহিক বার্তা - LIVE</title><link rel="stylesheet" href="style.css">
+</head><body><div class="topbar">
+    📰 সাপ্তাহিক বার্তা — LIVE
     <span id="currentDate"></span>
-</div><!-- BRAND --><div class="brand"><a href="index.html" class="logo">
+</div><!-- LOGO --><div class="brand"><a href="index.html" class="logo">
+
     <span class="earth">🌍</span>
-    <span>
-        <strong>সময়ের বার্তা</strong>
-        <small>LIVE</small>
+
+    <span class="logoText">
+        <strong>সাপ্তাহিক বার্তা</strong>
+        <small>LIVE NEWS</small>
     </span>
+
 </a>
+
 
 <div class="search">
 
@@ -26,46 +31,46 @@
 
 </div><!-- MENU --><nav><a href="index.html">হোম</a>
 
-<a href="#জাতীয়"
-   onclick="filterCategory('জাতীয়')">
+<a href="#"
+   onclick="filterCategory('জাতীয়');return false;">
    জাতীয়
 </a>
 
-<a href="#রাজনীতি"
-   onclick="filterCategory('রাজনীতি')">
+<a href="#"
+   onclick="filterCategory('রাজনীতি');return false;">
    রাজনীতি
 </a>
 
-<a href="#আন্তর্জাতিক"
-   onclick="filterCategory('আন্তর্জাতিক')">
+<a href="#"
+   onclick="filterCategory('আন্তর্জাতিক');return false;">
    আন্তর্জাতিক
 </a>
 
-<a href="#অর্থনীতি"
-   onclick="filterCategory('অর্থনীতি')">
+<a href="#"
+   onclick="filterCategory('অর্থনীতি');return false;">
    অর্থনীতি
 </a>
 
-<a href="#খেলাধুলা"
-   onclick="filterCategory('খেলাধুলা')">
+<a href="#"
+   onclick="filterCategory('খেলাধুলা');return false;">
    খেলাধুলা
 </a>
 
-<a href="#বিজ্ঞান ও প্রযুক্তি"
-   onclick="filterCategory('বিজ্ঞান ও প্রযুক্তি')">
+<a href="#"
+   onclick="filterCategory('বিজ্ঞান ও প্রযুক্তি');return false;">
    বিজ্ঞান ও প্রযুক্তি
 </a>
 
-<a href="#মতামত"
-   onclick="filterCategory('মতামত')">
+<a href="#"
+   onclick="filterCategory('মতামত');return false;">
    মতামত
 </a>
 
 <a href="#contact">
-    যোগাযোগ
+   যোগাযোগ
 </a>
 
-</nav><!-- 🔴 BREAKING NEWS --><div class="tickerBox breakingTicker"><div class="tickerTitle">
+</nav><!-- RED BREAKING NEWS --><div class="tickerBox breakingTicker"><div class="tickerTitle">
     ⚡ ব্রেকিং নিউজ
 </div>
 
@@ -81,7 +86,7 @@
 
 </div>
 
-</div><!-- 🟢 LATEST NEWS --><div class="tickerBox latestTicker"><div class="tickerTitle">
+</div><!-- GREEN LATEST NEWS --><div class="tickerBox latestTicker"><div class="tickerTitle">
     🟢 সর্বশেষ নিউজ
 </div>
 
@@ -104,7 +109,7 @@
     <img
         id="heroImage"
         src="logo-live.png"
-        alt="সময়ের বার্তা">
+        alt="সাপ্তাহিক বার্তা">
 
     <div class="overlay">
 
@@ -134,7 +139,6 @@
 <div
     class="sideStories"
     id="sideStories">
-
 </div>
 
 </section><!-- NEWS --><section class="section"><h2 id="newsHeading">
@@ -144,7 +148,6 @@
 <div
     class="cards"
     id="newsContainer">
-
 </div>
 
 </section><!-- FACEBOOK --><section class="facebook"><div>
@@ -152,7 +155,7 @@
     <h2>📘 আমাদের Facebook Page</h2>
 
     <p>
-        সময়ের বার্তার সর্বশেষ আপডেট পেতে
+        সাপ্তাহিক বার্তার সর্বশেষ আপডেট পেতে
         Facebook Page-এ যুক্ত থাকুন।
     </p>
 
@@ -168,7 +171,7 @@
 
 </section><!-- ABOUT --><section
     class="about"
-    id="contact"><h2>📰 সময়ের বার্তা</h2>
+    id="contact"><h2>📰 সাপ্তাহিক বার্তা</h2>
 
 <p>
     <b>সম্পাদক:</b>
@@ -203,7 +206,7 @@
 
 </a>
 
-</section><!-- FOOTER --><footer>© 2026 সময়ের বার্তা
+</section><footer>© 2026 সাপ্তাহিক বার্তা
 
 <br>
 
@@ -220,9 +223,7 @@
     <span
         class="close"
         onclick="closeStory()">
-
         ×
-
     </span>
 
     <img
@@ -259,7 +260,7 @@
 
 </div>
 
-</div><!-- FIREBASE --><script type="module">
+</div><script type="module">
 
 import {
     initializeApp
@@ -370,6 +371,7 @@ query(
 
 
 onSnapshot(
+
     newsQuery,
 
     snapshot => {
@@ -386,13 +388,13 @@ onSnapshot(
         });
 
 
-        displayNews(allNews);
-
         displayBreaking(allNews);
 
         displayLatest(allNews);
 
         displayHero(allNews);
+
+        displayNews(allNews);
 
     },
 
@@ -449,7 +451,7 @@ function displayBreaking(newsList){
         <a href="#"
            onclick='openStory(${JSON.stringify(news).replace(/'/g,"&#39;")});return false;'>
 
-            ⚡ ${escapeHtml(news.title || "")}
+           ⚡ ${escapeHtml(news.title || "")}
 
         </a>
 
@@ -488,7 +490,7 @@ function displayLatest(newsList){
         <a href="#"
            onclick='openStory(${JSON.stringify(news).replace(/'/g,"&#39;")});return false;'>
 
-            📰 ${escapeHtml(news.title || "")}
+           📰 ${escapeHtml(news.title || "")}
 
         </a>
 
@@ -536,11 +538,7 @@ function displayHero(newsList){
     document.getElementById(
         "heroButton"
     ).onclick =
-    function(){
-
-        openStory(hero);
-
-    };
+    () => openStory(hero);
 
 
     const side =
@@ -598,7 +596,7 @@ function displayHero(newsList){
 }
 
 
-/* DISPLAY */
+/* DISPLAY NEWS */
 
 function displayNews(newsList){
 
@@ -703,7 +701,7 @@ function displayNews(newsList){
 }
 
 
-/* CATEGORY FILTER */
+/* CATEGORY */
 
 window.filterCategory =
 function(category){
@@ -717,7 +715,7 @@ function(category){
     document.getElementById(
         "newsHeading"
     ).textContent =
-    category;
+    category + " সংবাদ";
 
 
     displayNews(filtered);
@@ -730,7 +728,7 @@ function(category){
 window.searchNews =
 function(){
 
-    const q =
+    const value =
     document.getElementById(
         "searchInput"
     ).value
@@ -738,7 +736,7 @@ function(){
     .toLowerCase();
 
 
-    if(!q){
+    if(!value){
 
         document.getElementById(
             "newsHeading"
@@ -758,11 +756,11 @@ function(){
         return (
             (news.title || "")
             .toLowerCase()
-            .includes(q)
+            .includes(value)
             ||
             (news.body || "")
             .toLowerCase()
-            .includes(q)
+            .includes(value)
         );
 
     });
@@ -825,14 +823,12 @@ function(news){
     ).onclick =
     function(){
 
-        const url =
-        window.location.href;
-
-
         const facebookUrl =
         "https://www.facebook.com/sharer/sharer.php?u="
         +
-        encodeURIComponent(url);
+        encodeURIComponent(
+            window.location.href
+        );
 
 
         window.open(
@@ -845,6 +841,8 @@ function(news){
 
 };
 
+
+/* CLOSE */
 
 window.closeStory =
 function(){
