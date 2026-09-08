@@ -2,60 +2,129 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Admin - সাপ্তাহিক বার্তা LIVE</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin - সাপ্তাহিক বার্তা</title>
 
 <style>
 *{box-sizing:border-box}
+
 body{
     margin:0;
     font-family:Arial,sans-serif;
     background:#f3f3f3;
 }
+
 .box{
-    max-width:650px;
+    max-width:700px;
     margin:25px auto;
-    background:white;
-    padding:25px;
+    background:#fff;
+    padding:22px;
     box-shadow:0 2px 10px #ccc;
 }
-h1{color:#c00000}
+
+h1{
+    color:#c00;
+}
+
 input,textarea,select{
     width:100%;
     padding:12px;
-    margin:7px 0 15px;
+    margin:7px 0 14px;
     border:1px solid #ccc;
     border-radius:4px;
 }
+
 button{
-    background:#c00000;
-    color:white;
+    background:#c00;
+    color:#fff;
     border:0;
-    padding:12px 18px;
+    padding:11px 17px;
     font-weight:bold;
-    border-radius:4px;
     cursor:pointer;
+    border-radius:4px;
 }
-button:hover{background:#900}
-#panel{display:none}
-.msg{
-    margin-top:15px;
-    padding:10px;
-    background:#eee;
+
+button:hover{
+    opacity:.85;
 }
-.newsItem{
-    border-top:1px solid #ddd;
-    padding:15px 0;
+
+.secondary{
+    background:#333;
 }
+
+.edit{
+    background:#075fc9;
+}
+
 .delete{
-    background:#333;
-    margin-top:8px;
+    background:#900;
 }
+
 .logout{
+    background:#555;
     float:right;
-    background:#333;
 }
-a{color:#c00000}
+
+.newsItem{
+    border:1px solid #ddd;
+    margin-top:15px;
+    padding:15px;
+    background:#fafafa;
+}
+
+.newsItem img{
+    width:120px;
+    height:80px;
+    object-fit:cover;
+    float:left;
+    margin-right:12px;
+}
+
+.newsItem h3{
+    margin:0 0 7px;
+}
+
+.date{
+    color:#777;
+    font-size:13px;
+    margin:6px 0;
+}
+
+.clear{
+    clear:both;
+}
+
+#panel{
+    display:none;
+}
+
+#message{
+    margin:15px 0;
+    font-weight:bold;
+}
+
+.preview{
+    background:#eee;
+    padding:10px;
+    margin-bottom:10px;
+}
+
+@media(max-width:600px){
+
+    .box{
+        margin:0;
+        min-height:100vh;
+        padding:15px;
+    }
+
+    .newsItem img{
+        width:100%;
+        height:180px;
+        float:none;
+        margin:0 0 10px;
+    }
+}
 </style>
 </head>
 
@@ -66,34 +135,69 @@ a{color:#c00000}
 <h1>📰 সাপ্তাহিক বার্তা — Admin</h1>
 
 <!-- LOGIN -->
+
 <div id="loginBox">
 
-<label>Admin Email</label>
-<input id="email" type="email" placeholder="Admin email">
+<p>
+Admin Email দিয়ে Login করুন।
+</p>
 
-<label>Admin Password</label>
-<input id="password" type="password" placeholder="Password">
+<label>Email</label>
 
-<button onclick="login()">🔐 Login</button>
+<input
+id="email"
+type="email"
+placeholder="Admin email">
 
-<p id="loginMsg"></p>
+<label>Password</label>
+
+<input
+id="password"
+type="password"
+placeholder="Password">
+
+<button id="loginBtn">
+Login
+</button>
+
+<p id="loginMessage"></p>
 
 </div>
 
 
 <!-- ADMIN PANEL -->
+
 <div id="panel">
 
-<button class="logout" onclick="logout()">Logout</button>
+<button
+class="logout"
+id="logoutBtn">
+Logout
+</button>
 
-<h2>📝 নতুন সংবাদ প্রকাশ</h2>
+<div style="clear:both"></div>
 
-<label>সংবাদের শিরোনাম</label>
-<input id="title" placeholder="সংবাদের শিরোনাম লিখুন">
+<hr>
 
-<label>বিভাগ</label>
+<h2 id="formTitle">
+নতুন সংবাদ প্রকাশ
+</h2>
 
-<select id="category">
+<label>
+শিরোনাম
+</label>
+
+<input
+id="title"
+type="text"
+placeholder="সংবাদের শিরোনাম লিখুন">
+
+
+<label>
+বিভাগ
+</label>
+
+<select id="cat">
 
 <option>জাতীয়</option>
 <option>রাজনীতি</option>
@@ -106,45 +210,76 @@ a{color:#c00000}
 </select>
 
 
-<label>ছবির URL</label>
-<input id="image"
-placeholder="https://example.com/image.jpg">
+<label>
+ছবির URL
+</label>
 
+<input
+id="img"
+type="url"
+placeholder="ছবির লিংক">
 
-<label>ভিডিও URL (ঐচ্ছিক)</label>
-
-<input id="video"
-placeholder="YouTube ভিডিও লিংক দিন">
-
-
-<label>সংবাদের বিস্তারিত</label>
-
-<textarea id="body" rows="10"
-placeholder="সংবাদের বিস্তারিত লিখুন"></textarea>
+<p style="font-size:13px;color:#777">
+ছবি Upload ব্যবস্থা আমরা পরের ধাপে যুক্ত করব।
+</p>
 
 
 <label>
-<input id="breaking" type="checkbox" style="width:auto">
- Breaking News
+সংবাদের বিস্তারিত
 </label>
 
-<br><br>
+<textarea
+id="body"
+rows="10"
+placeholder="সম্পূর্ণ সংবাদ লিখুন"></textarea>
 
-<button onclick="publish()">🚀 সংবাদ প্রকাশ করুন</button>
 
-<p id="msg" class="msg"></p>
+<label>
+Breaking News?
+</label>
+
+<select id="breaking">
+
+<option value="false">
+না
+</option>
+
+<option value="true">
+হ্যাঁ
+</option>
+
+</select>
+
+
+<button id="publishBtn">
+সংবাদ প্রকাশ করুন
+</button>
+
+<button
+id="cancelBtn"
+class="secondary"
+style="display:none">
+Edit বাতিল
+</button>
+
+<p id="message"></p>
 
 <hr>
 
-<h2>📰 প্রকাশিত সংবাদ</h2>
+<h2>
+📰 প্রকাশিত সংবাদ
+</h2>
 
-<div id="newsList"></div>
+<div id="newsList">
+নিউজ লোড হচ্ছে...
+</div>
 
 </div>
 
-
 <p>
-<a href="index.html">← Website-এ ফিরে যান</a>
+<a href="index.html">
+← Website-এ ফিরে যান
+</a>
 </p>
 
 </div>
@@ -152,77 +287,115 @@ placeholder="সংবাদের বিস্তারিত লিখুন">
 
 <script type="module">
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+    initializeApp
+}
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
 
 import {
     getAuth,
     signInWithEmailAndPassword,
-    signOut,
-    onAuthStateChanged
+    onAuthStateChanged,
+    signOut
 }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
 
 import {
     getFirestore,
     collection,
     addDoc,
-    getDocs,
+    updateDoc,
     deleteDoc,
     doc,
+    query,
+    orderBy,
+    onSnapshot,
     serverTimestamp
 }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
 /* FIREBASE CONFIG */
 
 const firebaseConfig = {
 
-    apiKey: "AIzaSyDugMsCaCtCZwKzBHhYQJbgsySRwA6ikXg",
+    apiKey:
+    "AIzaSyDugMsCaCtCZwKzBHhYQJbgsySRwA6ikXg",
 
-    authDomain: "saptahik-barta.firebaseapp.com",
+    authDomain:
+    "saptahik-barta.firebaseapp.com",
 
-    projectId: "saptahik-barta",
+    projectId:
+    "saptahik-barta",
 
-    storageBucket: "saptahik-barta.firebasestorage.app",
+    storageBucket:
+    "saptahik-barta.firebasestorage.app",
 
-    messagingSenderId: "64482849817",
+    messagingSenderId:
+    "64482849817",
 
-    appId: "1:64482849817:web:67af4e2b46d9bf2b7f2688",
+    appId:
+    "1:64482849817:web:67af4e2b46d9bf2b7f2688",
 
-    measurementId: "G-L100GNJ7JM"
-
+    measurementId:
+    "G-L100GNJ7JM"
 };
 
 
-const app = initializeApp(firebaseConfig);
+const app =
+initializeApp(firebaseConfig);
 
-const auth = getAuth(app);
 
-const db = getFirestore(app);
+const auth =
+getAuth(app);
+
+
+const db =
+getFirestore(app);
+
+
+/* ELEMENTS */
+
+const loginBox =
+document.getElementById("loginBox");
+
+const panel =
+document.getElementById("panel");
+
+const loginMessage =
+document.getElementById("loginMessage");
+
+const message =
+document.getElementById("message");
+
+
+let editingId = null;
 
 
 /* LOGIN */
 
-window.login = async function(){
+document.getElementById(
+    "loginBtn"
+).onclick = async function(){
 
     const email =
-        document.getElementById("email").value;
+    document.getElementById("email").value.trim();
 
     const password =
-        document.getElementById("password").value;
+    document.getElementById("password").value;
 
-    const msg =
-        document.getElementById("loginMsg");
 
     if(!email || !password){
 
-        msg.textContent =
-            "Email এবং Password দিন।";
+        loginMessage.textContent =
+        "Email ও Password দিন।";
 
         return;
+
     }
+
 
     try{
 
@@ -232,15 +405,15 @@ window.login = async function(){
             password
         );
 
-        msg.textContent =
-            "Login সফল হয়েছে।";
+        loginMessage.textContent =
+        "";
 
-    }
+    }catch(error){
 
-    catch(error){
+        console.error(error);
 
-        msg.textContent =
-            "Login ব্যর্থ। Email অথবা Password ভুল।";
+        loginMessage.textContent =
+        "Login ব্যর্থ হয়েছে। Email/Password পরীক্ষা করুন।";
 
     }
 
@@ -249,72 +422,69 @@ window.login = async function(){
 
 /* LOGOUT */
 
-window.logout = async function(){
+document.getElementById(
+    "logoutBtn"
+).onclick = function(){
 
-    await signOut(auth);
+    signOut(auth);
 
 };
 
 
-/* LOGIN STATUS */
+/* AUTH STATE */
 
-onAuthStateChanged(auth, user => {
+onAuthStateChanged(
+    auth,
+    user=>{
 
-    if(user){
+        if(user){
 
-        document.getElementById("loginBox")
-        .style.display="none";
+            loginBox.style.display =
+            "none";
 
-        document.getElementById("panel")
-        .style.display="block";
+            panel.style.display =
+            "block";
 
-        loadNews();
+        }else{
+
+            loginBox.style.display =
+            "block";
+
+            panel.style.display =
+            "none";
+
+        }
 
     }
-
-    else{
-
-        document.getElementById("loginBox")
-        .style.display="block";
-
-        document.getElementById("panel")
-        .style.display="none";
-
-    }
-
-});
+);
 
 
 /* PUBLISH */
 
-window.publish = async function(){
+document.getElementById(
+    "publishBtn"
+).onclick = async function(){
 
     const title =
-        document.getElementById("title").value.trim();
+    document.getElementById("title").value.trim();
 
-    const category =
-        document.getElementById("category").value;
+    const cat =
+    document.getElementById("cat").value;
 
-    const image =
-        document.getElementById("image").value.trim();
-
-    const video =
-        document.getElementById("video").value.trim();
+    const img =
+    document.getElementById("img").value.trim();
 
     const body =
-        document.getElementById("body").value.trim();
+    document.getElementById("body").value.trim();
 
     const breaking =
-        document.getElementById("breaking").checked;
-
-    const msg =
-        document.getElementById("msg");
+    document.getElementById("breaking").value === "true";
 
 
     if(!title || !body){
 
-        msg.textContent =
-            "শিরোনাম এবং বিস্তারিত সংবাদ অবশ্যই দিতে হবে।";
+        message.textContent =
+        "শিরোনাম ও বিস্তারিত সংবাদ লিখুন।";
 
         return;
 
@@ -323,148 +493,433 @@ window.publish = async function(){
 
     try{
 
-        await addDoc(
-            collection(db,"news"),
-            {
+        if(editingId){
 
-                title:title,
+            await updateDoc(
+                doc(
+                    db,
+                    "news",
+                    editingId
+                ),
+                {
 
-                category:category,
+                    title:title,
+                    cat:cat,
+                    img:img,
+                    body:body,
+                    breaking:breaking,
 
-                image:image,
+                    updatedAt:
+                    serverTimestamp()
 
-                video:video,
-
-                body:body,
-
-                breaking:breaking,
-
-                createdAt:serverTimestamp(),
-
-                author:auth.currentUser.email
-
-            }
-        );
-
-
-        msg.textContent =
-            "✅ সংবাদ সফলভাবে Online প্রকাশ হয়েছে।";
+                }
+            );
 
 
-        document.getElementById("title").value="";
-        document.getElementById("image").value="";
-        document.getElementById("video").value="";
-        document.getElementById("body").value="";
-        document.getElementById("breaking").checked=false;
+            message.textContent =
+            "সংবাদ সফলভাবে Edit হয়েছে।";
 
-        loadNews();
 
-    }
+            editingId=null;
 
-    catch(error){
+            document.getElementById(
+                "formTitle"
+            ).textContent =
+            "নতুন সংবাদ প্রকাশ";
 
-        msg.textContent =
-            "❌ সংবাদ প্রকাশ হয়নি। Firestore Rules পরীক্ষা করুন।";
+
+            document.getElementById(
+                "publishBtn"
+            ).textContent =
+            "সংবাদ প্রকাশ করুন";
+
+
+            document.getElementById(
+                "cancelBtn"
+            ).style.display =
+            "none";
+
+
+        }else{
+
+            await addDoc(
+                collection(db,"news"),
+                {
+
+                    title:title,
+                    cat:cat,
+                    img:img,
+                    body:body,
+                    breaking:breaking,
+
+                    createdAt:
+                    serverTimestamp(),
+
+                    updatedAt:
+                    serverTimestamp()
+
+                }
+            );
+
+
+            message.textContent =
+            "✅ সংবাদ সফলভাবে প্রকাশ হয়েছে।";
+
+        }
+
+
+        clearForm();
+
+
+    }catch(error){
 
         console.error(error);
 
+        message.textContent =
+        "❌ সংবাদ সংরক্ষণ করা যায়নি।";
+
     }
+
+};
+
+
+/* CLEAR */
+
+function clearForm(){
+
+    document.getElementById(
+        "title"
+    ).value="";
+
+    document.getElementById(
+        "img"
+    ).value="";
+
+    document.getElementById(
+        "body"
+    ).value="";
+
+    document.getElementById(
+        "breaking"
+    ).value="false";
+
+}
+
+
+/* CANCEL EDIT */
+
+document.getElementById(
+    "cancelBtn"
+).onclick=function(){
+
+    editingId=null;
+
+    clearForm();
+
+    document.getElementById(
+        "formTitle"
+    ).textContent =
+    "নতুন সংবাদ প্রকাশ";
+
+    document.getElementById(
+        "publishBtn"
+    ).textContent =
+    "সংবাদ প্রকাশ করুন";
+
+    this.style.display="none";
 
 };
 
 
 /* LOAD NEWS */
 
-async function loadNews(){
+const newsQuery =
+query(
+    collection(db,"news"),
+    orderBy("createdAt","desc")
+);
 
-    const list =
-        document.getElementById("newsList");
 
-    list.innerHTML="লোড হচ্ছে...";
+onSnapshot(
+    newsQuery,
+    snapshot=>{
 
-
-    try{
-
-        const snapshot =
-            await getDocs(
-                collection(db,"news")
-            );
+        const list =
+        document.getElementById(
+            "newsList"
+        );
 
         list.innerHTML="";
 
 
-        snapshot.forEach(item => {
+        if(snapshot.empty){
 
-            const n=item.data();
+            list.innerHTML =
+            "<p>এখনো কোনো সংবাদ প্রকাশ হয়নি।</p>";
 
-            const div=
-                document.createElement("div");
+            return;
 
-            div.className="newsItem";
+        }
 
-            div.innerHTML=`
 
-                <b>${escapeHtml(n.title || "")}</b>
+        snapshot.forEach(
+            item=>{
 
-                <br>
+                const news =
+                item.data();
 
-                <small>
-                ${escapeHtml(n.category || "")}
-                </small>
 
-                <br>
+                const div =
+                document.createElement(
+                    "div"
+                );
 
-                <button
-                class="delete"
-                onclick="deleteNews('${item.id}')">
+                div.className =
+                "newsItem";
 
-                🗑️ Delete
 
-                </button>
+                let date="";
 
-            `;
+                if(news.createdAt){
 
-            list.appendChild(div);
+                    date =
+                    news.createdAt
+                    .toDate()
+                    .toLocaleString(
+                        "bn-BD",
+                        {
+                            dateStyle:"full",
+                            timeStyle:"short"
+                        }
+                    );
 
-        });
+                }
+
+
+                div.innerHTML=`
+
+                    ${
+                        news.img
+                        ?
+                        `<img src="${escapeHtml(news.img)}">`
+                        :
+                        ""
+                    }
+
+                    <h3>
+                        ${escapeHtml(news.title || "")}
+                    </h3>
+
+                    <div class="date">
+                        প্রকাশ:
+                        ${date}
+                    </div>
+
+                    <div>
+                        বিভাগ:
+                        ${escapeHtml(news.cat || "")}
+                    </div>
+
+                    ${
+                        news.breaking
+                        ?
+                        `<b style="color:red">
+                        ⚡ Breaking News
+                        </b>`
+                        :
+                        ""
+                    }
+
+                    <div class="clear"></div>
+
+                    <br>
+
+                    <button
+                    class="edit"
+                    onclick="editNews('${item.id}')">
+                    ✏️ Edit
+                    </button>
+
+                    <button
+                    class="delete"
+                    onclick="deleteNews('${item.id}')">
+                    🗑️ Delete
+                    </button>
+
+                `;
+
+
+                list.appendChild(div);
+
+            }
+        );
+
+    },
+
+    error=>{
+
+        console.error(error);
+
+        document.getElementById(
+            "newsList"
+        ).innerHTML =
+        "<p>নিউজ লোড করা যাচ্ছে না। Firestore Rules পরীক্ষা করুন।</p>";
 
     }
 
-    catch(error){
+);
 
-        list.innerHTML =
-            "সংবাদ লোড করা যাচ্ছে না।";
 
-    }
+/* EDIT */
+
+window.editNews =
+async function(id){
+
+    const all =
+    await getNewsData(id);
+
+    if(!all) return;
+
+
+    editingId=id;
+
+
+    document.getElementById(
+        "title"
+    ).value =
+    all.title || "";
+
+
+    document.getElementById(
+        "cat"
+    ).value =
+    all.cat || "জাতীয়";
+
+
+    document.getElementById(
+        "img"
+    ).value =
+    all.img || "";
+
+
+    document.getElementById(
+        "body"
+    ).value =
+    all.body || "";
+
+
+    document.getElementById(
+        "breaking"
+    ).value =
+    all.breaking
+    ? "true"
+    : "false";
+
+
+    document.getElementById(
+        "formTitle"
+    ).textContent =
+    "✏️ সংবাদ Edit করুন";
+
+
+    document.getElementById(
+        "publishBtn"
+    ).textContent =
+    "Update করুন";
+
+
+    document.getElementById(
+        "cancelBtn"
+    ).style.display =
+    "inline-block";
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+};
+
+
+/* GET ONE NEWS */
+
+async function getNewsData(id){
+
+    return new Promise(
+        resolve=>{
+
+            const unsubscribe =
+            onSnapshot(
+                doc(
+                    db,
+                    "news",
+                    id
+                ),
+                snap=>{
+
+                    unsubscribe();
+
+                    if(
+                        snap.exists()
+                    ){
+
+                        resolve(
+                            snap.data()
+                        );
+
+                    }else{
+
+                        resolve(null);
+
+                    }
+
+                }
+            );
+
+        }
+    );
 
 }
 
 
 /* DELETE */
 
-window.deleteNews = async function(id){
+window.deleteNews =
+async function(id){
 
-    if(!confirm("এই সংবাদটি মুছে ফেলবেন?")){
+    if(
+        !confirm(
+            "এই সংবাদটি Delete করতে চান?"
+        )
+    ){
 
         return;
 
     }
 
+
     try{
 
         await deleteDoc(
-            doc(db,"news",id)
+            doc(
+                db,
+                "news",
+                id
+            )
         );
 
-        alert("সংবাদ মুছে ফেলা হয়েছে।");
 
-        loadNews();
+        message.textContent =
+        "🗑️ সংবাদ Delete হয়েছে।";
 
-    }
 
-    catch(error){
+    }catch(error){
 
-        alert("Delete করা যায়নি।");
+        console.error(error);
+
+        message.textContent =
+        "Delete করা যায়নি।";
 
     }
 
@@ -475,9 +930,13 @@ window.deleteNews = async function(id){
 
 function escapeHtml(text){
 
-    const div=document.createElement("div");
+    const div =
+    document.createElement("div");
 
-    div.textContent=text;
+    div.textContent =
+    text == null
+    ? ""
+    : text;
 
     return div.innerHTML;
 
