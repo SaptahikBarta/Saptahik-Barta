@@ -1,705 +1,921 @@
 <!DOCTYPE html>
 <html lang="bn">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>সাপ্তাহিক বার্তা - LIVE</title>
 
 <style>
-
 *{
-box-sizing:border-box;
-margin:0;
-padding:0;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
 body{
-font-family:Arial,sans-serif;
-background:#f3f3f3;
-color:#222;
+    font-family:Arial,sans-serif;
+    background:#f3f3f3;
+    color:#222;
 }
 
 .topbar{
-background:#111;
-color:white;
-padding:8px 4%;
-font-size:14px;
+    background:#111;
+    color:#fff;
+    padding:9px 4%;
+    font-size:14px;
 }
 
 .topbar span{
-float:right;
+    float:right;
 }
 
 .brand{
-background:white;
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:15px 4%;
-gap:20px;
+    background:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:15px 4%;
+    gap:20px;
 }
 
 .brand img{
-width:520px;
-max-width:70%;
-height:auto;
+    width:520px;
+    max-width:70%;
+    height:auto;
 }
 
 .search{
-display:flex;
+    display:flex;
 }
 
 .search input{
-padding:12px;
-width:220px;
-border:1px solid #ccc;
+    padding:12px;
+    width:220px;
+    border:1px solid #ccc;
 }
 
 .search button{
-background:#c90000;
-color:white;
-border:0;
-padding:0 16px;
-font-size:18px;
+    background:#c90000;
+    color:#fff;
+    border:0;
+    padding:0 16px;
+    font-size:18px;
 }
 
 nav{
-background:#171717;
-display:flex;
-overflow-x:auto;
-white-space:nowrap;
+    background:#171717;
+    display:flex;
+    overflow-x:auto;
+    white-space:nowrap;
 }
 
 nav a{
-color:white;
-text-decoration:none;
-padding:14px 16px;
-font-weight:bold;
+    color:#fff;
+    text-decoration:none;
+    padding:14px 16px;
+    font-weight:bold;
 }
 
 nav a:hover{
-background:#c90000;
+    background:#c90000;
 }
 
+/* Breaking News */
 .breaking{
-margin:15px 2%;
-background:#d00000;
-color:white;
-padding:13px;
-border-radius:4px;
+    margin:15px 2%;
+    background:#d00000;
+    color:#fff;
+    display:flex;
+    overflow:hidden;
+    align-items:center;
+    border-radius:4px;
 }
 
+.breaking b{
+    background:#a80000;
+    padding:13px 15px;
+    white-space:nowrap;
+    z-index:2;
+}
+
+.ticker{
+    overflow:hidden;
+    width:100%;
+}
+
+.ticker-track{
+    display:inline-block;
+    white-space:nowrap;
+    padding-left:100%;
+    animation:ticker 25s linear infinite;
+}
+
+@keyframes ticker{
+    from{transform:translateX(0)}
+    to{transform:translateX(-100%)}
+}
+
+.ticker-track a{
+    color:#fff;
+    text-decoration:none;
+    margin-right:60px;
+    font-weight:bold;
+}
+
+/* Sections */
 .section{
-margin:25px 2%;
+    margin:25px 2%;
 }
 
 .section h2{
-border-left:5px solid #d00000;
-padding-left:10px;
-border-bottom:2px solid #ddd;
-padding-bottom:8px;
+    border-left:5px solid #d00000;
+    padding-left:10px;
+    border-bottom:2px solid #ddd;
+    padding-bottom:8px;
 }
 
 .cards{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:15px;
-margin-top:15px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin-top:15px;
 }
 
 .card{
-background:white;
-padding:10px;
-box-shadow:0 1px 4px #ccc;
+    background:#fff;
+    padding:10px;
+    box-shadow:0 1px 4px #ccc;
 }
 
 .card img{
-width:100%;
-height:200px;
-object-fit:cover;
+    width:100%;
+    height:190px;
+    object-fit:cover;
 }
 
 .card h3{
-font-size:20px;
-margin:8px 0;
+    font-size:20px;
+    margin:8px 0;
 }
 
 .card p{
-color:#555;
-line-height:1.7;
-margin-bottom:10px;
+    color:#666;
+    line-height:1.6;
+    margin-bottom:8px;
 }
 
 .tag{
-display:inline-block;
-background:#d00000;
-color:white;
-padding:4px 9px;
-font-size:13px;
-margin-top:8px;
+    display:inline-block;
+    background:#d00000;
+    color:#fff;
+    padding:4px 9px;
+    font-size:13px;
+    margin-top:8px;
+}
+
+.date{
+    color:#777;
+    font-size:13px;
+    margin:7px 0;
 }
 
 .card button{
-background:#d00000;
-color:white;
-border:0;
-padding:9px 12px;
-font-weight:bold;
-cursor:pointer;
+    background:#d00000;
+    color:#fff;
+    border:0;
+    padding:9px 12px;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-.video{
-width:100%;
-aspect-ratio:16/9;
-margin-top:10px;
-border:0;
+.share{
+    background:#1877f2 !important;
+    margin-left:5px;
 }
 
-.newsDate{
-color:#777;
-font-size:13px;
-margin:5px 0;
+/* Empty */
+.empty{
+    background:#fff;
+    padding:20px;
+    margin-top:15px;
+    color:#777;
 }
 
-.facebook{
-margin:25px 2%;
-padding:20px;
-background:white;
-border-left:5px solid #1877f2;
-display:flex;
-justify-content:space-between;
-align-items:center;
+/* Modal */
+.modal{
+    display:none;
+    position:fixed;
+    z-index:9999;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.75);
+    overflow:auto;
 }
 
-.facebook a{
-background:#1877f2;
-color:white;
-text-decoration:none;
-padding:12px 16px;
+.modalBox{
+    background:#fff;
+    max-width:800px;
+    margin:5% auto;
+    padding:20px;
+    border-radius:5px;
 }
 
+.modalBox img{
+    width:100%;
+    max-height:450px;
+    object-fit:cover;
+}
+
+.modalBox h2{
+    margin:12px 0;
+}
+
+.modalBody{
+    line-height:1.9;
+    white-space:pre-line;
+}
+
+.close{
+    float:right;
+    font-size:28px;
+    cursor:pointer;
+    color:#c00;
+}
+
+/* About */
 .about{
-margin:25px 2%;
-background:white;
-padding:25px;
-border-top:4px solid #d00000;
-line-height:2;
+    margin:25px 2%;
+    background:#fff;
+    padding:25px;
+    border-top:4px solid #d00000;
+    line-height:2;
 }
 
 .about h2{
-color:#d00000;
-margin-bottom:10px;
+    color:#d00000;
+    margin-bottom:10px;
 }
 
 .adminLink{
-display:inline-block;
-background:#222;
-color:white;
-text-decoration:none;
-padding:10px 15px;
-margin-top:8px;
+    display:inline-block;
+    background:#222;
+    color:#fff;
+    text-decoration:none;
+    padding:10px 15px;
+    margin-top:8px;
+}
+
+.facebook{
+    margin:25px 2%;
+    padding:20px;
+    background:#fff;
+    border-left:5px solid #1877f2;
+}
+
+.facebook a{
+    display:inline-block;
+    margin-top:10px;
+    background:#1877f2;
+    color:#fff;
+    text-decoration:none;
+    padding:12px 16px;
 }
 
 footer{
-background:#111;
-color:white;
-text-align:center;
-padding:25px;
-line-height:2;
+    background:#111;
+    color:#fff;
+    text-align:center;
+    padding:25px;
+    line-height:2;
 }
 
 @media(max-width:750px){
 
-.topbar span{
-float:none;
-display:block;
-}
+    .topbar span{
+        float:none;
+        display:block;
+        margin-top:4px;
+    }
 
-.brand{
-flex-direction:column;
-}
+    .brand{
+        flex-direction:column;
+    }
 
-.brand img{
-width:100%;
-max-width:100%;
-}
+    .brand img{
+        width:100%;
+        max-width:100%;
+    }
 
-.search{
-width:100%;
-}
+    .search{
+        width:100%;
+    }
 
-.search input{
-width:100%;
-}
+    .search input{
+        width:100%;
+    }
 
-.cards{
-grid-template-columns:1fr;
-}
+    .cards{
+        grid-template-columns:1fr;
+    }
 
-.facebook{
-flex-direction:column;
-align-items:flex-start;
-gap:15px;
-}
+    .breaking{
+        margin:10px 2%;
+    }
 
+    .modalBox{
+        margin:10% 3%;
+    }
 }
-
 </style>
-
 </head>
-
 
 <body>
 
-
 <div class="topbar">
-
-সাপ্তাহিক বার্তা — LIVE
-
-<span>
-যোগাযোগ: 01634831253
-</span>
-
+    সাপ্তাহিক বার্তা — LIVE
+    <span id="currentDate"></span>
 </div>
-
 
 <div class="brand">
 
-<img
-src="logo-live.png"
-alt="সাপ্তাহিক বার্তা LIVE">
+    <img src="logo-live.png" alt="সাপ্তাহিক বার্তা LIVE">
 
-<div class="search">
+    <div class="search">
+        <input id="searchInput"
+               type="text"
+               placeholder="খবর খুঁজুন..."
+               onkeyup="searchNews()">
 
-<input
-id="searchInput"
-type="text"
-placeholder="খবর খুঁজুন..."
-onkeyup="searchNews()">
-
-<button onclick="searchNews()">
-🔍
-</button>
+        <button onclick="searchNews()">🔍</button>
+    </div>
 
 </div>
-
-</div>
-
 
 <nav>
-
-<a href="#">হোম</a>
-<a href="#news">সর্বশেষ</a>
-<a href="#জাতীয়">জাতীয়</a>
-<a href="#রাজনীতি">রাজনীতি</a>
-<a href="#আন্তর্জাতিক">আন্তর্জাতিক</a>
-<a href="#অর্থনীতি">অর্থনীতি</a>
-<a href="#খেলাধুলা">খেলাধুলা</a>
-<a href="#বিজ্ঞান">বিজ্ঞান ও প্রযুক্তি</a>
-
+    <a href="#">হোম</a>
+    <a href="#জাতীয়">জাতীয়</a>
+    <a href="#রাজনীতি">রাজনীতি</a>
+    <a href="#আন্তর্জাতিক">আন্তর্জাতিক</a>
+    <a href="#অর্থনীতি">অর্থনীতি</a>
+    <a href="#খেলাধুলা">খেলাধুলা</a>
+    <a href="#বিজ্ঞান ও প্রযুক্তি">বিজ্ঞান ও প্রযুক্তি</a>
+    <a href="#মতামত">মতামত</a>
+    <a href="#contact">যোগাযোগ</a>
 </nav>
 
-
+<!-- BREAKING -->
 <div class="breaking">
-
-⚡ <b>BREAKING NEWS:</b>
-
-<span id="breakingText">
-সর্বশেষ সংবাদ জানতে চোখ রাখুন সাপ্তাহিক বার্তায়
-</span>
-
+    <b>⚡ ব্রেকিং নিউজ</b>
+    <div class="ticker">
+        <div class="ticker-track" id="breakingTrack">
+            সর্বশেষ সংবাদ লোড হচ্ছে...
+        </div>
+    </div>
 </div>
 
+<main id="newsContainer">
 
-<section class="section" id="news">
+    <section class="section" id="জাতীয়">
+        <h2>জাতীয় সংবাদ</h2>
+        <div class="cards" id="জাতীয়-news"></div>
+    </section>
 
-<h2>
-📰 সর্বশেষ সংবাদ
-</h2>
+    <section class="section" id="রাজনীতি">
+        <h2>রাজনীতি</h2>
+        <div class="cards" id="রাজনীতি-news"></div>
+    </section>
 
-<div
-id="newsContainer"
-class="cards">
+    <section class="section" id="আন্তর্জাতিক">
+        <h2>আন্তর্জাতিক</h2>
+        <div class="cards" id="আন্তর্জাতিক-news"></div>
+    </section>
 
-<p>
-সংবাদ লোড হচ্ছে...
-</p>
+    <section class="section" id="অর্থনীতি">
+        <h2>অর্থনীতি</h2>
+        <div class="cards" id="অর্থনীতি-news"></div>
+    </section>
 
-</div>
+    <section class="section" id="খেলাধুলা">
+        <h2>খেলাধুলা</h2>
+        <div class="cards" id="খেলাধুলা-news"></div>
+    </section>
 
-</section>
+    <section class="section" id="বিজ্ঞান ও প্রযুক্তি">
+        <h2>বিজ্ঞান ও প্রযুক্তি</h2>
+        <div class="cards" id="বিজ্ঞান ও প্রযুক্তি-news"></div>
+    </section>
 
+</main>
 
+<!-- FACEBOOK -->
 <section class="facebook">
+    <h2>📘 আমাদের Facebook Page</h2>
 
-<div>
+    <p>
+        সাপ্তাহিক বার্তার সর্বশেষ আপডেট পেতে
+        Facebook Page-এ যুক্ত থাকুন।
+    </p>
 
-<h2>
-📘 আমাদের Facebook Page
-</h2>
-
-<p>
-সাপ্তাহিক বার্তার সর্বশেষ আপডেট পেতে
-Facebook Page-এ যুক্ত থাকুন।
-</p>
-
-</div>
-
-<a
-href="https://www.facebook.com/"
-target="_blank">
-
-Facebook Page খুলুন →
-
-</a>
-
+    <a href="https://www.facebook.com/"
+       target="_blank">
+        Facebook Page খুলুন →
+    </a>
 </section>
 
+<!-- ABOUT -->
+<section class="about" id="contact">
 
-<section class="about">
+    <h2>📰 সাপ্তাহিক বার্তা</h2>
 
-<h2>
-📰 সাপ্তাহিক বার্তা
-</h2>
+    <p><b>সম্পাদক:</b> মোঃ নুরুল ইসলাম</p>
 
-<p>
-<b>সম্পাদক:</b>
-মোঃ নুরুল ইসলাম
-</p>
+    <p><b>সহ সম্পাদক ও প্রকাশক:</b> মোঃ আরিফুল ইসলাম</p>
 
-<p>
-<b>সহ সম্পাদক ও প্রকাশক:</b>
-মোঃ আরিফুল ইসলাম
-</p>
+    <p><b>ঠিকানা:</b> Delduar, Tangail</p>
 
-<p>
-<b>ঠিকানা:</b>
-Delduar, Tangail
-</p>
+    <p><b>ই-মেইল:</b> pressarif160@gmail.com</p>
 
-<p>
-<b>ই-মেইল:</b>
-pressarif160@gmail.com
-</p>
+    <p><b>যোগাযোগ:</b> 01634831253</p>
 
-<p>
-<b>যোগাযোগ:</b>
-01634831253
-</p>
-
-<p>
-
-<a
-class="adminLink"
-href="admin.html">
-
-🔐 Admin
-
-</a>
-
-</p>
+    <a class="adminLink" href="admin.html">
+        🔐 Admin / News Publish
+    </a>
 
 </section>
-
 
 <footer>
-
-© 2026 সাপ্তাহিক বার্তা
-
-<br>
-
-সর্বস্বত্ব সংরক্ষিত
-
-<br>
-
-সত্যের সন্ধানে, মানুষের পাশে
-
+    © 2026 সাপ্তাহিক বার্তা
+    <br>
+    সর্বস্বত্ব সংরক্ষিত
+    <br>
+    সত্যের সন্ধানে, মানুষের পাশে
 </footer>
 
+<!-- DETAILS MODAL -->
+<div class="modal" id="storyModal">
+
+    <div class="modalBox">
+
+        <span class="close"
+              onclick="closeStory()">
+            ×
+        </span>
+
+        <img id="modalImage" src="" alt="সংবাদ">
+
+        <span class="tag" id="modalCat"></span>
+
+        <h2 id="modalTitle"></h2>
+
+        <div class="date" id="modalDate"></div>
+
+        <div class="modalBody" id="modalBody"></div>
+
+        <br>
+
+        <button class="card button"
+                id="modalShare"
+                style="background:#1877f2;color:white;border:0;padding:12px;">
+            📘 Facebook-এ শেয়ার করুন
+        </button>
+
+    </div>
+
+</div>
 
 
+<!-- FIREBASE -->
 <script type="module">
 
 import { initializeApp }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
 import {
-getFirestore,
-collection,
-getDocs,
-query,
-orderBy
+    getFirestore,
+    collection,
+    query,
+    orderBy,
+    onSnapshot
 }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
-const firebaseConfig={
+/* ==========================
+   YOUR FIREBASE CONFIG
+   ========================== */
 
-apiKey:"AIzaSyDugMsCaCtCZwKzBHhYQJbgsySRwA6ikXg",
+const firebaseConfig = {
 
-authDomain:"saptahik-barta.firebaseapp.com",
+    apiKey: "YOUR_API_KEY",
 
-projectId:"saptahik-barta",
+    authDomain:
+        "YOUR_PROJECT.firebaseapp.com",
 
-storageBucket:"saptahik-barta.firebasestorage.app",
+    projectId:
+        "YOUR_PROJECT_ID",
 
-messagingSenderId:"64482849817",
+    storageBucket:
+        "YOUR_PROJECT.firebasestorage.app",
 
-appId:"1:64482849817:web:67af4e2b46d9bf2b7f2688",
+    messagingSenderId:
+        "YOUR_MESSAGING_SENDER_ID",
 
-measurementId:"G-L100GNJ7JM"
-
+    appId:
+        "YOUR_APP_ID"
 };
 
 
-const app=initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 
-const db=getFirestore(app);
-
-
-let allNews=[];
+const db = getFirestore(app);
 
 
-/* LOAD NEWS */
+/* ==========================
+   CURRENT DATE / TIME
+   ========================== */
 
-async function loadNews(){
+function updateDate(){
 
-const container=
-document.getElementById("newsContainer");
+    const now = new Date();
 
-try{
+    document.getElementById(
+        "currentDate"
+    ).textContent =
+        now.toLocaleString(
+            "bn-BD",
+            {
+                dateStyle:"full",
+                timeStyle:"short"
+            }
+        );
+}
 
-const q=query(
-collection(db,"news"),
-orderBy("createdAt","desc")
+updateDate();
+
+setInterval(updateDate,60000);
+
+
+/* ==========================
+   DATE FORMAT
+   ========================== */
+
+function formatDate(timestamp){
+
+    if(!timestamp){
+        return "";
+    }
+
+    let date =
+        timestamp.toDate
+        ? timestamp.toDate()
+        : new Date(timestamp);
+
+    return date.toLocaleString(
+        "bn-BD",
+        {
+            dateStyle:"full",
+            timeStyle:"short"
+        }
+    );
+}
+
+
+/* ==========================
+   NEWS
+   ========================== */
+
+const newsQuery = query(
+    collection(db,"news"),
+    orderBy("createdAt","desc")
 );
 
-const snapshot=await getDocs(q);
 
-allNews=[];
+onSnapshot(
+    newsQuery,
+    (snapshot)=>{
 
-snapshot.forEach(doc=>{
+        const allNews = [];
 
-allNews.push({
+        snapshot.forEach(
+            doc=>{
 
-id:doc.id,
-...doc.data()
+                allNews.push({
+                    id:doc.id,
+                    ...doc.data()
+                });
 
-});
+            }
+        );
 
-});
+        displayNews(allNews);
 
+        displayBreaking(allNews);
 
-showNews(allNews);
+    },
 
+    error=>{
 
-/* BREAKING */
+        console.error(error);
 
-const breaking=
-allNews.find(n=>n.breaking===true);
+        document.getElementById(
+            "breakingTrack"
+        ).textContent =
+            "নিউজ লোড করা যাচ্ছে না।";
 
-if(breaking){
+    }
+);
 
-document.getElementById(
-"breakingText"
-).textContent=
-breaking.title;
 
-}
+/* ==========================
+   DISPLAY NEWS
+   ========================== */
 
-}
+function displayNews(newsList){
 
-catch(error){
+    const categories = [
+        "জাতীয়",
+        "রাজনীতি",
+        "আন্তর্জাতিক",
+        "অর্থনীতি",
+        "খেলাধুলা",
+        "বিজ্ঞান ও প্রযুক্তি"
+    ];
 
-console.error(error);
+    categories.forEach(
+        category=>{
 
-container.innerHTML=
-"<p>সংবাদ লোড করা যাচ্ছে না।</p>";
+            const container =
+                document.getElementById(
+                    category+"-news"
+                );
 
-}
+            if(!container) return;
 
-}
+            container.innerHTML="";
 
+            const filtered =
+                newsList.filter(
+                    n=>n.cat===category
+                );
 
-/* SHOW NEWS */
+            if(filtered.length===0){
 
-function showNews(news){
+                container.innerHTML =
+                    `<div class="empty">
+                    এই বিভাগে এখনো কোনো সংবাদ প্রকাশিত হয়নি।
+                    </div>`;
 
-const container=
-document.getElementById("newsContainer");
+                return;
+            }
 
-container.innerHTML="";
+            filtered.forEach(
+                news=>{
 
+                    const card =
+                        document.createElement(
+                            "article"
+                        );
 
-if(news.length===0){
+                    card.className="card";
 
-container.innerHTML=
-"<p>এখনো কোনো সংবাদ প্রকাশ করা হয়নি।</p>";
+                    const image =
+                        news.img ||
+                        "logo-live.png";
 
-return;
+                    const shortBody =
+                        news.body
+                        ? news.body.substring(0,160)
+                        : "";
 
-}
+                    card.innerHTML=`
 
-
-news.forEach(n=>{
-
-const card=
-document.createElement("article");
-
-card.className="card";
-
-
-let videoHTML="";
-
-if(n.video){
-
-const videoId=
-getYouTubeId(n.video);
-
-if(videoId){
-
-videoHTML=`
-
-<iframe
-class="video"
-src="https://www.youtube.com/embed/${videoId}"
-allowfullscreen>
-</iframe>
-
-`;
-
-}
-
-}
-
-
-card.innerHTML=`
-
-${n.image ? `
-<img
-src="${escapeHtml(n.image)}"
-alt="সংবাদ ছবি"
-onerror="this.style.display='none'">
-` : ""}
-
-<span class="tag">
-${escapeHtml(n.category || "সংবাদ")}
-</span>
-
-<h3>
-${escapeHtml(n.title || "")}
-</h3>
-
-<div class="newsDate">
-সাপ্তাহিক বার্তা LIVE
-</div>
-
-${videoHTML}
-
-<p>
-${escapeHtml(n.body || "")}
-</p>
-
-`;
-
-
-container.appendChild(card);
-
-});
-
-}
-
-
-/* YOUTUBE */
-
-function getYouTubeId(url){
-
-try{
-
-const u=new URL(url);
-
-if(u.hostname.includes("youtu.be")){
-
-return u.pathname.substring(1);
-
-}
-
-if(u.hostname.includes("youtube.com")){
-
-return u.searchParams.get("v");
-
-}
-
-}
-
-catch(e){}
-
-return null;
+                        <img src="${escapeHtml(image)}"
+                             alt="সংবাদ">
+
+                        <span class="tag">
+                            ${escapeHtml(news.cat || "")}
+                        </span>
+
+                        <h3>
+                            ${escapeHtml(news.title || "")}
+                        </h3>
+
+                        <div class="date">
+                            ${formatDate(news.createdAt)}
+                        </div>
+
+                        <p>
+                            ${escapeHtml(shortBody)}
+                            ${news.body && news.body.length>160 ? "..." : ""}
+                        </p>
+
+                        <button
+                            onclick='openStory(${JSON.stringify(news).replace(/'/g,"&#39;")})'>
+                            বিস্তারিত পড়ুন →
+                        </button>
+
+                        <button
+                            class="share"
+                            onclick='shareFacebook("${encodeURIComponent(news.title || "")}")'>
+                            📘 Share
+                        </button>
+                    `;
+
+                    container.appendChild(card);
+
+                }
+            );
+
+        }
+    );
 
 }
 
 
-/* SEARCH */
+/* ==========================
+   BREAKING NEWS
+   ========================== */
+
+function displayBreaking(newsList){
+
+    const track =
+        document.getElementById(
+            "breakingTrack"
+        );
+
+    if(newsList.length===0){
+
+        track.textContent =
+            "সর্বশেষ সংবাদ জানতে চোখ রাখুন সাপ্তাহিক বার্তায়";
+
+        return;
+    }
+
+    const latest =
+        newsList.slice(0,10);
+
+    track.innerHTML =
+        latest.map(
+            news=>`
+
+            <a href="#"
+               onclick='openStory(${JSON.stringify(news).replace(/'/g,"&#39;")});return false;'>
+                ⚡ ${escapeHtml(news.title || "")}
+            </a>
+
+            `
+        ).join("");
+
+}
+
+
+/* ==========================
+   SEARCH
+   ========================== */
 
 window.searchNews=function(){
 
-const q=
-document.getElementById(
-"searchInput"
-).value
-.toLowerCase()
-.trim();
+    const q =
+        document.getElementById(
+            "searchInput"
+        ).value
+        .trim()
+        .toLowerCase();
 
+    document.querySelectorAll(
+        ".card"
+    ).forEach(
+        card=>{
 
-if(!q){
+            const text =
+                card.innerText.toLowerCase();
 
-showNews(allNews);
+            card.style.display =
+                !q || text.includes(q)
+                ? ""
+                : "none";
 
-return;
-
-}
-
-
-const result=
-allNews.filter(n=>
-(n.title||"")
-.toLowerCase()
-.includes(q)
-||
-(n.body||"")
-.toLowerCase()
-.includes(q)
-);
-
-
-showNews(result);
+        }
+    );
 
 };
 
 
-/* BASIC HTML SAFETY */
+/* ==========================
+   STORY
+   ========================== */
+
+window.openStory=function(news){
+
+    document.getElementById(
+        "storyModal"
+    ).style.display="block";
+
+    document.getElementById(
+        "modalImage"
+    ).src =
+        news.img || "logo-live.png";
+
+    document.getElementById(
+        "modalCat"
+    ).textContent =
+        news.cat || "";
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        news.title || "";
+
+    document.getElementById(
+        "modalDate"
+    ).textContent =
+        formatDate(news.createdAt);
+
+    document.getElementById(
+        "modalBody"
+    ).textContent =
+        news.body || "";
+
+    document.getElementById(
+        "modalShare"
+    ).onclick=function(){
+
+        shareFacebook(
+            news.title || ""
+        );
+
+    };
+
+};
+
+
+window.closeStory=function(){
+
+    document.getElementById(
+        "storyModal"
+    ).style.display="none";
+
+};
+
+
+window.onclick=function(event){
+
+    const modal =
+        document.getElementById(
+            "storyModal"
+        );
+
+    if(event.target===modal){
+
+        modal.style.display="none";
+
+    }
+
+};
+
+
+/* ==========================
+   FACEBOOK SHARE
+   ========================== */
+
+window.shareFacebook=function(title){
+
+    const url =
+        window.location.href;
+
+    const facebookUrl =
+        "https://www.facebook.com/sharer/sharer.php?u="
+        + encodeURIComponent(url);
+
+    window.open(
+        facebookUrl,
+        "_blank",
+        "width=600,height=500"
+    );
+
+};
+
+
+/* ==========================
+   SECURITY
+   ========================== */
 
 function escapeHtml(text){
 
-const div=
-document.createElement("div");
+    const div =
+        document.createElement("div");
 
-div.textContent=text;
+    div.textContent =
+        text == null ? "" : text;
 
-return div.innerHTML;
+    return div.innerHTML;
 
 }
-
-
-loadNews();
 
 </script>
 
 </body>
-
 </html>
