@@ -1,12 +1,489 @@
 <!DOCTYPE html>
-<html lang="bn"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin - সাপ্তাহিক বার্তা</title>
-<style>body{font-family:Arial,sans-serif;background:#f3f3f3;margin:0}.box{max-width:600px;margin:35px auto;background:#fff;padding:25px;box-shadow:0 2px 10px #ccc}h1{color:#c00}input,textarea,select{width:100%;padding:12px;margin:7px 0 14px;border:1px solid #ccc;box-sizing:border-box}button{background:#c00;color:#fff;border:0;padding:12px 18px;font-weight:bold}a{color:#c00}</style></head>
-<body><div class="box"><h1>📰 সাপ্তাহিক বার্তা — Admin</h1>
-<p><b>নোট:</b> এটি এখন একটি local/demo Admin panel। এখানে প্রকাশিত খবর এই ব্রাউজারের local storage-এ রাখা হবে; সবার জন্য online publication করতে পরে server/database লাগবে।</p>
-<label>Admin Password</label><input id="pass" type="password" placeholder="Demo password: 1234"><button onclick="login()">Login</button>
-<div id="panel" style="display:none"><hr><label>শিরোনাম</label><input id="title"><label>বিভাগ</label><select id="cat"><option>জাতীয়</option><option>রাজনীতি</option><option>আন্তর্জাতিক</option><option>অর্থনীতি</option><option>খেলাধুলা</option><option>বিজ্ঞান ও প্রযুক্তি</option></select><label>ছবির URL</label><input id="img" placeholder="https://..."><label>সংবাদের বিস্তারিত</label><textarea id="body" rows="8"></textarea><button onclick="publish()">সংবাদ প্রকাশ করুন</button><p id="msg"></p></div>
-<p><a href="index.html">← Website-এ ফিরে যান</a></p></div>
-<script>
-function login(){if(document.getElementById('pass').value==='1234'){document.getElementById('panel').style.display='block';alert('Login সফল');}else alert('Password ভুল');}
-function publish(){let p={title:title.value,cat:cat.value,img:img.value,body:body.value,date:new Date().toLocaleString('bn-BD')};let a=JSON.parse(localStorage.getItem('news')||'[]');a.unshift(p);localStorage.setItem('news',JSON.stringify(a));document.getElementById('msg').textContent='সংবাদটি এই ডিভাইসের local storage-এ সংরক্ষণ হয়েছে।';}
-</script></body></html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin - সাপ্তাহিক বার্তা LIVE</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f3f3f3;
+}
+.box{
+    max-width:650px;
+    margin:25px auto;
+    background:white;
+    padding:25px;
+    box-shadow:0 2px 10px #ccc;
+}
+h1{color:#c00000}
+input,textarea,select{
+    width:100%;
+    padding:12px;
+    margin:7px 0 15px;
+    border:1px solid #ccc;
+    border-radius:4px;
+}
+button{
+    background:#c00000;
+    color:white;
+    border:0;
+    padding:12px 18px;
+    font-weight:bold;
+    border-radius:4px;
+    cursor:pointer;
+}
+button:hover{background:#900}
+#panel{display:none}
+.msg{
+    margin-top:15px;
+    padding:10px;
+    background:#eee;
+}
+.newsItem{
+    border-top:1px solid #ddd;
+    padding:15px 0;
+}
+.delete{
+    background:#333;
+    margin-top:8px;
+}
+.logout{
+    float:right;
+    background:#333;
+}
+a{color:#c00000}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<h1>📰 সাপ্তাহিক বার্তা — Admin</h1>
+
+<!-- LOGIN -->
+<div id="loginBox">
+
+<label>Admin Email</label>
+<input id="email" type="email" placeholder="Admin email">
+
+<label>Admin Password</label>
+<input id="password" type="password" placeholder="Password">
+
+<button onclick="login()">🔐 Login</button>
+
+<p id="loginMsg"></p>
+
+</div>
+
+
+<!-- ADMIN PANEL -->
+<div id="panel">
+
+<button class="logout" onclick="logout()">Logout</button>
+
+<h2>📝 নতুন সংবাদ প্রকাশ</h2>
+
+<label>সংবাদের শিরোনাম</label>
+<input id="title" placeholder="সংবাদের শিরোনাম লিখুন">
+
+<label>বিভাগ</label>
+
+<select id="category">
+
+<option>জাতীয়</option>
+<option>রাজনীতি</option>
+<option>আন্তর্জাতিক</option>
+<option>অর্থনীতি</option>
+<option>খেলাধুলা</option>
+<option>বিজ্ঞান ও প্রযুক্তি</option>
+<option>মতামত</option>
+
+</select>
+
+
+<label>ছবির URL</label>
+<input id="image"
+placeholder="https://example.com/image.jpg">
+
+
+<label>ভিডিও URL (ঐচ্ছিক)</label>
+
+<input id="video"
+placeholder="YouTube ভিডিও লিংক দিন">
+
+
+<label>সংবাদের বিস্তারিত</label>
+
+<textarea id="body" rows="10"
+placeholder="সংবাদের বিস্তারিত লিখুন"></textarea>
+
+
+<label>
+<input id="breaking" type="checkbox" style="width:auto">
+ Breaking News
+</label>
+
+<br><br>
+
+<button onclick="publish()">🚀 সংবাদ প্রকাশ করুন</button>
+
+<p id="msg" class="msg"></p>
+
+<hr>
+
+<h2>📰 প্রকাশিত সংবাদ</h2>
+
+<div id="newsList"></div>
+
+</div>
+
+
+<p>
+<a href="index.html">← Website-এ ফিরে যান</a>
+</p>
+
+</div>
+
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+    getAuth,
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+    getFirestore,
+    collection,
+    addDoc,
+    getDocs,
+    deleteDoc,
+    doc,
+    serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+/* FIREBASE CONFIG */
+
+const firebaseConfig = {
+
+    apiKey: "AIzaSyDugMsCaCtCZwKzBHhYQJbgsySRwA6ikXg",
+
+    authDomain: "saptahik-barta.firebaseapp.com",
+
+    projectId: "saptahik-barta",
+
+    storageBucket: "saptahik-barta.firebasestorage.app",
+
+    messagingSenderId: "64482849817",
+
+    appId: "1:64482849817:web:67af4e2b46d9bf2b7f2688",
+
+    measurementId: "G-L100GNJ7JM"
+
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+
+/* LOGIN */
+
+window.login = async function(){
+
+    const email =
+        document.getElementById("email").value;
+
+    const password =
+        document.getElementById("password").value;
+
+    const msg =
+        document.getElementById("loginMsg");
+
+    if(!email || !password){
+
+        msg.textContent =
+            "Email এবং Password দিন।";
+
+        return;
+    }
+
+    try{
+
+        await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+        );
+
+        msg.textContent =
+            "Login সফল হয়েছে।";
+
+    }
+
+    catch(error){
+
+        msg.textContent =
+            "Login ব্যর্থ। Email অথবা Password ভুল।";
+
+    }
+
+};
+
+
+/* LOGOUT */
+
+window.logout = async function(){
+
+    await signOut(auth);
+
+};
+
+
+/* LOGIN STATUS */
+
+onAuthStateChanged(auth, user => {
+
+    if(user){
+
+        document.getElementById("loginBox")
+        .style.display="none";
+
+        document.getElementById("panel")
+        .style.display="block";
+
+        loadNews();
+
+    }
+
+    else{
+
+        document.getElementById("loginBox")
+        .style.display="block";
+
+        document.getElementById("panel")
+        .style.display="none";
+
+    }
+
+});
+
+
+/* PUBLISH */
+
+window.publish = async function(){
+
+    const title =
+        document.getElementById("title").value.trim();
+
+    const category =
+        document.getElementById("category").value;
+
+    const image =
+        document.getElementById("image").value.trim();
+
+    const video =
+        document.getElementById("video").value.trim();
+
+    const body =
+        document.getElementById("body").value.trim();
+
+    const breaking =
+        document.getElementById("breaking").checked;
+
+    const msg =
+        document.getElementById("msg");
+
+
+    if(!title || !body){
+
+        msg.textContent =
+            "শিরোনাম এবং বিস্তারিত সংবাদ অবশ্যই দিতে হবে।";
+
+        return;
+
+    }
+
+
+    try{
+
+        await addDoc(
+            collection(db,"news"),
+            {
+
+                title:title,
+
+                category:category,
+
+                image:image,
+
+                video:video,
+
+                body:body,
+
+                breaking:breaking,
+
+                createdAt:serverTimestamp(),
+
+                author:auth.currentUser.email
+
+            }
+        );
+
+
+        msg.textContent =
+            "✅ সংবাদ সফলভাবে Online প্রকাশ হয়েছে।";
+
+
+        document.getElementById("title").value="";
+        document.getElementById("image").value="";
+        document.getElementById("video").value="";
+        document.getElementById("body").value="";
+        document.getElementById("breaking").checked=false;
+
+        loadNews();
+
+    }
+
+    catch(error){
+
+        msg.textContent =
+            "❌ সংবাদ প্রকাশ হয়নি। Firestore Rules পরীক্ষা করুন।";
+
+        console.error(error);
+
+    }
+
+};
+
+
+/* LOAD NEWS */
+
+async function loadNews(){
+
+    const list =
+        document.getElementById("newsList");
+
+    list.innerHTML="লোড হচ্ছে...";
+
+
+    try{
+
+        const snapshot =
+            await getDocs(
+                collection(db,"news")
+            );
+
+        list.innerHTML="";
+
+
+        snapshot.forEach(item => {
+
+            const n=item.data();
+
+            const div=
+                document.createElement("div");
+
+            div.className="newsItem";
+
+            div.innerHTML=`
+
+                <b>${escapeHtml(n.title || "")}</b>
+
+                <br>
+
+                <small>
+                ${escapeHtml(n.category || "")}
+                </small>
+
+                <br>
+
+                <button
+                class="delete"
+                onclick="deleteNews('${item.id}')">
+
+                🗑️ Delete
+
+                </button>
+
+            `;
+
+            list.appendChild(div);
+
+        });
+
+    }
+
+    catch(error){
+
+        list.innerHTML =
+            "সংবাদ লোড করা যাচ্ছে না।";
+
+    }
+
+}
+
+
+/* DELETE */
+
+window.deleteNews = async function(id){
+
+    if(!confirm("এই সংবাদটি মুছে ফেলবেন?")){
+
+        return;
+
+    }
+
+    try{
+
+        await deleteDoc(
+            doc(db,"news",id)
+        );
+
+        alert("সংবাদ মুছে ফেলা হয়েছে।");
+
+        loadNews();
+
+    }
+
+    catch(error){
+
+        alert("Delete করা যায়নি।");
+
+    }
+
+};
+
+
+/* SECURITY */
+
+function escapeHtml(text){
+
+    const div=document.createElement("div");
+
+    div.textContent=text;
+
+    return div.innerHTML;
+
+}
+
+</script>
+
+</body>
+</html>
