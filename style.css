@@ -1,302 +1,273 @@
+/* ================================
+   SAPTAHIK BARTA
+   MAIN STYLE
+================================ */
+
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-
-    font-family: "Noto Serif Bengali", serif;
-
-    background: #ffffff;
-
-    color: #222;
-
+    font-family: "Noto Serif Bengali", "SolaimanLipi", serif;
+    background: #fff;
+    color: #111;
+    line-height: 1.6;
 }
 
 
-/* =========================
+/* ================================
    HEADER
-========================= */
+================================ */
 
 .header {
-
-    height: 95px;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    min-height: 105px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
 
-    padding: 0 30px;
-
-    border-bottom: 1px solid #ddd;
-
-    background: white;
-
+    padding: 15px 35px;
 }
 
-
-/* LOGO */
-
 .logo {
-
-    font-size: 40px;
-
-    font-weight: 800;
-
-    color: #111;
-
+    display: flex;
+    align-items: center;
 }
 
 .logo span {
-
-    position: relative;
-
+    font-size: 42px;
+    font-weight: 800;
+    color: #111;
+    letter-spacing: -2px;
 }
 
 
-/* সূর্য */
-
-.logo span::after {
-
-    content: "☀";
-
-    position: absolute;
-
-    color: #e32626;
-
-    font-size: 30px;
-
-    top: -22px;
-
-    left: 90px;
-
-}
-
-
-/* HEADER RIGHT */
+/* Header Right */
 
 .header-right {
-
     display: flex;
-
     align-items: center;
-
-    gap: 28px;
-
+    gap: 25px;
 }
 
 .search {
-
-    font-size: 35px;
-
+    font-family: Arial, sans-serif;
+    font-size: 38px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .login {
-
     font-family: Arial, sans-serif;
-
-    font-size: 20px;
-
+    font-size: 19px;
 }
 
 .menu-btn {
-
-    font-size: 30px;
-
+    font-family: Arial, sans-serif;
+    font-size: 32px;
     cursor: pointer;
-
 }
 
 
-/* =========================
+/* ================================
    NAVIGATION
-========================= */
+================================ */
 
 .top-nav {
+    background: #111;
 
     display: flex;
+    align-items: center;
 
-    gap: 35px;
-
-    padding: 15px 30px;
-
-    border-bottom: 1px solid #ddd;
+    padding: 0 30px;
 
     overflow-x: auto;
-
     white-space: nowrap;
 
+    scrollbar-width: none;
+}
+
+.top-nav::-webkit-scrollbar {
+    display: none;
 }
 
 .top-nav a {
-
-    color: #111;
-
+    color: #fff;
     text-decoration: none;
 
-    font-size: 20px;
+    padding: 15px 18px;
 
+    font-size: 18px;
     font-weight: 600;
 
+    border-right: 1px solid #333;
+
+    transition: 0.2s;
+}
+
+.top-nav a:first-child {
+    background: #c90000;
+}
+
+.top-nav a:hover {
+    background: #c90000;
 }
 
 
-/* =========================
+/* ================================
    BREAKING NEWS
-========================= */
+================================ */
 
 .breaking-section {
+    width: 100%;
+    height: 48px;
 
     display: flex;
 
-    height: 50px;
-
-    border-bottom: 1px solid #ddd;
-
     overflow: hidden;
 
+    border-bottom: 1px solid #ddd;
 }
 
+
+/* Red Label */
 
 .breaking-title {
+    flex-shrink: 0;
 
-    background: #d90000;
+    background: #d40000;
+    color: #fff;
 
-    color: white;
+    padding: 9px 18px;
 
-    font-weight: 700;
+    font-size: 17px;
+    font-weight: 800;
 
-    padding: 10px 18px;
+    display: flex;
+    align-items: center;
 
-    white-space: nowrap;
-
-    z-index: 2;
-
+    z-index: 5;
 }
 
 
-.breaking-box {
+/* Scrolling Area */
 
+.breaking-box {
     flex: 1;
 
     overflow: hidden;
 
-    background: #fff4f4;
-
     display: flex;
-
     align-items: center;
 
+    background: #fff5f5;
 }
 
 
 /*
-এক লাইনে স্ক্রল
+   শুধুমাত্র এক লাইন
+   Breaking News কখনো নিচে যাবে না
 */
 
 .breaking-text {
+    display: inline-block;
 
     white-space: nowrap;
 
-    display: inline-block;
+    min-width: max-content;
 
     padding-left: 100%;
 
-    animation: breakingScroll 18s linear infinite;
-
-    color: #d00000;
-
-    font-size: 18px;
-
+    font-size: 17px;
     font-weight: 600;
 
+    color: #c00000;
+
+    animation: breakingScroll 22s linear infinite;
 }
 
+
+/* Breaking Animation */
 
 @keyframes breakingScroll {
 
-    0% {
-
+    from {
         transform: translateX(0);
-
     }
 
-    100% {
-
+    to {
         transform: translateX(-100%);
-
     }
 
 }
 
 
-/* =========================
-   MAIN
-========================= */
+/* ================================
+   MAIN CONTAINER
+================================ */
 
 .container {
-
-    max-width: 1100px;
+    width: 100%;
+    max-width: 1180px;
 
     margin: auto;
 
-    padding: 25px 30px;
-
+    padding: 30px;
 }
 
 
-/* SECTION TITLE */
+/* ================================
+   SECTION TITLE
+================================ */
 
 .section-title {
-
     display: flex;
-
     align-items: center;
 
     gap: 15px;
 
     margin-bottom: 20px;
-
 }
-
 
 .section-title span {
-
     font-size: 30px;
-
     font-weight: 800;
 
-    color: #198754;
+    color: #c80000;
 
+    white-space: nowrap;
 }
 
-
 .section-title div {
-
     flex: 1;
 
     height: 2px;
 
-    background: #198754;
-
+    background: #c80000;
 }
 
 
-/* =========================
-   NEWS
-========================= */
+/* ================================
+   LATEST NEWS
+================================ */
 
 .news-list {
-
     width: 100%;
-
 }
 
 
+/* Single News */
+
 .news-item {
+    width: 100%;
 
     display: flex;
 
@@ -304,318 +275,315 @@ body {
 
     gap: 25px;
 
-    padding: 20px 0;
+    padding: 22px 0;
 
     border-bottom: 1px solid #ddd;
-
 }
 
+
+/* Text */
 
 .news-content {
-
     flex: 1;
-
+    min-width: 0;
 }
 
+.news-time {
+    color: #777;
+
+    font-size: 14px;
+
+    margin-bottom: 5px;
+}
 
 .news-item h2 {
-
-    font-size: 27px;
+    font-size: 26px;
 
     line-height: 1.4;
 
-    font-weight: 700;
+    font-weight: 800;
 
-    margin-bottom: 8px;
+    margin-bottom: 7px;
 
+    cursor: pointer;
+
+    transition: 0.2s;
 }
 
+.news-item h2:hover {
+    color: #c80000;
+}
 
 .news-item p {
-
-    font-size: 18px;
-
     color: #666;
 
-    line-height: 1.5;
+    font-size: 17px;
 
+    line-height: 1.6;
 }
 
 
-.news-time {
-
-    color: #777;
-
-    font-size: 15px;
-
-    margin-bottom: 8px;
-
-}
-
+/* News Image */
 
 .news-item img {
-
     width: 230px;
-
-    height: 135px;
+    height: 140px;
 
     object-fit: cover;
 
     flex-shrink: 0;
 
+    background: #eee;
 }
 
 
-.loading {
-
-    text-align: center;
-
-    padding: 30px;
-
-    color: #777;
-
-}
-
-
-/* =========================
+/* ================================
    MOBILE MENU
-========================= */
+================================ */
 
 .mobile-menu {
 
     position: fixed;
 
     top: 0;
-
     right: -100%;
 
     width: 100%;
-
     max-width: 600px;
 
     height: 100vh;
 
-    background: white;
+    background: #fff;
 
-    z-index: 9999;
-
-    transition: 0.3s;
+    z-index: 99999;
 
     overflow-y: auto;
 
-}
+    transition: right 0.3s ease;
 
+    box-shadow: -5px 0 20px rgba(0,0,0,0.2);
+}
 
 .mobile-menu.active {
-
     right: 0;
-
 }
 
 
-.menu-header {
+/* Menu Header */
 
-    height: 100px;
+.menu-header {
+    height: 85px;
 
     display: flex;
 
-    justify-content: space-between;
-
     align-items: center;
 
-    padding: 0 30px;
+    justify-content: space-between;
 
-    border-bottom: 2px solid #222;
+    padding: 0 25px;
 
+    border-bottom: 2px solid #111;
 }
-
 
 .menu-header b {
-
-    font-size: 30px;
-
+    font-size: 28px;
 }
 
-
 .menu-header button {
+    border: none;
 
     background: none;
 
-    border: none;
+    font-size: 32px;
 
-    font-size: 35px;
-
+    cursor: pointer;
 }
 
 
-.menu-grid {
+/* Menu Grid */
 
+.menu-grid {
     display: grid;
 
     grid-template-columns: repeat(3, 1fr);
-
 }
-
 
 .menu-grid a {
-
-    padding: 18px 10px;
-
-    border-bottom: 1px solid #ddd;
-
     text-decoration: none;
 
-    color: #222;
+    color: #111;
 
-    font-size: 20px;
-
+    font-size: 19px;
     font-weight: 600;
+
+    padding: 18px 12px;
+
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+
+    transition: 0.2s;
+}
+
+.menu-grid a:hover {
+    color: #c80000;
+    background: #fafafa;
+}
+
+
+/* ================================
+   LOADING
+================================ */
+
+.loading {
+    text-align: center;
+
+    padding: 40px 10px;
+
+    color: #777;
+
+    font-size: 18px;
+}
+
+
+/* ================================
+   TABLET
+================================ */
+
+@media (max-width: 900px) {
+
+    .header {
+        padding: 15px 20px;
+    }
+
+    .logo span {
+        font-size: 35px;
+    }
+
+    .container {
+        padding: 25px 20px;
+    }
+
+    .news-item h2 {
+        font-size: 23px;
+    }
+
+    .news-item img {
+        width: 200px;
+        height: 125px;
+    }
 
 }
 
 
-/* =========================
+/* ================================
    MOBILE
-========================= */
+================================ */
 
-@media (max-width: 700px) {
+@media (max-width: 600px) {
 
+    /* Header */
 
     .header {
+        min-height: 72px;
 
-        height: 75px;
-
-        padding: 0 15px;
-
+        padding: 8px 15px;
     }
 
-
-    .logo {
-
+    .logo span {
         font-size: 27px;
 
+        letter-spacing: -1px;
     }
-
-
-    .logo span::after {
-
-        font-size: 20px;
-
-        left: 62px;
-
-        top: -16px;
-
-    }
-
 
     .header-right {
-
-        gap: 15px;
-
+        gap: 14px;
     }
-
 
     .search {
-
-        font-size: 28px;
-
+        font-size: 29px;
     }
-
 
     .login {
-
         display: none;
-
     }
-
 
     .menu-btn {
-
         font-size: 28px;
-
     }
 
+
+    /* Navigation */
 
     .top-nav {
-
-        padding: 10px 15px;
-
-        gap: 25px;
-
+        padding: 0 10px;
     }
 
-
     .top-nav a {
+        font-size: 17px;
 
-        font-size: 18px;
-
+        padding: 10px 14px;
     }
 
 
     /* Breaking */
 
     .breaking-section {
-
-        height: 45px;
-
+        height: 42px;
     }
-
 
     .breaking-title {
+        font-size: 13px;
 
-        font-size: 14px;
-
-        padding: 11px 8px;
-
+        padding: 8px 9px;
     }
-
 
     .breaking-text {
+        font-size: 14px;
 
-        font-size: 15px;
-
-        animation-duration: 15s;
-
+        animation-duration: 17s;
     }
 
+
+    /* Container */
 
     .container {
-
         padding: 15px;
-
     }
 
 
-    .section-title span {
+    /* Section */
 
-        font-size: 25px;
-
-    }
-
-
-    /* NEWS */
-
-    .news-item {
+    .section-title {
+        margin-bottom: 10px;
 
         gap: 10px;
+    }
+
+    .section-title span {
+        font-size: 24px;
+    }
+
+
+    /* News */
+
+    .news-item {
+        gap: 12px;
 
         padding: 16px 0;
-
     }
-
 
     .news-item h2 {
-
         font-size: 20px;
 
-        line-height: 1.35;
+        line-height: 1.4;
 
+        margin-bottom: 3px;
     }
 
-
     .news-item p {
+        font-size: 14px;
 
-        font-size: 15px;
+        line-height: 1.5;
 
         display: -webkit-box;
 
@@ -624,41 +592,101 @@ body {
         -webkit-box-orient: vertical;
 
         overflow: hidden;
-
     }
 
+    .news-time {
+        font-size: 12px;
+
+        margin-bottom: 2px;
+    }
 
     .news-item img {
-
         width: 125px;
 
         height: 85px;
 
+        border-radius: 2px;
     }
 
 
-    .news-time {
+    /* Mobile Menu */
 
-        font-size: 12px;
-
+    .mobile-menu {
+        width: 100%;
     }
 
+    .menu-header {
+        height: 72px;
 
-    /* MENU */
-
-    .menu-grid {
-
-        grid-template-columns: repeat(3, 1fr);
-
+        padding: 0 18px;
     }
 
+    .menu-header b {
+        font-size: 24px;
+    }
+
+    .menu-header button {
+        font-size: 28px;
+    }
 
     .menu-grid a {
-
         font-size: 17px;
 
-        padding: 16px 8px;
+        padding: 15px 8px;
 
+        text-align: left;
     }
 
+}
+
+
+/* ================================
+   SMALL MOBILE
+================================ */
+
+@media (max-width: 380px) {
+
+    .logo span {
+        font-size: 24px;
+    }
+
+    .top-nav a {
+        font-size: 15px;
+
+        padding: 9px 11px;
+    }
+
+    .breaking-title {
+        font-size: 12px;
+    }
+
+    .news-item h2 {
+        font-size: 18px;
+    }
+
+    .news-item img {
+        width: 110px;
+        height: 75px;
+    }
+
+}
+
+
+/* ================================
+   PREVENT HORIZONTAL SCROLL
+================================ */
+
+html,
+body {
+    overflow-x: hidden;
+}
+
+
+/* ================================
+   SELECTION
+================================ */
+
+::selection {
+    background: #c80000;
+    color: #fff;
 }
