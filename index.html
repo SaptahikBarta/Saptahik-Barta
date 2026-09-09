@@ -1,436 +1,809 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>সাপ্তাহিক বার্তা LIVE</title>
+  <title>সাপ্তাহিক বার্তা | সত্যের পক্ষে, মানুষের পাশে</title>
 
-    <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #f4f4f4;
+      color: #111;
+      font-family: "Noto Sans Bengali", "SolaimanLipi", Arial, sans-serif;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: 94%;
+      max-width: 1250px;
+      margin: auto;
+    }
+
+    /* TOP DATE BAR */
+    .topbar {
+      background: #111;
+      color: #fff;
+      padding: 7px 0;
+      font-size: 14px;
+    }
+
+    .topbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* MASTHEAD */
+    .masthead {
+      background: #fff;
+      border-bottom: 4px solid #b40000;
+      padding: 18px 0 12px;
+      text-align: center;
+    }
+
+    .brand {
+      font-size: clamp(42px, 8vw, 78px);
+      font-weight: 900;
+      line-height: 1;
+      color: #b40000;
+      letter-spacing: -2px;
+      text-shadow: 1px 1px 0 #ddd;
+    }
+
+    .tagline {
+      margin-top: 8px;
+      font-size: 16px;
+      color: #333;
+      font-weight: 600;
+    }
+
+    .brand-line {
+      width: 170px;
+      height: 4px;
+      background: #111;
+      margin: 10px auto 0;
+    }
+
+    /* NAVIGATION */
+    .nav {
+      background: #111;
+      color: #fff;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav a {
+      display: inline-block;
+      padding: 13px 15px;
+      font-size: 16px;
+      font-weight: 700;
+      border-right: 1px solid #444;
+    }
+
+    .nav a:hover {
+      background: #b40000;
+    }
+
+    /* BREAKING */
+    .ticker {
+      margin-top: 12px;
+      display: flex;
+      align-items: stretch;
+      background: #fff;
+      border: 1px solid #ddd;
+      overflow: hidden;
+    }
+
+    .ticker-title {
+      min-width: 125px;
+      background: #d00000;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 900;
+      font-size: 17px;
+      padding: 8px 12px;
+      z-index: 2;
+    }
+
+    .ticker-content {
+      flex: 1;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+
+    .ticker-track {
+      display: inline-block;
+      white-space: nowrap;
+      padding-left: 100%;
+      animation: tickerMove 25s linear infinite;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    @keyframes tickerMove {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(-100%);
+      }
+    }
+
+    /* LATEST */
+    .latest {
+      margin-top: 8px;
+      display: flex;
+      align-items: stretch;
+      background: #fff;
+      border: 1px solid #ddd;
+      overflow: hidden;
+    }
+
+    .latest-title {
+      min-width: 125px;
+      background: #087d25;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 12px;
+      font-weight: 900;
+      font-size: 17px;
+    }
+
+    .latest-content {
+      flex: 1;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+
+    .latest-track {
+      white-space: nowrap;
+      display: inline-block;
+      padding-left: 100%;
+      animation: tickerMove 32s linear infinite;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    /* MAIN NEWS */
+    .main {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 18px;
+    }
+
+    .headline {
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 15px;
+    }
+
+    .headline img {
+      width: 100%;
+      height: 390px;
+      object-fit: cover;
+      display: block;
+      background: #ddd;
+    }
+
+    .headline h1 {
+      font-size: clamp(27px, 4vw, 43px);
+      line-height: 1.25;
+      margin: 12px 0 5px;
+      font-weight: 900;
+    }
+
+    .headline p {
+      font-size: 17px;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    .side-news {
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 12px;
+    }
+
+    .section-title {
+      border-bottom: 3px solid #b40000;
+      margin-bottom: 12px;
+      padding-bottom: 7px;
+      font-size: 23px;
+      font-weight: 900;
+    }
+
+    .side-item {
+      padding: 10px 0;
+      border-bottom: 1px solid #ddd;
+      font-size: 18px;
+      line-height: 1.45;
+      font-weight: 700;
+    }
+
+    .side-item:last-child {
+      border-bottom: 0;
+    }
+
+    .side-item span {
+      color: #b40000;
+      font-size: 13px;
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    /* NEWS GRID */
+    .news-section {
+      margin-top: 20px;
+      background: #fff;
+      padding: 15px;
+      border: 1px solid #ddd;
+    }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .news-card {
+      border: 1px solid #ddd;
+      background: #fff;
+      overflow: hidden;
+      transition: .2s;
+    }
+
+    .news-card:hover {
+      box-shadow: 0 3px 12px rgba(0,0,0,.15);
+      transform: translateY(-2px);
+    }
+
+    .news-card img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      display: block;
+      background: #ddd;
+    }
+
+    .news-card-body {
+      padding: 12px;
+    }
+
+    .category {
+      color: #b40000;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .news-card h2 {
+      margin: 5px 0;
+      font-size: 21px;
+      line-height: 1.4;
+    }
+
+    .news-card p {
+      color: #555;
+      line-height: 1.6;
+      margin: 6px 0 0;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 30px;
+      background: #111;
+      color: #fff;
+      padding: 30px 0;
+      text-align: center;
+    }
+
+    footer .footer-brand {
+      color: #fff;
+      font-size: 30px;
+      font-weight: 900;
+    }
+
+    footer p {
+      color: #ccc;
+      margin: 7px 0;
+    }
+
+    /* MOBILE */
+    @media (max-width: 800px) {
+
+      .topbar-inner {
+        flex-direction: column;
+        gap: 3px;
+      }
+
+      .nav-inner {
+        justify-content: flex-start;
+      }
+
+      .ticker-title,
+      .latest-title {
+        min-width: 100px;
+        font-size: 14px;
+      }
+
+      .main {
+        grid-template-columns: 1fr;
+      }
+
+      .headline img {
+        height: 250px;
+      }
+
+      .news-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .news-card img {
+        height: 220px;
+      }
+
+      .brand {
+        font-size: 45px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header class="header">
-
-    <div class="brand">
-        <img src="logo-live.png" alt="সাপ্তাহিক বার্তা LIVE">
-
-        <div>
-            <h1>সাপ্তাহিক বার্তা</h1>
-            <p>সত্যের সন্ধানে, মানুষের পাশে</p>
-        </div>
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div>সাপ্তাহিক বার্তা</div>
+      <div id="dateTime">লোড হচ্ছে...</div>
     </div>
+  </div>
 
-    <button class="menu-btn" onclick="openMenu()">☰</button>
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <div class="container">
 
-</header>
+      <div class="brand">
+        সাপ্তাহিক বার্তা
+      </div>
 
+      <div class="brand-line"></div>
 
-<nav class="nav">
+      <div class="tagline">
+        সত্যের পক্ষে, মানুষের পাশে
+      </div>
 
-    <a href="#">হোম</a>
-    <a href="#">জাতীয়</a>
-    <a href="#">রাজনীতি</a>
-    <a href="#">আন্তর্জাতিক</a>
-    <a href="#">অর্থনীতি</a>
-    <a href="#">খেলাধুলা</a>
-    <a href="#">বিনোদন</a>
-    <a href="#">প্রযুক্তি</a>
-    <a href="#">শিক্ষা</a>
-    <a href="#">স্বাস্থ্য</a>
+    </div>
+  </header>
 
-</nav>
+  <!-- NAVIGATION -->
+  <nav class="nav">
+    <div class="container nav-inner">
 
+      <a href="#">প্রচ্ছদ</a>
+      <a href="#">জাতীয়</a>
+      <a href="#">রাজনীতি</a>
+      <a href="#">আন্তর্জাতিক</a>
+      <a href="#">অর্থনীতি</a>
+      <a href="#">সারাদেশ</a>
+      <a href="#">ঢাকা</a>
+      <a href="#">খেলাধুলা</a>
+      <a href="#">বিনোদন</a>
+      <a href="#">লাইফস্টাইল</a>
 
-<!-- BREAKING NEWS -->
+    </div>
+  </nav>
 
-<div class="breaking">
+  <main class="container">
 
-    <div class="breaking-label">
+    <!-- BREAKING NEWS -->
+    <div class="ticker">
+      <div class="ticker-title">
         🔴 ব্রেকিং নিউজ
-    </div>
+      </div>
 
-    <div class="breaking-area">
-
-        <div id="breakingNews">
-            ব্রেকিং নিউজ লোড হচ্ছে...
+      <div class="ticker-content">
+        <div class="ticker-track" id="breakingNews">
+          সর্বশেষ সংবাদ জানতে সাপ্তাহিক বার্তার সঙ্গে থাকুন...
         </div>
-
+      </div>
     </div>
 
-</div>
+    <!-- LATEST NEWS -->
+    <div class="latest">
+      <div class="latest-title">
+        🟢 সর্বশেষ নিউজ
+      </div>
 
+      <div class="latest-content">
+        <div class="latest-track" id="latestNews">
+          সর্বশেষ খবর লোড হচ্ছে...
+        </div>
+      </div>
+    </div>
 
-<main>
+    <!-- MAIN NEWS -->
+    <section class="main">
 
-    <!-- সর্বশেষ ১০টি চলমান -->
+      <!-- HEADLINE -->
+      <article class="headline">
 
-    <section class="latest-section">
+        <img
+          id="mainImage"
+          src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1200&q=80"
+          alt="প্রধান সংবাদ"
+        >
+
+        <h1 id="mainTitle">
+          সাপ্তাহিক বার্তার সর্বশেষ প্রধান সংবাদ
+        </h1>
+
+        <p id="mainDescription">
+          দেশের সর্বশেষ সংবাদ, রাজনীতি, অর্থনীতি, আন্তর্জাতিক ও সারাদেশের গুরুত্বপূর্ণ খবর জানতে নিয়মিত চোখ রাখুন সাপ্তাহিক বার্তায়।
+        </p>
+
+      </article>
+
+      <!-- SIDE NEWS -->
+      <aside class="side-news">
 
         <div class="section-title">
-            <span></span>
-            <h2>সর্বশেষ নিউজ</h2>
+          গুরুত্বপূর্ণ খবর
         </div>
 
-        <div class="latest-window">
+        <div id="sideNews">
 
-            <div id="latestNews">
+          <div class="side-item">
+            <span>জাতীয়</span>
+            সর্বশেষ গুরুত্বপূর্ণ সংবাদ এখানে প্রকাশিত হবে।
+          </div>
 
-                <p class="loading">
-                    নিউজ লোড হচ্ছে...
-                </p>
+          <div class="side-item">
+            <span>রাজনীতি</span>
+            দেশের রাজনীতির সর্বশেষ খবর।
+          </div>
 
-            </div>
+          <div class="side-item">
+            <span>সারাদেশ</span>
+            জেলা ও উপজেলা পর্যায়ের সর্বশেষ সংবাদ।
+          </div>
+
+          <div class="side-item">
+            <span>আন্তর্জাতিক</span>
+            বিশ্বের গুরুত্বপূর্ণ খবর।
+          </div>
 
         </div>
+
+      </aside>
 
     </section>
 
-
-    <!-- সাধারণ নিউজ -->
-
+    <!-- ALL NEWS -->
     <section class="news-section">
 
-        <div class="section-title red">
-            <span></span>
-            <h2>সর্বশেষ সংবাদ</h2>
-        </div>
+      <div class="section-title">
+        সর্বশেষ সংবাদ
+      </div>
 
-        <div id="newsList"></div>
+      <div class="news-grid" id="newsGrid">
+
+        <article class="news-card">
+
+          <img
+            src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=800&q=80"
+            alt="সংবাদ"
+          >
+
+          <div class="news-card-body">
+
+            <div class="category">
+              সর্বশেষ
+            </div>
+
+            <h2>
+              সাপ্তাহিক বার্তায় প্রকাশিত হবে সর্বশেষ সংবাদ
+            </h2>
+
+            <p>
+              বিস্তারিত সংবাদ জানতে শিরোনামে ক্লিক করুন।
+            </p>
+
+          </div>
+
+        </article>
+
+      </div>
 
     </section>
 
-</main>
+  </main>
 
+  <!-- FOOTER -->
+  <footer>
 
-<footer>
+    <div class="container">
 
-    <img src="logo-live.png" alt="সাপ্তাহিক বার্তা">
+      <div class="footer-brand">
+        সাপ্তাহিক বার্তা
+      </div>
 
-    <h2>সাপ্তাহিক বার্তা</h2>
+      <p>
+        সত্যের পক্ষে, মানুষের পাশে
+      </p>
 
-    <p>সত্যের সন্ধানে, মানুষের পাশে</p>
-
-    <p>© 2026 সাপ্তাহিক বার্তা</p>
-
-</footer>
-
-
-<!-- MOBILE MENU -->
-
-<div id="mobileMenu" class="mobile-menu">
-
-    <div class="mobile-header">
-
-        <strong>সাপ্তাহিক বার্তা</strong>
-
-        <button onclick="closeMenu()">✕</button>
+      <p>
+        © <span id="year"></span> সাপ্তাহিক বার্তা — সর্বস্বত্ব সংরক্ষিত
+      </p>
 
     </div>
 
-    <a href="#">হোম</a>
-    <a href="#">জাতীয়</a>
-    <a href="#">রাজনীতি</a>
-    <a href="#">আন্তর্জাতিক</a>
-    <a href="#">অর্থনীতি</a>
-    <a href="#">খেলাধুলা</a>
-    <a href="#">বিনোদন</a>
-    <a href="#">প্রযুক্তি</a>
-    <a href="#">শিক্ষা</a>
-    <a href="#">স্বাস্থ্য</a>
-
-</div>
+  </footer>
 
 
-<script type="module">
+  <!-- FIREBASE -->
+  <script type="module">
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import {
+      initializeApp
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-import {
-
-    getFirestore,
-    collection,
-    query,
-    orderBy,
-    limit,
-    onSnapshot
-
-}
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
+    import {
+      getFirestore,
+      collection,
+      query,
+      orderBy,
+      limit,
+      onSnapshot
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-/* ==================================
-   এখানে আপনার আগের Firebase Config
-   বসাবেন
-================================== */
+    /* আপনার Firebase CONFIG */
 
-const firebaseConfig = {
-
-    apiKey: "আপনার_API_KEY",
-
-    authDomain:
-    "আপনার_PROJECT.firebaseapp.com",
-
-    projectId:
-    "আপনার_PROJECT_ID",
-
-    storageBucket:
-    "আপনার_PROJECT.appspot.com",
-
-    messagingSenderId:
-    "আপনার_SENDER_ID",
-
-    appId:
-    "আপনার_APP_ID"
-
-};
+    const firebaseConfig = {
+      apiKey: "AIzaSyDugMsCaCtCZwKzBHhYQJbgsySRwA6ikXg",
+      authDomain: "saptahik-barta.firebaseapp.com",
+      projectId: "saptahik-barta",
+      storageBucket: "saptahik-barta.firebasestorage.app",
+      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
 
 
-const app = initializeApp(firebaseConfig);
-
-const db = getFirestore(app);
-
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
 
 
-/* ==================================
-   সর্বশেষ ১০টি নিউজ
-================================== */
+    /* DATE & TIME */
 
-const latestQuery = query(
+    function updateDateTime() {
 
-    collection(db, "news"),
+      const now = new Date();
 
-    orderBy("createdAt", "desc"),
+      const options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      };
 
-    limit(10)
+      const date =
+        now.toLocaleDateString("bn-BD", options);
 
-);
+      const time =
+        now.toLocaleTimeString("bn-BD");
 
-
-onSnapshot(latestQuery, (snapshot) => {
-
-    const box =
-    document.getElementById("latestNews");
-
-    box.innerHTML = "";
-
-
-    if (snapshot.empty) {
-
-        box.innerHTML =
-        `<p class="loading">
-            এখনো কোনো নিউজ প্রকাশিত হয়নি।
-        </p>`;
-
-        return;
+      document.getElementById("dateTime").textContent =
+        date + " | " + time;
 
     }
 
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
 
-    let html = "";
-
-
-    snapshot.forEach((doc) => {
-
-        const news = doc.data();
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
 
 
-        let time = "";
+    /* FIREBASE NEWS */
 
-        if (
-            news.createdAt &&
-            news.createdAt.toDate
-        ) {
+    const newsRef = collection(db, "news");
 
-            time =
-            news.createdAt
-            .toDate()
-            .toLocaleString("bn-BD");
+    const newsQuery = query(
+      newsRef,
+      orderBy("createdAt", "desc"),
+      limit(30)
+    );
+
+
+    onSnapshot(
+      newsQuery,
+
+      (snapshot) => {
+
+        const news = [];
+
+        snapshot.forEach((doc) => {
+
+          const data = doc.data();
+
+          news.push({
+            id: doc.id,
+            ...data
+          });
+
+        });
+
+        if (!news.length) {
+          return;
+        }
+
+
+        /* MAIN NEWS */
+
+        const main = news[0];
+
+        document.getElementById("mainTitle").textContent =
+          main.title || "সর্বশেষ সংবাদ";
+
+        document.getElementById("mainDescription").textContent =
+          main.description ||
+          main.content ||
+          "বিস্তারিত সংবাদ সাপ্তাহিক বার্তায় প্রকাশিত হয়েছে।";
+
+        if (main.image) {
+
+          document.getElementById("mainImage").src =
+            main.image;
 
         }
 
 
-        html += `
+        /* BREAKING NEWS */
 
-            <div class="latest-item">
+        const breaking =
+          news.filter(n =>
+            n.breaking === true ||
+            n.type === "breaking"
+          );
 
-                <div class="latest-dot">
-                    ●
-                </div>
+        const breakingText =
+          breaking.length
+            ? breaking.map(n => "🔴 " + n.title).join("   •   ")
+            : "এই মুহূর্তের সর্বশেষ গুরুত্বপূর্ণ সংবাদ সাপ্তাহিক বার্তায় প্রকাশিত হবে।";
 
-                <div>
+        document.getElementById("breakingNews").textContent =
+          breakingText;
 
-                    <h3>
-                        ${news.title || "শিরোনাম নেই"}
-                    </h3>
 
-                    <small>
-                        ${time}
-                    </small>
+        /* LATEST */
 
-                </div>
+        const latestText =
+          news.map(n =>
+            "🟢 " + (n.title || "সর্বশেষ সংবাদ")
+          ).join("   •   ");
+
+        document.getElementById("latestNews").textContent =
+          latestText;
+
+
+        /* SIDE NEWS */
+
+        const side =
+          document.getElementById("sideNews");
+
+        side.innerHTML = "";
+
+        news.slice(0, 5).forEach(n => {
+
+          const div =
+            document.createElement("div");
+
+          div.className = "side-item";
+
+          div.innerHTML = `
+            <span>${n.category || "সর্বশেষ"}</span>
+            ${n.title || "সর্বশেষ সংবাদ"}
+          `;
+
+          side.appendChild(div);
+
+        });
+
+
+        /* NEWS GRID */
+
+        const grid =
+          document.getElementById("newsGrid");
+
+        grid.innerHTML = "";
+
+
+        news.forEach(n => {
+
+          const article =
+            document.createElement("article");
+
+          article.className = "news-card";
+
+
+          const image =
+            n.image ||
+            "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=800&q=80";
+
+
+          article.innerHTML = `
+
+            <img
+              src="${image}"
+              alt="${n.title || "সংবাদ"}"
+            >
+
+            <div class="news-card-body">
+
+              <div class="category">
+                ${n.category || "সর্বশেষ"}
+              </div>
+
+              <h2>
+                ${n.title || "সর্বশেষ সংবাদ"}
+              </h2>
+
+              <p>
+                ${
+                  n.description ||
+                  n.content ||
+                  "বিস্তারিত সংবাদ জানতে সঙ্গে থাকুন।"
+                }
+              </p>
 
             </div>
 
-        `;
+          `;
 
-    });
+          grid.appendChild(article);
 
+        });
 
-    /*
-       একই ১০টি আবার কপি করা হচ্ছে,
-       যাতে স্ক্রলটি নিরবচ্ছিন্ন মনে হয়
-    */
+      },
 
-    box.innerHTML = html + html;
+      (error) => {
 
-});
+        console.error(
+          "Firebase News Error:",
+          error
+        );
 
+      }
 
+    );
 
-/* ==================================
-   BREAKING NEWS
-================================== */
-
-const breakingQuery = query(
-
-    collection(db, "news"),
-
-    orderBy("createdAt", "desc"),
-
-    limit(1)
-
-);
-
-
-onSnapshot(breakingQuery, (snapshot) => {
-
-    const box =
-    document.getElementById("breakingNews");
-
-
-    if (snapshot.empty) {
-
-        box.innerText =
-        "সাপ্তাহিক বার্তার সর্বশেষ সংবাদ";
-
-        return;
-
-    }
-
-
-    snapshot.forEach((doc) => {
-
-        const news = doc.data();
-
-        box.innerText =
-        news.title || "ব্রেকিং নিউজ";
-
-    });
-
-});
-
-
-
-/* ==================================
-   সাধারণ নিউজ
-================================== */
-
-onSnapshot(latestQuery, (snapshot) => {
-
-    const box =
-    document.getElementById("newsList");
-
-    box.innerHTML = "";
-
-
-    snapshot.forEach((doc) => {
-
-        const news = doc.data();
-
-
-        const image =
-        news.image || "logo-live.png";
-
-
-        let time = "";
-
-        if (
-            news.createdAt &&
-            news.createdAt.toDate
-        ) {
-
-            time =
-            news.createdAt
-            .toDate()
-            .toLocaleString("bn-BD");
-
-        }
-
-
-        box.innerHTML += `
-
-            <article class="news-card">
-
-                <img
-                    src="${image}"
-                    alt="${news.title || ""}"
-                    onerror="this.src='logo-live.png'"
-                >
-
-                <div>
-
-                    <small>
-                        ${time}
-                    </small>
-
-                    <h3>
-                        ${news.title || "শিরোনাম নেই"}
-                    </h3>
-
-                    <p>
-                        ${news.description || ""}
-                    </p>
-
-                </div>
-
-            </article>
-
-        `;
-
-    });
-
-});
-
-
-
-/* ==================================
-   MOBILE MENU
-================================== */
-
-window.openMenu = function() {
-
-    document
-    .getElementById("mobileMenu")
-    .classList.add("active");
-
-};
-
-
-window.closeMenu = function() {
-
-    document
-    .getElementById("mobileMenu")
-    .classList.remove("active");
-
-};
-
-</script>
+  </script>
 
 </body>
 </html>
