@@ -1,109 +1,129 @@
 <!DOCTYPE html>
 <html lang="bn">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>সাপ্তাহিক বার্তা LIVE</title>
 
     <link rel="stylesheet" href="style.css">
 
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
-
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;600;700;800&display=swap"
-          rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
-
 
 <body>
 
-
-<!-- =================================
-     HEADER
-================================= -->
-
 <header class="header">
 
-    <div class="logo-area">
+    <div class="brand">
+        <img src="logo-live.png" alt="সাপ্তাহিক বার্তা LIVE">
 
-        <img src="logo-live.png"
-             alt="সাপ্তাহিক বার্তা LIVE">
-
-        <div class="brand">
-
+        <div>
             <h1>সাপ্তাহিক বার্তা</h1>
-
             <p>সত্যের সন্ধানে, মানুষের পাশে</p>
-
         </div>
-
     </div>
 
-
-    <div class="header-right">
-
-        <span class="date" id="todayDate"></span>
-
-        <button class="menu-button"
-                onclick="openMenu()">
-
-            ☰
-
-        </button>
-
-    </div>
+    <button class="menu-btn" onclick="openMenu()">☰</button>
 
 </header>
 
 
-
-<!-- =================================
-     NAVIGATION
-================================= -->
-
-<nav class="navigation">
+<nav class="nav">
 
     <a href="#">হোম</a>
-
     <a href="#">জাতীয়</a>
-
     <a href="#">রাজনীতি</a>
-
     <a href="#">আন্তর্জাতিক</a>
-
     <a href="#">অর্থনীতি</a>
-
     <a href="#">খেলাধুলা</a>
-
     <a href="#">বিনোদন</a>
-
     <a href="#">প্রযুক্তি</a>
-
     <a href="#">শিক্ষা</a>
-
     <a href="#">স্বাস্থ্য</a>
 
 </nav>
 
 
+<!-- BREAKING NEWS -->
 
-<!-- =================================
-     MOBILE MENU
-================================= -->
+<div class="breaking">
+
+    <div class="breaking-label">
+        🔴 ব্রেকিং নিউজ
+    </div>
+
+    <div class="breaking-area">
+
+        <div id="breakingNews">
+            ব্রেকিং নিউজ লোড হচ্ছে...
+        </div>
+
+    </div>
+
+</div>
+
+
+<main>
+
+    <!-- সর্বশেষ ১০টি চলমান -->
+
+    <section class="latest-section">
+
+        <div class="section-title">
+            <span></span>
+            <h2>সর্বশেষ নিউজ</h2>
+        </div>
+
+        <div class="latest-window">
+
+            <div id="latestNews">
+
+                <p class="loading">
+                    নিউজ লোড হচ্ছে...
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- সাধারণ নিউজ -->
+
+    <section class="news-section">
+
+        <div class="section-title red">
+            <span></span>
+            <h2>সর্বশেষ সংবাদ</h2>
+        </div>
+
+        <div id="newsList"></div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <img src="logo-live.png" alt="সাপ্তাহিক বার্তা">
+
+    <h2>সাপ্তাহিক বার্তা</h2>
+
+    <p>সত্যের সন্ধানে, মানুষের পাশে</p>
+
+    <p>© 2026 সাপ্তাহিক বার্তা</p>
+
+</footer>
+
+
+<!-- MOBILE MENU -->
 
 <div id="mobileMenu" class="mobile-menu">
 
-    <div class="mobile-menu-header">
+    <div class="mobile-header">
 
         <strong>সাপ্তাহিক বার্তা</strong>
 
@@ -111,172 +131,24 @@
 
     </div>
 
-
     <a href="#">হোম</a>
-
     <a href="#">জাতীয়</a>
-
     <a href="#">রাজনীতি</a>
-
     <a href="#">আন্তর্জাতিক</a>
-
     <a href="#">অর্থনীতি</a>
-
     <a href="#">খেলাধুলা</a>
-
     <a href="#">বিনোদন</a>
-
     <a href="#">প্রযুক্তি</a>
-
     <a href="#">শিক্ষা</a>
-
     <a href="#">স্বাস্থ্য</a>
 
 </div>
 
 
-
-<!-- =================================
-     BREAKING NEWS
-================================= -->
-
-<section class="breaking-section">
-
-    <div class="breaking-label">
-
-        🔴 ব্রেকিং নিউজ
-
-    </div>
-
-
-    <div class="breaking-area">
-
-        <div id="breakingNews"
-             class="breaking-text">
-
-            ব্রেকিং নিউজ লোড হচ্ছে...
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =================================
-     MAIN
-================================= -->
-
-<main class="main-container">
-
-
-    <!-- =================================
-         LATEST NEWS
-    ================================= -->
-
-    <section class="latest-section">
-
-
-        <div class="section-heading">
-
-            <span class="green-line"></span>
-
-            <h2>সর্বশেষ নিউজ</h2>
-
-        </div>
-
-
-        <div class="latest-box">
-
-            <div id="latestNews"
-                 class="latest-scroll">
-
-                <div class="loading">
-
-                    সর্বশেষ নিউজ লোড হচ্ছে...
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-    </section>
-
-
-
-    <!-- =================================
-         NORMAL NEWS AREA
-    ================================= -->
-
-    <section class="news-section">
-
-        <div class="section-heading">
-
-            <span class="red-line"></span>
-
-            <h2>সর্বশেষ সংবাদ</h2>
-
-        </div>
-
-
-        <div id="newsGrid"
-             class="news-grid">
-
-        </div>
-
-    </section>
-
-
-</main>
-
-
-
-<!-- =================================
-     FOOTER
-================================= -->
-
-<footer>
-
-    <div class="footer-logo">
-
-        <img src="logo-live.png"
-             alt="সাপ্তাহিক বার্তা">
-
-        <h2>সাপ্তাহিক বার্তা</h2>
-
-    </div>
-
-
-    <p>
-        সত্যের সন্ধানে, মানুষের পাশে
-    </p>
-
-
-    <p class="copyright">
-
-        © 2026 সাপ্তাহিক বার্তা
-        — সর্বস্বত্ব সংরক্ষিত
-
-    </p>
-
-</footer>
-
-
-
-<!-- =================================
-     FIREBASE
-================================= -->
-
 <script type="module">
 
-
 import { initializeApp }
-
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
 
 import {
 
@@ -288,72 +160,46 @@ import {
     onSnapshot
 
 }
-
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
 
-/* =================================
-   আপনার আগের Firebase Config এখানে
-================================= */
+/* ==================================
+   এখানে আপনার আগের Firebase Config
+   বসাবেন
+================================== */
 
 const firebaseConfig = {
 
     apiKey: "আপনার_API_KEY",
 
     authDomain:
-        "আপনার_PROJECT.firebaseapp.com",
+    "আপনার_PROJECT.firebaseapp.com",
 
     projectId:
-        "আপনার_PROJECT_ID",
+    "আপনার_PROJECT_ID",
 
     storageBucket:
-        "আপনার_PROJECT.appspot.com",
+    "আপনার_PROJECT.appspot.com",
 
     messagingSenderId:
-        "আপনার_SENDER_ID",
+    "আপনার_SENDER_ID",
 
     appId:
-        "আপনার_APP_ID"
+    "আপনার_APP_ID"
 
 };
 
 
+const app = initializeApp(firebaseConfig);
 
-/* Firebase শুরু */
-
-const app =
-    initializeApp(firebaseConfig);
-
-
-const db =
-    getFirestore(app);
+const db = getFirestore(app);
 
 
 
-/* =================================
-   তারিখ
-================================= */
-
-const today =
-    new Date();
-
-
-document.getElementById("todayDate")
-.innerText = today.toLocaleDateString(
-    "bn-BD",
-    {
-        day: "numeric",
-        month: "long",
-        year: "numeric"
-    }
-);
-
-
-
-/* =================================
+/* ==================================
    সর্বশেষ ১০টি নিউজ
-================================= */
+================================== */
 
 const latestQuery = query(
 
@@ -368,51 +214,33 @@ const latestQuery = query(
 
 onSnapshot(latestQuery, (snapshot) => {
 
+    const box =
+    document.getElementById("latestNews");
 
-    const latestBox =
-        document.getElementById("latestNews");
-
-
-    latestBox.innerHTML = "";
+    box.innerHTML = "";
 
 
     if (snapshot.empty) {
 
-        latestBox.innerHTML = `
-
-            <div class="empty-news">
-
-                এখনো কোনো নিউজ প্রকাশিত হয়নি।
-
-            </div>
-
-        `;
+        box.innerHTML =
+        `<p class="loading">
+            এখনো কোনো নিউজ প্রকাশিত হয়নি।
+        </p>`;
 
         return;
 
     }
 
 
+    let html = "";
+
 
     snapshot.forEach((doc) => {
 
-
-        const news =
-            doc.data();
-
-
-        const title =
-            news.title ||
-            "শিরোনাম নেই";
-
-
-        const description =
-            news.description ||
-            "";
+        const news = doc.data();
 
 
         let time = "";
-
 
         if (
             news.createdAt &&
@@ -420,28 +248,25 @@ onSnapshot(latestQuery, (snapshot) => {
         ) {
 
             time =
-                news.createdAt
-                .toDate()
-                .toLocaleString(
-                    "bn-BD"
-                );
+            news.createdAt
+            .toDate()
+            .toLocaleString("bn-BD");
 
         }
 
 
-
-        latestBox.innerHTML += `
+        html += `
 
             <div class="latest-item">
 
-                <span class="latest-dot">
+                <div class="latest-dot">
                     ●
-                </span>
+                </div>
 
                 <div>
 
                     <h3>
-                        ${title}
+                        ${news.title || "শিরোনাম নেই"}
                     </h3>
 
                     <small>
@@ -457,27 +282,20 @@ onSnapshot(latestQuery, (snapshot) => {
     });
 
 
+    /*
+       একই ১০টি আবার কপি করা হচ্ছে,
+       যাতে স্ক্রলটি নিরবচ্ছিন্ন মনে হয়
+    */
 
-    /* =================================
-       চলমান করার জন্য
-       ১০টি নিউজকে আবার কপি করা
-    ================================= */
-
-
-    const original =
-        latestBox.innerHTML;
-
-
-    latestBox.innerHTML =
-        original + original;
+    box.innerHTML = html + html;
 
 });
 
 
 
-/* =================================
+/* ==================================
    BREAKING NEWS
-================================= */
+================================== */
 
 const breakingQuery = query(
 
@@ -492,17 +310,14 @@ const breakingQuery = query(
 
 onSnapshot(breakingQuery, (snapshot) => {
 
-
-    const breaking =
-        document.getElementById(
-            "breakingNews"
-        );
+    const box =
+    document.getElementById("breakingNews");
 
 
     if (snapshot.empty) {
 
-        breaking.innerText =
-            "সাপ্তাহিক বার্তার ব্রেকিং নিউজ";
+        box.innerText =
+        "সাপ্তাহিক বার্তার সর্বশেষ সংবাদ";
 
         return;
 
@@ -511,14 +326,10 @@ onSnapshot(breakingQuery, (snapshot) => {
 
     snapshot.forEach((doc) => {
 
+        const news = doc.data();
 
-        const news =
-            doc.data();
-
-
-        breaking.innerText =
-            news.title ||
-            "ব্রেকিং নিউজ";
+        box.innerText =
+        news.title || "ব্রেকিং নিউজ";
 
     });
 
@@ -526,57 +337,28 @@ onSnapshot(breakingQuery, (snapshot) => {
 
 
 
-/* =================================
-   নিউজ কার্ড
-================================= */
+/* ==================================
+   সাধারণ নিউজ
+================================== */
 
-const gridQuery = query(
+onSnapshot(latestQuery, (snapshot) => {
 
-    collection(db, "news"),
+    const box =
+    document.getElementById("newsList");
 
-    orderBy("createdAt", "desc"),
-
-    limit(10)
-
-);
-
-
-onSnapshot(gridQuery, (snapshot) => {
-
-
-    const grid =
-        document.getElementById(
-            "newsGrid"
-        );
-
-
-    grid.innerHTML = "";
+    box.innerHTML = "";
 
 
     snapshot.forEach((doc) => {
 
-
-        const news =
-            doc.data();
-
-
-        const title =
-            news.title ||
-            "শিরোনাম নেই";
-
-
-        const description =
-            news.description ||
-            "";
+        const news = doc.data();
 
 
         const image =
-            news.image ||
-            "logo-live.png";
+        news.image || "logo-live.png";
 
 
         let time = "";
-
 
         if (
             news.createdAt &&
@@ -584,42 +366,35 @@ onSnapshot(gridQuery, (snapshot) => {
         ) {
 
             time =
-                news.createdAt
-                .toDate()
-                .toLocaleString(
-                    "bn-BD"
-                );
+            news.createdAt
+            .toDate()
+            .toLocaleString("bn-BD");
 
         }
 
 
-        grid.innerHTML += `
+        box.innerHTML += `
 
             <article class="news-card">
 
                 <img
                     src="${image}"
-                    alt="${title}"
-                    onerror="
-                    this.src='logo-live.png'
-                    "
+                    alt="${news.title || ""}"
+                    onerror="this.src='logo-live.png'"
                 >
 
-
-                <div class="news-card-content">
+                <div>
 
                     <small>
                         ${time}
                     </small>
 
-
                     <h3>
-                        ${title}
+                        ${news.title || "শিরোনাম নেই"}
                     </h3>
 
-
                     <p>
-                        ${description}
+                        ${news.description || ""}
                     </p>
 
                 </div>
@@ -634,31 +409,28 @@ onSnapshot(gridQuery, (snapshot) => {
 
 
 
-/* =================================
+/* ==================================
    MOBILE MENU
-================================= */
+================================== */
 
-window.openMenu = function () {
+window.openMenu = function() {
 
     document
-        .getElementById("mobileMenu")
-        .classList.add("active");
+    .getElementById("mobileMenu")
+    .classList.add("active");
 
 };
 
 
-window.closeMenu = function () {
+window.closeMenu = function() {
 
     document
-        .getElementById("mobileMenu")
-        .classList.remove("active");
+    .getElementById("mobileMenu")
+    .classList.remove("active");
 
 };
-
 
 </script>
 
-
 </body>
-
 </html>
