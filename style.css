@@ -1,7 +1,6 @@
-/* ================================
-   SAPTAHIK BARTA
-   MAIN STYLE
-================================ */
+/* =================================
+   BASIC
+================================= */
 
 * {
     margin: 0;
@@ -9,176 +8,233 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
+html,
+body {
+    overflow-x: hidden;
 }
 
 body {
-    font-family: "Noto Serif Bengali", "SolaimanLipi", serif;
-    background: #fff;
-    color: #111;
-    line-height: 1.6;
+
+    font-family:
+        "Noto Serif Bengali",
+        "SolaimanLipi",
+        sans-serif;
+
+    background: #f4f4f4;
+
+    color: #222;
+
 }
 
 
-/* ================================
+/* =================================
    HEADER
-================================ */
+================================= */
 
 .header {
+
     background: #fff;
-    border-bottom: 1px solid #ddd;
+
     min-height: 105px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 
     padding: 15px 35px;
+
+    border-bottom: 3px solid #d00000;
+
 }
 
-.logo {
+
+.logo-area {
+
     display: flex;
+
     align-items: center;
+
+    gap: 15px;
+
 }
 
-.logo span {
-    font-size: 42px;
+
+.logo-area img {
+
+    width: 78px;
+
+    height: 78px;
+
+    object-fit: contain;
+
+}
+
+
+.brand h1 {
+
+    font-size: 38px;
+
+    color: #d00000;
+
     font-weight: 800;
-    color: #111;
-    letter-spacing: -2px;
+
 }
 
 
-/* Header Right */
+.brand p {
+
+    font-size: 15px;
+
+    color: #666;
+
+}
+
 
 .header-right {
+
     display: flex;
+
     align-items: center;
-    gap: 25px;
+
+    gap: 20px;
+
 }
 
-.search {
-    font-family: Arial, sans-serif;
-    font-size: 38px;
-    font-weight: bold;
+
+.date {
+
+    color: #555;
+
+    font-size: 15px;
+
+}
+
+
+.menu-button {
+
+    border: none;
+
+    background: #111;
+
+    color: white;
+
+    width: 45px;
+
+    height: 42px;
+
+    border-radius: 4px;
+
+    font-size: 24px;
+
     cursor: pointer;
-}
 
-.login {
-    font-family: Arial, sans-serif;
-    font-size: 19px;
-}
-
-.menu-btn {
-    font-family: Arial, sans-serif;
-    font-size: 32px;
-    cursor: pointer;
 }
 
 
-/* ================================
+/* =================================
    NAVIGATION
-================================ */
+================================= */
 
-.top-nav {
+.navigation {
+
     background: #111;
 
     display: flex;
-    align-items: center;
 
-    padding: 0 30px;
+    justify-content: center;
 
     overflow-x: auto;
+
     white-space: nowrap;
 
-    scrollbar-width: none;
 }
 
-.top-nav::-webkit-scrollbar {
+
+.navigation::-webkit-scrollbar {
+
     display: none;
+
 }
 
-.top-nav a {
-    color: #fff;
+
+.navigation a {
+
+    color: white;
+
     text-decoration: none;
 
-    padding: 15px 18px;
-
-    font-size: 18px;
-    font-weight: 600;
+    padding: 13px 18px;
 
     border-right: 1px solid #333;
 
-    transition: 0.2s;
-}
+    font-size: 17px;
 
-.top-nav a:first-child {
-    background: #c90000;
-}
-
-.top-nav a:hover {
-    background: #c90000;
 }
 
 
-/* ================================
+.navigation a:hover {
+
+    background: #d00000;
+
+}
+
+
+/* =================================
    BREAKING NEWS
-================================ */
+================================= */
 
 .breaking-section {
-    width: 100%;
+
     height: 48px;
 
     display: flex;
 
-    overflow: hidden;
+    background: white;
 
     border-bottom: 1px solid #ddd;
+
+    overflow: hidden;
+
 }
 
 
-/* Red Label */
+.breaking-label {
 
-.breaking-title {
     flex-shrink: 0;
 
-    background: #d40000;
-    color: #fff;
+    background: #d00000;
 
-    padding: 9px 18px;
+    color: white;
+
+    padding: 10px 18px;
 
     font-size: 17px;
+
     font-weight: 800;
 
-    display: flex;
-    align-items: center;
-
     z-index: 5;
+
 }
 
 
-/* Scrolling Area */
+.breaking-area {
 
-.breaking-box {
     flex: 1;
 
     overflow: hidden;
 
     display: flex;
+
     align-items: center;
 
     background: #fff5f5;
+
 }
 
 
-/*
-   শুধুমাত্র এক লাইন
-   Breaking News কখনো নিচে যাবে না
-*/
-
 .breaking-text {
-    display: inline-block;
 
     white-space: nowrap;
 
@@ -186,193 +242,362 @@ body {
 
     padding-left: 100%;
 
-    font-size: 17px;
-    font-weight: 600;
-
     color: #c00000;
 
-    animation: breakingScroll 22s linear infinite;
+    font-size: 17px;
+
+    font-weight: 700;
+
+    animation:
+        breakingMove 20s linear infinite;
+
 }
 
 
-/* Breaking Animation */
-
-@keyframes breakingScroll {
+@keyframes breakingMove {
 
     from {
+
         transform: translateX(0);
+
     }
 
     to {
+
         transform: translateX(-100%);
+
     }
 
 }
 
 
-/* ================================
-   MAIN CONTAINER
-================================ */
+/* =================================
+   MAIN
+================================= */
 
-.container {
-    width: 100%;
-    max-width: 1180px;
+.main-container {
+
+    max-width: 1150px;
 
     margin: auto;
 
-    padding: 30px;
+    padding: 25px 20px;
+
 }
 
 
-/* ================================
+/* =================================
    SECTION TITLE
-================================ */
+================================= */
 
-.section-title {
+.section-heading {
+
     display: flex;
+
     align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.section-heading h2 {
+
+    font-size: 27px;
+
+    font-weight: 800;
+
+}
+
+
+.red-line {
+
+    width: 6px;
+
+    height: 30px;
+
+    background: #d00000;
+
+}
+
+
+.green-line {
+
+    width: 6px;
+
+    height: 30px;
+
+    background: #16864b;
+
+}
+
+
+/* =================================
+   LATEST NEWS BOX
+================================= */
+
+.latest-section {
+
+    background: white;
+
+    padding: 18px;
+
+    border: 1px solid #ddd;
+
+    margin-bottom: 30px;
+
+}
+
+
+.latest-box {
+
+    height: 330px;
+
+    overflow: hidden;
+
+    position: relative;
+
+    border-top: 1px solid #eee;
+
+}
+
+
+.latest-scroll {
+
+    animation:
+        latestMove 35s linear infinite;
+
+}
+
+
+.latest-scroll:hover {
+
+    animation-play-state: paused;
+
+}
+
+
+@keyframes latestMove {
+
+    0% {
+
+        transform: translateY(0);
+
+    }
+
+    100% {
+
+        transform: translateY(-50%);
+
+    }
+
+}
+
+
+/* =================================
+   LATEST ITEM
+================================= */
+
+.latest-item {
+
+    display: flex;
+
+    gap: 12px;
+
+    align-items: flex-start;
+
+    padding: 14px 8px;
+
+    border-bottom: 1px solid #eee;
+
+}
+
+
+.latest-dot {
+
+    color: #16864b;
+
+    font-size: 13px;
+
+    margin-top: 5px;
+
+}
+
+
+.latest-item h3 {
+
+    font-size: 19px;
+
+    line-height: 1.45;
+
+}
+
+
+.latest-item small {
+
+    color: #888;
+
+    font-size: 12px;
+
+}
+
+
+.empty-news {
+
+    padding: 40px;
+
+    text-align: center;
+
+    color: #777;
+
+}
+
+
+/* =================================
+   NEWS GRID
+================================= */
+
+.news-section {
+
+    margin-top: 25px;
+
+}
+
+
+.news-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 18px;
+
+}
+
+
+.news-card {
+
+    background: white;
+
+    display: flex;
 
     gap: 15px;
 
-    margin-bottom: 20px;
-}
+    padding: 12px;
 
-.section-title span {
-    font-size: 30px;
-    font-weight: 800;
-
-    color: #c80000;
-
-    white-space: nowrap;
-}
-
-.section-title div {
-    flex: 1;
-
-    height: 2px;
-
-    background: #c80000;
-}
-
-
-/* ================================
-   LATEST NEWS
-================================ */
-
-.news-list {
-    width: 100%;
-}
-
-
-/* Single News */
-
-.news-item {
-    width: 100%;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    gap: 25px;
-
-    padding: 22px 0;
-
-    border-bottom: 1px solid #ddd;
-}
-
-
-/* Text */
-
-.news-content {
-    flex: 1;
-    min-width: 0;
-}
-
-.news-time {
-    color: #777;
-
-    font-size: 14px;
-
-    margin-bottom: 5px;
-}
-
-.news-item h2 {
-    font-size: 26px;
-
-    line-height: 1.4;
-
-    font-weight: 800;
-
-    margin-bottom: 7px;
-
-    cursor: pointer;
+    border: 1px solid #ddd;
 
     transition: 0.2s;
-}
 
-.news-item h2:hover {
-    color: #c80000;
-}
-
-.news-item p {
-    color: #666;
-
-    font-size: 17px;
-
-    line-height: 1.6;
 }
 
 
-/* News Image */
+.news-card:hover {
 
-.news-item img {
-    width: 230px;
-    height: 140px;
+    box-shadow:
+        0 4px 15px
+        rgba(0,0,0,0.12);
+
+}
+
+
+.news-card img {
+
+    width: 190px;
+
+    height: 120px;
 
     object-fit: cover;
 
     flex-shrink: 0;
 
-    background: #eee;
 }
 
 
-/* ================================
+.news-card-content {
+
+    flex: 1;
+
+}
+
+
+.news-card-content small {
+
+    color: #888;
+
+    font-size: 12px;
+
+}
+
+
+.news-card h3 {
+
+    font-size: 20px;
+
+    line-height: 1.4;
+
+    margin: 3px 0;
+
+}
+
+
+.news-card p {
+
+    color: #666;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+}
+
+
+/* =================================
    MOBILE MENU
-================================ */
+================================= */
 
 .mobile-menu {
 
     position: fixed;
 
     top: 0;
+
     right: -100%;
 
     width: 100%;
-    max-width: 600px;
+
+    max-width: 400px;
 
     height: 100vh;
 
-    background: #fff;
+    background: white;
 
-    z-index: 99999;
+    z-index: 9999;
 
     overflow-y: auto;
 
-    transition: right 0.3s ease;
+    transition: 0.3s;
 
-    box-shadow: -5px 0 20px rgba(0,0,0,0.2);
+    box-shadow:
+        -5px 0 20px
+        rgba(0,0,0,0.2);
+
 }
+
 
 .mobile-menu.active {
+
     right: 0;
+
 }
 
 
-/* Menu Header */
+.mobile-menu-header {
 
-.menu-header {
-    height: 85px;
+    height: 75px;
 
     display: flex;
 
@@ -380,210 +605,349 @@ body {
 
     justify-content: space-between;
 
-    padding: 0 25px;
+    padding: 0 20px;
 
-    border-bottom: 2px solid #111;
+    background: #111;
+
+    color: white;
+
 }
 
-.menu-header b {
-    font-size: 28px;
+
+.mobile-menu-header strong {
+
+    font-size: 23px;
+
 }
 
-.menu-header button {
+
+.mobile-menu-header button {
+
     border: none;
 
     background: none;
 
-    font-size: 32px;
+    color: white;
 
-    cursor: pointer;
+    font-size: 25px;
+
 }
 
 
-/* Menu Grid */
+.mobile-menu > a {
 
-.menu-grid {
-    display: grid;
+    display: block;
 
-    grid-template-columns: repeat(3, 1fr);
-}
-
-.menu-grid a {
     text-decoration: none;
 
-    color: #111;
+    color: #222;
 
-    font-size: 19px;
-    font-weight: 600;
-
-    padding: 18px 12px;
+    padding: 15px 20px;
 
     border-bottom: 1px solid #ddd;
-    border-right: 1px solid #ddd;
-
-    transition: 0.2s;
-}
-
-.menu-grid a:hover {
-    color: #c80000;
-    background: #fafafa;
-}
-
-
-/* ================================
-   LOADING
-================================ */
-
-.loading {
-    text-align: center;
-
-    padding: 40px 10px;
-
-    color: #777;
 
     font-size: 18px;
+
 }
 
 
-/* ================================
-   TABLET
-================================ */
+.mobile-menu > a:hover {
 
-@media (max-width: 900px) {
+    color: #d00000;
+
+}
+
+
+/* =================================
+   FOOTER
+================================= */
+
+footer {
+
+    background: #111;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 35px 15px;
+
+    margin-top: 40px;
+
+}
+
+
+.footer-logo {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 10px;
+
+}
+
+
+.footer-logo img {
+
+    width: 45px;
+
+    height: 45px;
+
+    object-fit: contain;
+
+}
+
+
+.footer-logo h2 {
+
+    color: #e00000;
+
+}
+
+
+footer p {
+
+    color: #ccc;
+
+    margin-top: 7px;
+
+}
+
+
+.copyright {
+
+    font-size: 13px;
+
+}
+
+
+/* =================================
+   TABLET
+================================= */
+
+@media (max-width: 800px) {
 
     .header {
-        padding: 15px 20px;
+
+        padding: 12px 18px;
+
     }
 
-    .logo span {
-        font-size: 35px;
+
+    .brand h1 {
+
+        font-size: 32px;
+
     }
 
-    .container {
-        padding: 25px 20px;
+
+    .date {
+
+        display: none;
+
     }
 
-    .news-item h2 {
-        font-size: 23px;
-    }
 
-    .news-item img {
-        width: 200px;
-        height: 125px;
+    .news-grid {
+
+        grid-template-columns: 1fr;
+
     }
 
 }
 
 
-/* ================================
+/* =================================
    MOBILE
-================================ */
+================================= */
 
 @media (max-width: 600px) {
 
-    /* Header */
 
     .header {
-        min-height: 72px;
 
-        padding: 8px 15px;
+        min-height: 75px;
+
+        padding: 8px 12px;
+
     }
 
-    .logo span {
-        font-size: 27px;
 
-        letter-spacing: -1px;
+    .logo-area {
+
+        gap: 9px;
+
     }
 
-    .header-right {
-        gap: 14px;
+
+    .logo-area img {
+
+        width: 58px;
+
+        height: 58px;
+
     }
 
-    .search {
-        font-size: 29px;
+
+    .brand h1 {
+
+        font-size: 25px;
+
     }
 
-    .login {
-        display: none;
+
+    .brand p {
+
+        font-size: 11px;
+
     }
 
-    .menu-btn {
-        font-size: 28px;
+
+    .menu-button {
+
+        width: 40px;
+
+        height: 38px;
+
+        font-size: 21px;
+
     }
 
 
     /* Navigation */
 
-    .top-nav {
-        padding: 0 10px;
+    .navigation {
+
+        justify-content: flex-start;
+
     }
 
-    .top-nav a {
-        font-size: 17px;
 
-        padding: 10px 14px;
+    .navigation a {
+
+        padding: 10px 13px;
+
+        font-size: 14px;
+
     }
 
 
     /* Breaking */
 
     .breaking-section {
+
         height: 42px;
+
     }
 
-    .breaking-title {
-        font-size: 13px;
 
-        padding: 8px 9px;
+    .breaking-label {
+
+        padding: 9px 8px;
+
+        font-size: 12px;
+
     }
+
 
     .breaking-text {
-        font-size: 14px;
 
-        animation-duration: 17s;
+        font-size: 13px;
+
+        animation-duration: 16s;
+
     }
 
 
-    /* Container */
+    /* Main */
 
-    .container {
-        padding: 15px;
+    .main-container {
+
+        padding: 15px 10px;
+
     }
 
 
-    /* Section */
+    /* Latest */
 
-    .section-title {
-        margin-bottom: 10px;
+    .latest-section {
 
-        gap: 10px;
+        padding: 12px;
+
     }
 
-    .section-title span {
-        font-size: 24px;
+
+    .section-heading h2 {
+
+        font-size: 23px;
+
+    }
+
+
+    .green-line,
+    .red-line {
+
+        height: 25px;
+
+        width: 5px;
+
+    }
+
+
+    .latest-box {
+
+        height: 300px;
+
+    }
+
+
+    .latest-item {
+
+        padding: 12px 5px;
+
+    }
+
+
+    .latest-item h3 {
+
+        font-size: 17px;
+
     }
 
 
     /* News */
 
-    .news-item {
-        gap: 12px;
+    .news-card {
 
-        padding: 16px 0;
+        gap: 10px;
+
+        padding: 9px;
+
     }
 
-    .news-item h2 {
-        font-size: 20px;
 
-        line-height: 1.4;
+    .news-card img {
 
-        margin-bottom: 3px;
+        width: 120px;
+
+        height: 85px;
+
     }
 
-    .news-item p {
-        font-size: 14px;
 
-        line-height: 1.5;
+    .news-card h3 {
+
+        font-size: 17px;
+
+    }
+
+
+    .news-card p {
+
+        font-size: 12px;
 
         display: -webkit-box;
 
@@ -592,101 +956,23 @@ body {
         -webkit-box-orient: vertical;
 
         overflow: hidden;
-    }
 
-    .news-time {
-        font-size: 12px;
-
-        margin-bottom: 2px;
-    }
-
-    .news-item img {
-        width: 125px;
-
-        height: 85px;
-
-        border-radius: 2px;
     }
 
 
-    /* Mobile Menu */
+    .news-card-content small {
 
-    .mobile-menu {
-        width: 100%;
+        font-size: 10px;
+
     }
 
-    .menu-header {
-        height: 72px;
 
-        padding: 0 18px;
+    /* Footer */
+
+    .footer-logo h2 {
+
+        font-size: 22px;
+
     }
 
-    .menu-header b {
-        font-size: 24px;
-    }
-
-    .menu-header button {
-        font-size: 28px;
-    }
-
-    .menu-grid a {
-        font-size: 17px;
-
-        padding: 15px 8px;
-
-        text-align: left;
-    }
-
-}
-
-
-/* ================================
-   SMALL MOBILE
-================================ */
-
-@media (max-width: 380px) {
-
-    .logo span {
-        font-size: 24px;
-    }
-
-    .top-nav a {
-        font-size: 15px;
-
-        padding: 9px 11px;
-    }
-
-    .breaking-title {
-        font-size: 12px;
-    }
-
-    .news-item h2 {
-        font-size: 18px;
-    }
-
-    .news-item img {
-        width: 110px;
-        height: 75px;
-    }
-
-}
-
-
-/* ================================
-   PREVENT HORIZONTAL SCROLL
-================================ */
-
-html,
-body {
-    overflow-x: hidden;
-}
-
-
-/* ================================
-   SELECTION
-================================ */
-
-::selection {
-    background: #c80000;
-    color: #fff;
 }
