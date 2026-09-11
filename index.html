@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="bn">
+
 <head>
 
 <meta charset="UTF-8">
@@ -9,114 +10,35 @@ content="width=device-width, initial-scale=1.0">
 
 <title>সাপ্তাহিক বার্তা | সত্যের সন্ধানে, মানুষের পাশে</title>
 
-
-<!-- ================= SEO ================= -->
-
-<meta name="description"
-content="সাপ্তাহিক বার্তা — সত্যের সন্ধানে, মানুষের পাশে। জাতীয়, রাজনীতি, আন্তর্জাতিক, অর্থনীতি, খেলাধুলা, বিজ্ঞান ও প্রযুক্তিসহ বাংলাদেশের সর্বশেষ সংবাদ।">
-
-<meta name="keywords"
-content="সাপ্তাহিক বার্তা, Saptahik Barta, বাংলা সংবাদ, বাংলাদেশ সংবাদ, জাতীয় সংবাদ, রাজনীতি, আন্তর্জাতিক, অর্থনীতি, খেলাধুলা, বিজ্ঞান ও প্রযুক্তি, টাঙ্গাইল, দেলদুয়ার">
-
-<meta name="author"
-content="সাপ্তাহিক বার্তা">
-
-<meta name="robots"
-content="index, follow">
-
-<link rel="canonical"
-href="https://saptahikbarta.github.io/Saptahik-Barta/">
-
-
-<!-- Facebook / Social -->
-
-<meta property="og:type"
-content="website">
-
-<meta property="og:title"
-content="সাপ্তাহিক বার্তা | সত্যের সন্ধানে, মানুষের পাশে">
-
-<meta property="og:description"
-content="বাংলাদেশ ও বিশ্বের সর্বশেষ সংবাদ — সত্যের সন্ধানে, মানুষের পাশে।">
-
-<meta property="og:url"
-content="https://saptahikbarta.github.io/Saptahik-Barta/">
-
-<meta property="og:site_name"
-content="সাপ্তাহিক বার্তা">
-
-<meta property="og:image"
-content="https://saptahikbarta.github.io/Saptahik-Barta/logo-live.png">
-
-
-<!-- Twitter -->
-
-<meta name="twitter:card"
-content="summary_large_image">
-
-<meta name="twitter:title"
-content="সাপ্তাহিক বার্তা | সত্যের সন্ধানে, মানুষের পাশে">
-
-<meta name="twitter:description"
-content="বাংলাদেশ ও বিশ্বের সর্বশেষ সংবাদ।">
-
-<meta name="twitter:image"
-content="https://saptahikbarta.github.io/Saptahik-Barta/logo-live.png">
-
-
-<!-- ================= END SEO ================= -->
-
-
-<link rel="preconnect"
-href="https://fonts.googleapis.com">
-
-<link rel="preconnect"
-href="https://fonts.gstatic.com"
-crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link rel="stylesheet"
 href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800;900&display=swap">
 
-<link rel="stylesheet"
-href="style.css">
-
-
-<!-- FIREBASE -->
+<link rel="stylesheet" href="style.css">
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
 </head>
 
-
 <body>
 
-
-<!-- =================================================
-TOP
-================================================= -->
+<!-- ================= TOP ================= -->
 
 <div class="topbar">
 
-<div id="currentDate">
-লোড হচ্ছে...
-</div>
+<div id="currentDate"></div>
 
 <div class="top-links">
-
-<a href="admin.html">
-🔐 Admin
-</a>
-
+<a href="admin.html">🔐 Admin</a>
 </div>
 
 </div>
 
 
-<!-- =================================================
-HEADER
-================================================= -->
+<!-- ================= HEADER ================= -->
 
 <header class="header">
 
@@ -135,27 +57,15 @@ alt="সাপ্তাহিক বার্তা">
 
 <div class="header-right">
 
-
 <div class="header-slogan">
-
 <b>সঠিক খবর</b>
-
 <span>সচেতন সমাজ</span>
-
 </div>
-
-
-<!-- SUBSCRIBE -->
 
 <button class="subscribe-btn"
 onclick="openSubscribe()">
-
 🔔 সাবস্ক্রাইব
-
 </button>
-
-
-<!-- SEARCH -->
 
 <div class="search-box">
 
@@ -163,9 +73,7 @@ onclick="openSubscribe()">
 type="text"
 placeholder="খবর খুঁজুন...">
 
-<button onclick="searchNews()">
-🔍
-</button>
+<button onclick="searchNews()">🔍</button>
 
 </div>
 
@@ -174,113 +82,77 @@ placeholder="খবর খুঁজুন...">
 </header>
 
 
-<!-- =================================================
-NAVIGATION
-================================================= -->
+<!-- ================= NAV ================= -->
 
 <nav class="navbar">
 
 <div class="nav-container">
 
-
 <a href="#"
 class="nav-link active"
 onclick="showCategory('all',this);return false;">
-
 🏠 প্রচ্ছদ
-
 </a>
-
 
 <a href="#"
 class="nav-link"
 onclick="showCategory('জাতীয়',this);return false;">
-
 জাতীয়
-
 </a>
-
 
 <a href="#"
 class="nav-link"
 onclick="showCategory('রাজনীতি',this);return false;">
-
 রাজনীতি
-
 </a>
-
 
 <a href="#"
 class="nav-link"
 onclick="showCategory('আন্তর্জাতিক',this);return false;">
-
 আন্তর্জাতিক
-
 </a>
-
 
 <a href="#"
 class="nav-link"
 onclick="showCategory('অর্থনীতি',this);return false;">
-
 অর্থনীতি
-
 </a>
-
 
 <a href="#"
 class="nav-link"
 onclick="showCategory('খেলাধুলা',this);return false;">
-
 খেলাধুলা
-
 </a>
-
 
 <a href="#"
 class="nav-link"
 onclick="showCategory('বিজ্ঞান ও প্রযুক্তি',this);return false;">
-
 বিজ্ঞান ও প্রযুক্তি
-
 </a>
-
 
 <a href="#"
 class="nav-link"
 onclick="showCategory('মতামত',this);return false;">
-
 মতামত
-
 </a>
-
 
 <a href="#"
 class="nav-link"
 onclick="showCategory('ছবি',this);return false;">
-
 ছবি
-
 </a>
-
 
 <a href="#"
 class="nav-link"
 onclick="showCategory('ভিডিও',this);return false;">
-
 ভিডিও
-
 </a>
 
-
 </div>
-
 </nav>
 
 
-<!-- =================================================
-BREAKING NEWS
-================================================= -->
+<!-- ================= BREAKING ================= -->
 
 <div class="breaking-wrapper">
 
@@ -288,14 +160,11 @@ BREAKING NEWS
 🔴 ব্রেকিং
 </div>
 
-
 <div class="ticker">
 
 <div id="breakingTicker"
 class="ticker-text">
-
 এই মুহূর্তে কোনো ব্রেকিং নিউজ নেই
-
 </div>
 
 </div>
@@ -303,9 +172,7 @@ class="ticker-text">
 </div>
 
 
-<!-- =================================================
-LATEST NEWS
-================================================= -->
+<!-- ================= LATEST ================= -->
 
 <div class="latest-wrapper">
 
@@ -313,14 +180,11 @@ LATEST NEWS
 🟢 সর্বশেষ
 </div>
 
-
 <div class="ticker">
 
 <div id="latestTicker"
 class="ticker-text green">
-
 কোনো সংবাদ নেই
-
 </div>
 
 </div>
@@ -328,15 +192,11 @@ class="ticker-text green">
 </div>
 
 
-<!-- =================================================
-MAIN
-================================================= -->
+<!-- ================= MAIN ================= -->
 
 <main class="container">
 
-
 <section>
-
 
 <div class="section-title">
 
@@ -355,30 +215,22 @@ MAIN
 class="news-grid">
 
 <div class="no-news">
-সংবাদ লোড হচ্ছে...
+এই বিভাগে এখনো কোনো সংবাদ প্রকাশিত হয়নি।
 </div>
 
 </div>
-
 
 </section>
 
 
-<!-- =================================================
-SIDEBAR
-================================================= -->
+<!-- ================= SIDEBAR ================= -->
 
 <aside class="sidebar">
 
 
-<!-- MOST READ -->
-
 <div class="side-title most-read-title">
-
 🔥 সর্বাধিক পঠিত
-
 </div>
-
 
 <div id="mostRead">
 
@@ -389,286 +241,182 @@ SIDEBAR
 </div>
 
 
-<!-- LATEST -->
-
 <div class="side-title">
-
 সর্বশেষ সংবাদ
-
 </div>
-
 
 <div id="sideLatest"></div>
 
 
-<!-- FACEBOOK -->
-
 <div class="side-title facebook-title">
-
 আমাদের ফেসবুক পেজ
-
 </div>
-
 
 <div class="facebook-box">
 
-<h3>
-সাপ্তাহিক বার্তা
-</h3>
-
+<h3>সাপ্তাহিক বার্তা</h3>
 
 <p>
 সত্যের সন্ধানে, মানুষের পাশে
 </p>
 
-
 <a href="https://www.facebook.com/"
 target="_blank"
 class="facebook-btn">
-
 Facebook Page
-
 </a>
 
 </div>
 
 
-<!-- SUBSCRIBE -->
-
 <div class="side-title">
-
 🔔 আমাদের সাবস্ক্রাইব করুন
-
 </div>
-
 
 <div class="subscribe-box">
 
 <p>
-
 নতুন খবর প্রকাশ হলে আপডেট পেতে
 আমাদের সঙ্গে থাকুন।
-
 </p>
-
 
 <button onclick="openSubscribe()"
 class="subscribe-side-btn">
-
 🔔 সাবস্ক্রাইব করুন
-
 </button>
 
 </div>
 
 
-<!-- ADMIN -->
-
 <div class="side-title">
-
 নিউজ প্রকাশ
-
 </div>
-
 
 <a href="admin.html"
 class="admin-btn">
-
 🔐 Admin Panel
-
 </a>
-
 
 </aside>
 
 </main>
 
 
-<!-- =================================================
-NEWS MODAL
-================================================= -->
+<!-- ================= NEWS MODAL ================= -->
 
-<div id="newsModal"
-class="modal">
-
+<div id="newsModal" class="modal">
 
 <div class="modal-content">
 
-
 <button class="close-btn"
-onclick="closeNews()">
-
-×
-
-</button>
-
+onclick="closeNews()">×</button>
 
 <div id="modalCategory"
-class="modal-category">
-</div>
-
+class="modal-category"></div>
 
 <h1 id="modalTitle"></h1>
 
-
 <div id="modalTime"
-class="modal-time">
-</div>
-
+class="modal-time"></div>
 
 <div id="modalMedia"></div>
 
-
 <div id="modalDescription"
-class="modal-description">
-</div>
+class="modal-description"></div>
 
-
-<!-- SOCIAL -->
 
 <div class="social-actions">
 
-
 <button id="likeButton"
 class="like-btn">
-
-👍 লাইক
-<span id="likeCount">0</span>
-
+👍 লাইক <span id="likeCount">0</span>
 </button>
-
 
 <button id="commentButton"
 class="comment-btn"
 onclick="focusComment()">
-
 💬 মন্তব্য
-
 </button>
-
 
 <button id="facebookShare"
 class="share-btn">
-
 ↗ শেয়ার
-
 </button>
-
 
 </div>
 
 
-<!-- COMMENT -->
-
 <div class="comment-area">
 
-<h3>
-💬 মন্তব্য করুন
-</h3>
-
+<h3>💬 মন্তব্য করুন</h3>
 
 <textarea id="commentText"
-placeholder="আপনার মন্তব্য লিখুন...">
-</textarea>
-
+placeholder="আপনার মন্তব্য লিখুন..."></textarea>
 
 <button onclick="submitComment()"
 class="comment-submit">
-
 মন্তব্য প্রকাশ করুন
-
 </button>
-
 
 <div id="commentMessage"></div>
 
 </div>
 
-
+</div>
 </div>
 
-</div>
 
-
-<!-- =================================================
-SUBSCRIBE MODAL
-================================================= -->
+<!-- ================= SUBSCRIBE MODAL ================= -->
 
 <div id="subscribeModal"
 class="subscribe-modal">
 
-
 <div class="subscribe-content">
 
-
 <button class="close-btn"
-onclick="closeSubscribe()">
-
-×
-
-</button>
-
+onclick="closeSubscribe()">×</button>
 
 <div class="subscribe-icon">
 🔔
 </div>
 
-
 <h2>
 সাপ্তাহিক বার্তা সাবস্ক্রাইব করুন
 </h2>
 
-
 <p>
-
 নতুন সংবাদ ও গুরুত্বপূর্ণ আপডেট পেতে
 আপনার তথ্য দিন।
-
 </p>
-
 
 <input id="subscriberName"
 type="text"
 placeholder="আপনার নাম">
 
-
 <input id="subscriberEmail"
 type="email"
 placeholder="আপনার ই-মেইল">
 
-
 <button onclick="submitSubscribe()"
 class="subscribe-submit">
-
 সাবস্ক্রাইব করুন
-
 </button>
-
 
 <div id="subscribeMessage"></div>
 
-
+</div>
 </div>
 
-</div>
 
-
-<!-- =================================================
-FOOTER
-================================================= -->
+<!-- ================= FOOTER ================= -->
 
 <footer>
 
-
 <div class="footer-grid">
-
 
 <div>
 
-<h2>
-সাপ্তাহিক বার্তা
-</h2>
-
+<h2>সাপ্তাহিক বার্তা</h2>
 
 <p>
 সত্যের সন্ধানে, মানুষের পাশে
@@ -683,11 +431,9 @@ FOOTER
 সম্পাদক: মোঃ নুরুল ইসলাম
 </p>
 
-
 <p>
 সহ সম্পাদক ও প্রকাশক: মোঃ আরিফুল ইসলাম
 </p>
-
 
 <p>
 Delduar, Tangail
@@ -704,22 +450,17 @@ Delduar, Tangail
 
 </div>
 
-
 </div>
 
 
 <div class="copyright">
-
 © 2026 সাপ্তাহিক বার্তা — সর্বস্বত্ব সংরক্ষিত
-
 </div>
-
 
 </footer>
 
 
 <script>
-
 
 /* =================================================
 FIREBASE
@@ -750,17 +491,10 @@ measurementId:
 
 };
 
-
 firebase.initializeApp(firebaseConfig);
 
+const db = firebase.firestore();
 
-const db =
-firebase.firestore();
-
-
-/* =================================================
-VARIABLES
-================================================= */
 
 let allNews = [];
 
@@ -777,9 +511,7 @@ function updateDate(){
 
 const now = new Date();
 
-
 const days = [
-
 "রবিবার",
 "সোমবার",
 "মঙ্গলবার",
@@ -787,12 +519,9 @@ const days = [
 "বৃহস্পতিবার",
 "শুক্রবার",
 "শনিবার"
-
 ];
 
-
 const months = [
-
 "জানুয়ারি",
 "ফেব্রুয়ারি",
 "মার্চ",
@@ -805,92 +534,60 @@ const months = [
 "অক্টোবর",
 "নভেম্বর",
 "ডিসেম্বর"
-
 ];
 
-
-document.getElementById(
-"currentDate"
-).innerText =
-
-days[now.getDay()]
-+
-", "
-+
-now.getDate()
-+
-" "
-+
-months[now.getMonth()]
-+
-" "
-+
-now.getFullYear()
-+
-" | "
-+
-now.toLocaleTimeString(
-"bn-BD",
-{
+document.getElementById("currentDate").innerText =
+days[now.getDay()] +
+", " +
+now.getDate() +
+" " +
+months[now.getMonth()] +
+" " +
+now.getFullYear() +
+" | " +
+now.toLocaleTimeString("bn-BD",{
 hour:"numeric",
 minute:"2-digit",
 second:"2-digit"
-}
-);
+});
 
 }
-
 
 updateDate();
 
-
-setInterval(
-updateDate,
-1000
-);
+setInterval(updateDate,1000);
 
 
 /* =================================================
-GET NEWS DATE
+DATE
 ================================================= */
 
 function getNewsDate(news){
 
 try{
 
-
-if(
-news.publishedAt &&
-typeof news.publishedAt.toDate === "function"
-){
+if(news.publishedAt &&
+typeof news.publishedAt.toDate === "function"){
 
 return news.publishedAt.toDate();
 
 }
 
-
-if(
-news.createdAt &&
-typeof news.createdAt.toDate === "function"
-){
+if(news.createdAt &&
+typeof news.createdAt.toDate === "function"){
 
 return news.createdAt.toDate();
 
 }
 
-
-if(
-news.updatedAt &&
-typeof news.updatedAt.toDate === "function"
-){
+if(news.updatedAt &&
+typeof news.updatedAt.toDate === "function"){
 
 return news.updatedAt.toDate();
 
 }
 
-
 }catch(e){}
-
 
 return new Date();
 
@@ -905,48 +602,29 @@ function normalizeNews(doc){
 
 const n = doc.data();
 
-
 return {
 
 id:doc.id,
 
 title:n.title || "",
 
-category:
-n.category ||
-n.cat ||
-"জাতীয়",
+category:n.category || n.cat || "জাতীয়",
 
-description:
-n.description ||
-n.body ||
-"",
+description:n.description || n.body || "",
 
-mediaUrl:
-n.mediaUrl ||
-n.img ||
-"",
+mediaUrl:n.mediaUrl || n.img || "",
 
-mediaType:
-n.mediaType ||
-(n.img ? "image" : ""),
+mediaType:n.mediaType || (n.img ? "image" : ""),
 
-breaking:
-n.breaking === true,
+breaking:n.breaking === true,
 
-views:
-Number(n.views || 0),
+views:Number(n.views || 0),
 
-likes:
-Number(n.likes || 0),
+likes:Number(n.likes || 0),
 
-publishedAt:
-n.publishedAt ||
-n.createdAt ||
-null,
+publishedAt:n.publishedAt || n.createdAt || null,
 
-updatedAt:
-n.updatedAt || null
+updatedAt:n.updatedAt || null
 
 };
 
@@ -962,12 +640,9 @@ db.collection("news")
 
 snapshot => {
 
-
 allNews = [];
 
-
-snapshot.forEach(
-doc => {
+snapshot.forEach(doc => {
 
 allNews.push(
 normalizeNews(doc)
@@ -991,26 +666,17 @@ displayNews();
 
 displayMostRead();
 
-
 },
 
 error => {
 
-
 console.error(error);
 
-
-document.getElementById(
-"newsGrid"
-).innerHTML =
-
+document.getElementById("newsGrid").innerHTML =
 `
 <div class="no-news">
-
 ❌ সংবাদ লোড করা যাচ্ছে না।<br>
-
 Firestore Rules পরীক্ষা করুন।
-
 </div>
 `;
 
@@ -1020,22 +686,32 @@ Firestore Rules পরীক্ষা করুন।
 
 
 /* =================================================
-BREAKING
+BREAKING — 3 HOURS
 ================================================= */
 
 function updateBreaking(){
 
 const el =
-document.getElementById(
-"breakingTicker"
-);
+document.getElementById("breakingTicker");
 
+const now = new Date();
 
 const breaking =
-allNews.find(
-n =>
-n.breaking === true
-);
+allNews.find(n => {
+
+if(n.breaking !== true)
+return false;
+
+const newsDate =
+getNewsDate(n);
+
+const hours =
+(now - newsDate) /
+(1000 * 60 * 60);
+
+return hours < 3;
+
+});
 
 
 if(!breaking){
@@ -1046,7 +722,6 @@ el.innerText =
 return;
 
 }
-
 
 el.innerText =
 breaking.title;
@@ -1061,17 +736,10 @@ LATEST 10
 function updateLatestTicker(){
 
 const el =
-document.getElementById(
-"latestTicker"
-);
-
+document.getElementById("latestTicker");
 
 const latest =
-allNews.slice(
-0,
-10
-);
-
+allNews.slice(0,10);
 
 if(!latest.length){
 
@@ -1082,22 +750,32 @@ return;
 
 }
 
-
 el.innerText =
 latest
-.map(
-n =>
-n.title
-)
-.join(
-"   •   "
-);
+.map(n => n.title)
+.join("   •   ");
 
 }
 
 
 /* =================================================
-DISPLAY NEWS
+3 HOURS TIMER
+================================================= */
+
+setInterval(
+function(){
+
+updateBreaking();
+
+updateLatestTicker();
+
+},
+60000
+);
+
+
+/* =================================================
+DISPLAY
 ================================================= */
 
 function displayNews(){
@@ -1105,46 +783,32 @@ function displayNews(){
 let filtered =
 allNews;
 
-
-if(
-selectedCategory !== "all"
-){
+if(selectedCategory !== "all"){
 
 filtered =
 allNews.filter(
 n =>
-n.category ===
-selectedCategory
+n.category === selectedCategory
 );
 
 }
 
-
-document.getElementById(
-"newsCount"
-).innerText =
-filtered.length +
-"টি সংবাদ";
+document.getElementById("newsCount").innerText =
+filtered.length + "টি সংবাদ";
 
 
 const grid =
-document.getElementById(
-"newsGrid"
-);
+document.getElementById("newsGrid");
 
 
 if(!filtered.length){
 
 grid.innerHTML =
-
 `
 <div class="no-news">
-
 এই বিভাগে এখনো কোনো সংবাদ প্রকাশিত হয়নি।
-
 </div>
 `;
-
 
 displaySidebar([]);
 
@@ -1155,15 +819,11 @@ return;
 
 grid.innerHTML =
 filtered
-.map(
-createCard
-)
+.map(createCard)
 .join("");
 
 
-displaySidebar(
-filtered
-);
+displaySidebar(filtered);
 
 }
 
@@ -1177,7 +837,6 @@ function createCard(news){
 const date =
 getNewsDate(news);
 
-
 let media = "";
 
 
@@ -1186,9 +845,7 @@ news.mediaType === "video" &&
 news.mediaUrl
 ){
 
-media =
-
-`
+media = `
 <video
 src="${escapeHtml(news.mediaUrl)}"
 controls
@@ -1199,14 +856,9 @@ class="card-media">
 
 }
 
+else if(news.mediaUrl){
 
-else if(
-news.mediaUrl
-){
-
-media =
-
-`
+media = `
 <img
 src="${escapeHtml(news.mediaUrl)}"
 class="card-media"
@@ -1216,16 +868,11 @@ onerror="this.style.display='none'">
 
 }
 
-
 else{
 
-media =
-
-`
+media = `
 <div class="no-image">
-
 সাপ্তাহিক বার্তা
-
 </div>
 `;
 
@@ -1240,54 +887,31 @@ ${media}
 
 <div class="card-body">
 
-
 <span class="category">
-
-${escapeHtml(
-news.category
-)}
-
+${escapeHtml(news.category)}
 </span>
 
-
 <h3>
-
-${escapeHtml(
-news.title
-)}
-
+${escapeHtml(news.title)}
 </h3>
 
-
 <p>
-
 ${escapeHtml(
-shortText(
-news.description,
-150
-)
+shortText(news.description,150)
 )}
-
 </p>
-
 
 <div class="card-footer">
 
 <span>
-
 ${formatDate(date)}
-
 </span>
 
-
 <span>
-
 ${timeAgo(date)}
-
 </span>
 
 </div>
-
 
 <button
 class="read-btn"
@@ -1296,7 +920,6 @@ onclick="openNews('${news.id}')">
 বিস্তারিত পড়ুন →
 
 </button>
-
 
 </div>
 
@@ -1314,54 +937,34 @@ SIDEBAR
 function displaySidebar(news){
 
 const list =
-document.getElementById(
-"sideLatest"
-);
-
+document.getElementById("sideLatest");
 
 list.innerHTML =
-news
-.slice(0,10)
+news.slice(0,10)
 .map(
 (n,i) => {
 
-
 const date =
 getNewsDate(n);
-
 
 return `
 
 <div class="side-news"
 onclick="openNews('${n.id}')">
 
-
-<span>
-
-${i+1}
-
-</span>
-
+<span>${i+1}</span>
 
 <div>
 
 <b>
-
-${escapeHtml(
-n.title
-)}
-
+${escapeHtml(n.title)}
 </b>
 
-
 <small>
-
 ${timeAgo(date)}
-
 </small>
 
 </div>
-
 
 </div>
 
@@ -1381,10 +984,7 @@ MOST READ
 function displayMostRead(){
 
 const box =
-document.getElementById(
-"mostRead"
-);
-
+document.getElementById("mostRead");
 
 const most =
 [...allNews]
@@ -1393,21 +993,15 @@ const most =
 Number(b.views || 0) -
 Number(a.views || 0)
 )
-.slice(
-0,
-7
-);
+.slice(0,7);
 
 
 if(!most.length){
 
 box.innerHTML =
-
 `
 <div class="empty-most">
-
 এখনো কোনো সংবাদ নেই।
-
 </div>
 `;
 
@@ -1417,55 +1011,36 @@ return;
 
 
 box.innerHTML =
-most
-.map(
+most.map(
 (n,i) => {
-
 
 return `
 
 <div class="most-read-item"
 onclick="openNews('${n.id}')">
 
-
 <div class="most-number">
-
 ${i+1}
-
 </div>
-
 
 <div class="most-text">
 
-
 <b>
-
-${escapeHtml(
-n.title
-)}
-
+${escapeHtml(n.title)}
 </b>
 
-
 <small>
-
-👁 ${Number(
-n.views || 0
-)} বার পঠিত
-
+👁 ${Number(n.views || 0)} বার পঠিত
 </small>
 
-
 </div>
-
 
 </div>
 
 `;
 
 }
-)
-.join("");
+).join("");
 
 }
 
@@ -1474,59 +1049,39 @@ n.views || 0
 CATEGORY
 ================================================= */
 
-function showCategory(
-category,
-element
-){
+function showCategory(category,element){
 
 selectedCategory =
 category;
 
-
 document
-.querySelectorAll(
-".nav-link"
-)
+.querySelectorAll(".nav-link")
 .forEach(
 x =>
-x.classList.remove(
-"active"
-)
+x.classList.remove("active")
 );
-
 
 if(element){
 
-element.classList.add(
-"active"
-);
+element.classList.add("active");
 
 }
 
-
-document.getElementById(
-"sectionHeading"
-).innerText =
-
+document.getElementById("sectionHeading").innerText =
 category === "all"
 ?
 "সর্বশেষ সংবাদ"
 :
 category;
 
-
 displayNews();
-
 
 window.scrollTo({
 
 top:
-document.querySelector(
-".container"
-).offsetTop - 20,
+document.querySelector(".container").offsetTop - 20,
 
-behavior:
-"smooth"
+behavior:"smooth"
 
 });
 
@@ -1541,10 +1096,8 @@ function openNews(id){
 
 const news =
 allNews.find(
-n =>
-n.id === id
+n => n.id === id
 );
-
 
 if(!news)
 return;
@@ -1554,15 +1107,11 @@ currentNewsId =
 id;
 
 
-document.getElementById(
-"modalCategory"
-).innerText =
+document.getElementById("modalCategory").innerText =
 news.category;
 
 
-document.getElementById(
-"modalTitle"
-).innerText =
+document.getElementById("modalTitle").innerText =
 news.title;
 
 
@@ -1570,14 +1119,9 @@ const date =
 getNewsDate(news);
 
 
-document.getElementById(
-"modalTime"
-).innerText =
-
-formatDate(date)
-+
-" • "
-+
+document.getElementById("modalTime").innerText =
+formatDate(date) +
+" • " +
 timeAgo(date);
 
 
@@ -1589,9 +1133,7 @@ news.mediaType === "video" &&
 news.mediaUrl
 ){
 
-media =
-
-`
+media = `
 <video
 src="${escapeHtml(news.mediaUrl)}"
 controls
@@ -1601,14 +1143,9 @@ class="modal-media">
 
 }
 
+else if(news.mediaUrl){
 
-else if(
-news.mediaUrl
-){
-
-media =
-
-`
+media = `
 <img
 src="${escapeHtml(news.mediaUrl)}"
 class="modal-media"
@@ -1618,103 +1155,60 @@ alt="${escapeHtml(news.title)}">
 }
 
 
-document.getElementById(
-"modalMedia"
-).innerHTML =
+document.getElementById("modalMedia").innerHTML =
 media;
 
 
-document.getElementById(
-"modalDescription"
-).innerHTML =
-
-escapeHtml(
-news.description
-)
-.replace(
-/\n/g,
-"<br>"
-);
+document.getElementById("modalDescription").innerHTML =
+escapeHtml(news.description)
+.replace(/\n/g,"<br>");
 
 
-document.getElementById(
-"likeCount"
-).innerText =
-Number(
-news.likes || 0
-);
+document.getElementById("likeCount").innerText =
+Number(news.likes || 0);
 
 
 const liked =
-localStorage.getItem(
-"liked_" + id
-);
+localStorage.getItem("liked_" + id);
 
 
 const likeButton =
-document.getElementById(
-"likeButton"
-);
+document.getElementById("likeButton");
 
 
 if(liked){
 
-likeButton.classList.add(
-"liked"
-);
+likeButton.classList.add("liked");
+
+}else{
+
+likeButton.classList.remove("liked");
 
 }
 
-else{
-
-likeButton.classList.remove(
-"liked"
-);
-
-}
-
-
-/* VIEW COUNT */
 
 addView(id);
 
 
-/* FACEBOOK SHARE */
-
-document.getElementById(
-"facebookShare"
-).onclick =
-
+document.getElementById("facebookShare").onclick =
 function(){
 
-
 const url =
-window.location.href
-.split("?")[0]
-+
-"?news="
-+
+window.location.href.split("?")[0] +
+"?news=" +
 encodeURIComponent(id);
 
-
 window.open(
-
-"https://www.facebook.com/sharer/sharer.php?u="
-+
+"https://www.facebook.com/sharer/sharer.php?u=" +
 encodeURIComponent(url),
-
 "_blank"
-
 );
 
 };
 
 
-document.getElementById(
-"newsModal"
-).classList.add(
-"show"
-);
+document.getElementById("newsModal")
+.classList.add("show");
 
 }
 
@@ -1726,23 +1220,14 @@ VIEW COUNT
 function addView(id){
 
 const key =
-"viewed_" +
-id;
+"viewed_" + id;
 
 
-if(
-sessionStorage.getItem(key)
-){
-
+if(sessionStorage.getItem(key))
 return;
 
-}
 
-
-sessionStorage.setItem(
-key,
-"1"
-);
+sessionStorage.setItem(key,"1");
 
 
 db.collection("news")
@@ -1750,37 +1235,26 @@ db.collection("news")
 .update({
 
 views:
-firebase.firestore
-.FieldValue
-.increment(1)
+firebase.firestore.FieldValue.increment(1)
 
 })
-.then(
-() => {
-
+.then(() => {
 
 const news =
 allNews.find(
-n =>
-n.id === id
+n => n.id === id
 );
-
 
 if(news){
 
 news.views =
-Number(
-news.views || 0
-) + 1;
+Number(news.views || 0) + 1;
 
 }
-
 
 displayMostRead();
 
-
-}
-)
+})
 .catch(
 error =>
 console.log(
@@ -1796,48 +1270,31 @@ error
 LIKE
 ================================================= */
 
-document.getElementById(
-"likeButton"
-)
+document.getElementById("likeButton")
 .addEventListener(
 "click",
 function(){
-
 
 if(!currentNewsId)
 return;
 
 
 const key =
-"liked_" +
-currentNewsId;
+"liked_" + currentNewsId;
 
 
-if(
-localStorage.getItem(key)
-){
-
+if(localStorage.getItem(key))
 return;
 
-}
 
+localStorage.setItem(key,"1");
 
-localStorage.setItem(
-key,
-"1"
-);
-
-
-this.classList.add(
-"liked"
-);
+this.classList.add("liked");
 
 
 const news =
 allNews.find(
-n =>
-n.id ===
-currentNewsId
+n => n.id === currentNewsId
 );
 
 
@@ -1850,28 +1307,19 @@ db.collection("news")
 .update({
 
 likes:
-firebase.firestore
-.FieldValue
-.increment(1)
+firebase.firestore.FieldValue.increment(1)
 
 })
-.then(
-() => {
-
+.then(() => {
 
 news.likes =
-Number(
-news.likes || 0
-) + 1;
+Number(news.likes || 0) + 1;
 
-
-document.getElementById(
-"likeCount"
-).innerText =
+document.getElementById("likeCount")
+.innerText =
 news.likes;
 
-}
-)
+})
 .catch(
 error =>
 console.log(
@@ -1889,9 +1337,7 @@ COMMENT
 
 function focusComment(){
 
-document.getElementById(
-"commentText"
-).focus();
+document.getElementById("commentText").focus();
 
 }
 
@@ -1903,17 +1349,13 @@ return;
 
 
 const text =
-document.getElementById(
-"commentText"
-)
+document.getElementById("commentText")
 .value
 .trim();
 
 
 const message =
-document.getElementById(
-"commentMessage"
-);
+document.getElementById("commentMessage");
 
 
 if(!text){
@@ -1929,44 +1371,31 @@ return;
 db.collection("comments")
 .add({
 
-newsId:
-currentNewsId,
+newsId:currentNewsId,
 
-comment:
-text,
+comment:text,
 
 createdAt:
-firebase.firestore
-.FieldValue
-.serverTimestamp()
+firebase.firestore.FieldValue.serverTimestamp()
 
 })
-.then(
-() => {
+.then(() => {
 
-
-document.getElementById(
-"commentText"
-).value = "";
-
+document.getElementById("commentText")
+.value = "";
 
 message.innerText =
 "✅ আপনার মন্তব্য গ্রহণ করা হয়েছে।";
 
-}
-)
-.catch(
-error => {
-
+})
+.catch(error => {
 
 console.error(error);
-
 
 message.innerText =
 "❌ মন্তব্য পাঠানো যায়নি।";
 
-}
-);
+});
 
 }
 
@@ -1977,11 +1406,8 @@ CLOSE NEWS
 
 function closeNews(){
 
-document.getElementById(
-"newsModal"
-).classList.remove(
-"show"
-);
+document.getElementById("newsModal")
+.classList.remove("show");
 
 }
 
@@ -1990,16 +1416,10 @@ window.addEventListener(
 "click",
 function(e){
 
-
 const modal =
-document.getElementById(
-"newsModal"
-);
+document.getElementById("newsModal");
 
-
-if(
-e.target === modal
-){
+if(e.target === modal){
 
 closeNews();
 
@@ -2015,9 +1435,7 @@ SEARCH
 function searchNews(){
 
 const text =
-document.getElementById(
-"searchInput"
-)
+document.getElementById("searchInput")
 .value
 .trim()
 .toLowerCase();
@@ -2035,55 +1453,31 @@ return;
 const result =
 allNews.filter(
 n =>
-
-n.title
-.toLowerCase()
-.includes(text)
-
+n.title.toLowerCase().includes(text)
 ||
-
-n.description
-.toLowerCase()
-.includes(text)
-
+n.description.toLowerCase().includes(text)
 );
 
 
-document.getElementById(
-"sectionHeading"
-).innerText =
+document.getElementById("sectionHeading")
+.innerText =
 "অনুসন্ধানের ফলাফল";
 
 
-document.getElementById(
-"newsCount"
-).innerText =
-result.length +
-"টি সংবাদ";
+document.getElementById("newsCount")
+.innerText =
+result.length + "টি সংবাদ";
 
 
-document.getElementById(
-"newsGrid"
-).innerHTML =
-
+document.getElementById("newsGrid").innerHTML =
 result.length
-
 ?
-
-result
-.map(createCard)
-.join("")
-
+result.map(createCard).join("")
 :
-
 `
-
 <div class="no-news">
-
 কোনো সংবাদ পাওয়া যায়নি।
-
 </div>
-
 `;
 
 }
@@ -2091,20 +1485,13 @@ result
 
 /* ENTER SEARCH */
 
-document.getElementById(
-"searchInput"
-)
+document.getElementById("searchInput")
 .addEventListener(
 "keyup",
 function(e){
 
-if(
-e.key === "Enter"
-){
-
+if(e.key === "Enter")
 searchNews();
-
-}
 
 });
 
@@ -2115,22 +1502,16 @@ SUBSCRIBE
 
 function openSubscribe(){
 
-document.getElementById(
-"subscribeModal"
-).classList.add(
-"show"
-);
+document.getElementById("subscribeModal")
+.classList.add("show");
 
 }
 
 
 function closeSubscribe(){
 
-document.getElementById(
-"subscribeModal"
-).classList.remove(
-"show"
-);
+document.getElementById("subscribeModal")
+.classList.remove("show");
 
 }
 
@@ -2138,31 +1519,20 @@ document.getElementById(
 function submitSubscribe(){
 
 const name =
-document.getElementById(
-"subscriberName"
-)
-.value
-.trim();
+document.getElementById("subscriberName")
+.value.trim();
 
 
 const email =
-document.getElementById(
-"subscriberEmail"
-)
-.value
-.trim();
+document.getElementById("subscriberEmail")
+.value.trim();
 
 
 const message =
-document.getElementById(
-"subscribeMessage"
-);
+document.getElementById("subscribeMessage");
 
 
-if(
-!name ||
-!email
-){
+if(!name || !email){
 
 message.innerText =
 "নাম ও ই-মেইল দিন।";
@@ -2172,54 +1542,37 @@ return;
 }
 
 
-db.collection(
-"subscribers"
-)
+db.collection("subscribers")
 .add({
 
-name:
-name,
+name:name,
 
-email:
-email,
+email:email,
 
 createdAt:
-firebase.firestore
-.FieldValue
-.serverTimestamp()
+firebase.firestore.FieldValue.serverTimestamp()
 
 })
-.then(
-() => {
-
+.then(() => {
 
 message.innerText =
 "✅ সফলভাবে সাবস্ক্রাইব করেছেন।";
 
+document.getElementById("subscriberName")
+.value = "";
 
-document.getElementById(
-"subscriberName"
-).value = "";
+document.getElementById("subscriberEmail")
+.value = "";
 
-
-document.getElementById(
-"subscriberEmail"
-).value = "";
-
-}
-)
-.catch(
-error => {
-
+})
+.catch(error => {
 
 console.error(error);
-
 
 message.innerText =
 "❌ সাবস্ক্রাইব করা যায়নি।";
 
-}
-);
+});
 
 }
 
@@ -2228,32 +1581,18 @@ message.innerText =
 HELPERS
 ================================================= */
 
-function shortText(
-text,
-length
-){
+function shortText(text,length){
 
 if(!text)
 return "";
 
-
 text =
 String(text);
 
-
 return text.length > length
-
 ?
-
-text.substring(
-0,
-length
-)
-+
-"..."
-
+text.substring(0,length) + "..."
 :
-
 text;
 
 }
@@ -2264,19 +1603,10 @@ function formatDate(date){
 return date.toLocaleDateString(
 "bn-BD",
 {
-
-weekday:
-"long",
-
-day:
-"numeric",
-
-month:
-"long",
-
-year:
-"numeric"
-
+weekday:"long",
+day:"numeric",
+month:"long",
+year:"numeric"
 }
 )
 +
@@ -2285,13 +1615,8 @@ year:
 date.toLocaleTimeString(
 "bn-BD",
 {
-
-hour:
-"numeric",
-
-minute:
-"2-digit"
-
+hour:"numeric",
+minute:"2-digit"
 }
 );
 
@@ -2302,8 +1627,7 @@ function timeAgo(date){
 
 const seconds =
 Math.floor(
-(new Date() - date) /
-1000
+(new Date() - date) / 1000
 );
 
 
@@ -2312,93 +1636,56 @@ return "এইমাত্র";
 
 
 const minutes =
-Math.floor(
-seconds / 60
-);
+Math.floor(seconds / 60);
 
 
 if(minutes < 60)
-return minutes +
-" মিনিট আগে";
+return minutes + " মিনিট আগে";
 
 
 const hours =
-Math.floor(
-minutes / 60
-);
+Math.floor(minutes / 60);
 
 
 if(hours < 24)
-return hours +
-" ঘণ্টা আগে";
+return hours + " ঘণ্টা আগে";
 
 
 const days =
-Math.floor(
-hours / 24
-);
+Math.floor(hours / 24);
 
 
 if(days < 30)
-return days +
-" দিন আগে";
+return days + " দিন আগে";
 
 
 const months =
-Math.floor(
-days / 30
-);
+Math.floor(days / 30);
 
 
 if(months < 12)
-return months +
-" মাস আগে";
+return months + " মাস আগে";
 
 
-return Math.floor(
-months / 12
-)
-+
-" বছর আগে";
+return Math.floor(months / 12)
++ " বছর আগে";
 
 }
 
 
 function escapeHtml(text){
 
-if(
-text === null ||
-text === undefined
-)
+if(text === null ||
+text === undefined)
 return "";
 
 
 return String(text)
-
-.replace(
-/&/g,
-"&amp;"
-)
-
-.replace(
-/</g,
-"&lt;"
-)
-
-.replace(
-/>/g,
-"&gt;"
-)
-
-.replace(
-/"/g,
-"&quot;"
-)
-
-.replace(
-/'/g,
-"&#039;"
-);
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
 
 }
 
@@ -2411,12 +1698,10 @@ window.addEventListener(
 "load",
 function(){
 
-
 const params =
 new URLSearchParams(
 window.location.search
 );
-
 
 const id =
 params.get("news");
@@ -2425,8 +1710,7 @@ params.get("news");
 if(id){
 
 setTimeout(
-() =>
-openNews(id),
+() => openNews(id),
 1500
 );
 
@@ -2434,9 +1718,7 @@ openNews(id),
 
 });
 
-
 </script>
-
 
 </body>
 </html>
