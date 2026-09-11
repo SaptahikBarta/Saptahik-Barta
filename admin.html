@@ -14,11 +14,8 @@ content="width=device-width,initial-scale=1.0">
 href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&display=swap">
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
 
 <style>
@@ -166,15 +163,13 @@ margin-top:10px;
 }
 
 
-/* =========================
-   EPAPER
-========================= */
+/* ================= EPAPER ================= */
 
 .epaper-box{
 margin-top:30px;
 padding:18px;
 border:1px solid #ddd;
-background:#fff;
+background:#fafafa;
 }
 
 .epaper-box h2{
@@ -184,52 +179,49 @@ margin-top:0;
 
 .epaper-item{
 border:1px solid #ddd;
-background:#fafafa;
+background:#fff;
 padding:15px;
-margin-top:12px;
+margin-top:15px;
+overflow:hidden;
 }
 
 .epaper-item h3{
-margin:0 0 7px;
+margin:0 0 5px;
 }
 
-.epaper-item small{
+.epaper-date{
 color:#777;
-display:block;
+font-size:13px;
 margin-bottom:10px;
 }
 
-.pdf-name{
+.epaper-pdf{
+color:#075fc9;
 font-weight:bold;
-color:#333;
-margin-bottom:8px;
-word-break:break-word;
+margin-bottom:10px;
+word-break:break-all;
 }
 
-.pdf-actions{
-display:flex;
-gap:8px;
-flex-wrap:wrap;
+.epaper-upload-progress{
+width:100%;
+height:8px;
+background:#ddd;
+display:none;
+margin:10px 0;
 }
 
-.pdf-view{
-background:#075fc9;
-}
-
-.pdf-delete{
-background:#900;
-}
-
-.pdf-upload{
+.epaper-upload-bar{
+width:0%;
+height:100%;
 background:#c00;
 }
 
-#pdfPreview{
-display:none;
-margin-top:10px;
-padding:10px;
-background:#f5f5f5;
-border:1px solid #ddd;
+.epaper-delete{
+background:#900;
+}
+
+.epaper-replace{
+background:#075fc9;
 }
 
 @media(max-width:600px){
@@ -248,10 +240,6 @@ float:none;
 margin:0 0 10px;
 }
 
-.pdf-actions button{
-width:100%;
-}
-
 }
 
 </style>
@@ -268,9 +256,7 @@ width:100%;
 </h1>
 
 
-<!-- =========================
-     LOGIN
-========================= -->
+<!-- ================= LOGIN ================= -->
 
 <div id="loginBox">
 
@@ -303,9 +289,7 @@ Login
 </div>
 
 
-<!-- =========================
-     PANEL
-========================= -->
+<!-- ================= PANEL ================= -->
 
 <div id="panel">
 
@@ -320,9 +304,7 @@ Logout
 <hr>
 
 
-<!-- =========================
-     NEWS
-========================= -->
+<!-- ================= NEWS ================= -->
 
 <h2 id="formTitle">
 নতুন সংবাদ প্রকাশ
@@ -346,9 +328,13 @@ placeholder="সংবাদের শিরোনাম লিখুন">
 <select id="cat">
 
 <option value="জাতীয়">জাতীয়</option>
+
 <option value="রাজনীতি">রাজনীতি</option>
+
 <option value="আন্তর্জাতিক">আন্তর্জাতিক</option>
+
 <option value="অর্থনীতি">অর্থনীতি</option>
+
 <option value="খেলাধুলা">খেলাধুলা</option>
 
 <option value="বিজ্ঞান ও প্রযুক্তি">
@@ -356,7 +342,9 @@ placeholder="সংবাদের শিরোনাম লিখুন">
 </option>
 
 <option value="মতামত">মতামত</option>
+
 <option value="ছবি">ছবি</option>
+
 <option value="ভিডিও">ভিডিও</option>
 
 </select>
@@ -472,19 +460,29 @@ Edit বাতিল
 </div>
 
 
-<!-- =========================
-     EPAPER SECTION
-========================= -->
+<!-- =================================================
+EPAPER
+================================================= -->
 
 <div class="epaper-box">
 
 <h2>
-📰 E-Paper / ই-পত্রিকা
+📖 ePaper পরিচালনা
 </h2>
 
 <p>
-এখান থেকে প্রতিদিনের পত্রিকার PDF মোবাইল থেকেই আপলোড করতে পারবেন।
+এখান থেকে মোবাইল থেকেই প্রতিদিনের পত্রিকার PDF আপলোড করতে পারবেন।
 </p>
+
+
+<label>
+📝 ePaper-এর শিরোনাম
+</label>
+
+<input
+id="epaperTitle"
+type="text"
+placeholder="যেমন: সাপ্তাহিক বার্তা — ১২ সেপ্টেম্বর ২০২৬">
 
 
 <label>
@@ -501,40 +499,38 @@ type="date">
 </label>
 
 <input
-id="pdfFile"
+id="epaperFile"
 type="file"
 accept="application/pdf">
 
 
-<div id="pdfPreview">
+<div class="uploadInfo">
 
-<strong>
-নির্বাচিত PDF:
-</strong>
+শুধু PDF ফাইল নির্বাচন করুন।
 
-<div id="pdfFileName"></div>
+<br>
+
+মোবাইল থেকেও PDF নির্বাচন করা যাবে।
 
 </div>
 
 
-<br>
+<div
+id="epaperProgress"
+class="epaper-upload-progress">
+
+<div
+id="epaperProgressBar"
+class="epaper-upload-bar">
+</div>
+
+</div>
 
 
 <button
-id="uploadPdfBtn"
-class="pdf-upload">
+id="epaperUploadBtn">
 
-📤 PDF আপলোড করুন
-
-</button>
-
-
-<button
-id="cancelPdfEditBtn"
-class="secondary"
-style="display:none">
-
-পরিবর্তন বাতিল
+📤 ePaper Upload করুন
 
 </button>
 
@@ -542,32 +538,17 @@ style="display:none">
 <p id="epaperMessage"></p>
 
 
-<div
-id="pdfProgress"
-class="progress">
-
-<div
-id="pdfProgressBar"
-class="progress-bar">
-</div>
-
-</div>
-
-
 <hr>
 
 
 <h3>
-📚 প্রকাশিত E-Paper
+📚 আপলোড করা ePaper
 </h3>
 
 
 <div id="epaperList">
-E-Paper লোড হচ্ছে...
+ePaper লোড হচ্ছে...
 </div>
-
-</div>
-
 
 </div>
 
@@ -577,6 +558,8 @@ E-Paper লোড হচ্ছে...
 ← Website-এ ফিরে যান
 </a>
 </p>
+
+</div>
 
 </div>
 
@@ -613,11 +596,7 @@ measurementId:
 };
 
 
-/* INIT */
-
-firebase.initializeApp(
-firebaseConfig
-);
+firebase.initializeApp(firebaseConfig);
 
 const auth =
 firebase.auth();
@@ -637,10 +616,6 @@ let selectedImageData = "";
 
 let selectedVideoFile = null;
 
-let editingEpaperId = null;
-
-let oldEpaperStoragePath = "";
-
 
 /* ELEMENTS */
 
@@ -655,6 +630,9 @@ document.getElementById("message");
 
 const loginMessage =
 document.getElementById("loginMessage");
+
+const epaperMessage =
+document.getElementById("epaperMessage");
 
 
 /* =================================================
@@ -674,6 +652,8 @@ if(!file)
 return;
 
 
+/* VIDEO */
+
 if(file.type.startsWith("video/")){
 
 selectedVideoFile =
@@ -681,7 +661,6 @@ file;
 
 selectedImageData =
 "";
-
 
 document.getElementById(
 "previewImage"
@@ -705,11 +684,12 @@ return;
 }
 
 
+/* IMAGE */
+
 if(file.type.startsWith("image/")){
 
 selectedVideoFile =
 null;
-
 
 const reader =
 new FileReader();
@@ -726,7 +706,9 @@ img.onload =
 function(){
 
 const canvas =
-document.createElement("canvas");
+document.createElement(
+"canvas"
+);
 
 const maxWidth = 1000;
 
@@ -757,7 +739,6 @@ height;
 
 const ctx =
 canvas.getContext("2d");
-
 
 ctx.drawImage(
 img,
@@ -806,7 +787,6 @@ reader.readAsDataURL(file);
 return;
 
 }
-
 
 alert(
 "শুধু ছবি অথবা ভিডিও নির্বাচন করুন।"
@@ -869,9 +849,7 @@ loginMessage.textContent =
 };
 
 
-/* =================================================
-LOGOUT
-================================================= */
+/* LOGOUT */
 
 document.getElementById(
 "logoutBtn"
@@ -900,7 +878,7 @@ panel.style.display =
 
 loadNews();
 
-loadEpapers();
+loadEpaper();
 
 }
 
@@ -944,18 +922,15 @@ document.getElementById(
 "title"
 ).value.trim();
 
-
 const category =
 document.getElementById(
 "cat"
 ).value;
 
-
 const description =
 document.getElementById(
 "body"
 ).value.trim();
-
 
 const breaking =
 document.getElementById(
@@ -1010,6 +985,8 @@ firebase.firestore.FieldValue.serverTimestamp()
 };
 
 
+/* IMAGE */
+
 if(selectedImageData){
 
 updateData.mediaUrl =
@@ -1020,6 +997,9 @@ updateData.mediaType =
 
 }
 
+
+/* VIDEO */
+
 else if(selectedVideoFile){
 
 message.textContent =
@@ -1027,7 +1007,9 @@ message.textContent =
 
 
 const ref =
-storage.ref().child(
+storage
+.ref()
+.child(
 "news-videos/" +
 Date.now() +
 "_" +
@@ -1045,13 +1027,13 @@ await new Promise(
 task.on(
 "state_changed",
 
-snapshot => {
+snapshot=>{
 
 const percent =
 (
 snapshot.bytesTransferred /
 snapshot.totalBytes
-) * 100;
+)*100;
 
 document.getElementById(
 "progress"
@@ -1061,18 +1043,17 @@ document.getElementById(
 document.getElementById(
 "progressBar"
 ).style.width =
-percent + "%";
+percent+"%";
 
 },
 
-error =>
-reject(error),
+error=>reject(error),
 
-async () => {
+async()=>{
 
 const url =
-await task.snapshot
-.ref.getDownloadURL();
+await task.snapshot.ref
+.getDownloadURL();
 
 updateData.mediaUrl =
 url;
@@ -1091,7 +1072,9 @@ resolve();
 }
 
 
-await db.collection("news")
+await db.collection(
+"news"
+)
 .doc(editingId)
 .update(updateData);
 
@@ -1102,7 +1085,7 @@ message.textContent =
 }
 
 
-/* NEW NEWS */
+/* NEW */
 
 else{
 
@@ -1116,6 +1099,7 @@ mediaType =
 
 }
 
+
 else if(selectedVideoFile){
 
 message.textContent =
@@ -1123,7 +1107,9 @@ message.textContent =
 
 
 const ref =
-storage.ref().child(
+storage
+.ref()
+.child(
 "news-videos/" +
 Date.now() +
 "_" +
@@ -1141,13 +1127,13 @@ await new Promise(
 task.on(
 "state_changed",
 
-snapshot => {
+snapshot=>{
 
 const percent =
 (
 snapshot.bytesTransferred /
 snapshot.totalBytes
-) * 100;
+)*100;
 
 document.getElementById(
 "progress"
@@ -1157,18 +1143,17 @@ document.getElementById(
 document.getElementById(
 "progressBar"
 ).style.width =
-percent + "%";
+percent+"%";
 
 },
 
-error =>
-reject(error),
+error=>reject(error),
 
-async () => {
+async()=>{
 
 mediaUrl =
-await task.snapshot
-.ref.getDownloadURL();
+await task.snapshot.ref
+.getDownloadURL();
 
 mediaType =
 "video";
@@ -1184,7 +1169,9 @@ resolve();
 }
 
 
-await db.collection("news")
+await db.collection(
+"news"
+)
 .add({
 
 title:title,
@@ -1199,6 +1186,10 @@ mediaType:mediaType,
 
 breaking:breaking,
 
+views:0,
+
+likes:0,
+
 publishedAt:
 firebase.firestore.FieldValue.serverTimestamp(),
 
@@ -1206,11 +1197,7 @@ updatedAt:
 firebase.firestore.FieldValue.serverTimestamp(),
 
 author:
-user.email || "",
-
-views:0,
-
-likes:0
+user.email || ""
 
 });
 
@@ -1243,6 +1230,7 @@ document.getElementById(
 "cancelBtn"
 ).style.display =
 "none";
+
 
 }
 
@@ -1286,20 +1274,18 @@ document.getElementById(
 
 
 /* =================================================
-CLEAR NEWS
+CLEAR NEWS FORM
 ================================================= */
 
 function clearForm(){
 
 document.getElementById(
 "title"
-).value =
-"";
+).value = "";
 
 document.getElementById(
 "body"
-).value =
-"";
+).value = "";
 
 document.getElementById(
 "breaking"
@@ -1311,18 +1297,14 @@ document.getElementById(
 ).value =
 "";
 
-selectedImageData =
-"";
+selectedImageData = "";
 
-selectedVideoFile =
-null;
-
+selectedVideoFile = null;
 
 document.getElementById(
 "previewImage"
 ).style.display =
 "none";
-
 
 document.getElementById(
 "videoPreview"
@@ -1333,7 +1315,7 @@ document.getElementById(
 
 
 /* =================================================
-CANCEL NEWS EDIT
+CANCEL EDIT
 ================================================= */
 
 document.getElementById(
@@ -1374,15 +1356,14 @@ function loadNews(){
 db.collection("news")
 .onSnapshot(
 
-snapshot => {
+snapshot=>{
 
 const list =
 document.getElementById(
 "newsList"
 );
 
-list.innerHTML =
-"";
+list.innerHTML = "";
 
 
 if(snapshot.empty){
@@ -1398,7 +1379,7 @@ return;
 const news = [];
 
 snapshot.forEach(
-doc => {
+doc=>{
 
 news.push({
 id:doc.id,
@@ -1409,13 +1390,13 @@ id:doc.id,
 
 
 news.sort(
-(a,b) =>
-getDate(b) - getDate(a)
+(a,b)=>
+getDate(b)-getDate(a)
 );
 
 
 news.forEach(
-news => {
+news=>{
 
 const div =
 document.createElement(
@@ -1437,8 +1418,7 @@ news.mediaType === "video" &&
 news.mediaUrl
 ){
 
-media =
-`
+media = `
 <video
 src="${escapeHtml(news.mediaUrl)}"
 controls>
@@ -1452,8 +1432,7 @@ news.mediaUrl ||
 news.img
 ){
 
-media =
-`
+media = `
 <img
 src="${escapeHtml(
 news.mediaUrl || news.img
@@ -1469,18 +1448,18 @@ div.innerHTML = `
 ${media}
 
 <h3>
-${escapeHtml(news.title || "")}
+${escapeHtml(
+news.title || ""
+)}
 </h3>
 
 <div class="date">
-
 প্রকাশ:
 ${formatDate(date)}
 
 <br>
 
 ${timeAgo(date)}
-
 </div>
 
 <div>
@@ -1509,17 +1488,13 @@ news.breaking
 <button
 class="edit"
 onclick="editNews('${news.id}')">
-
 ✏️ Edit
-
 </button>
 
 <button
 class="delete"
 onclick="deleteNews('${news.id}')">
-
 🗑️ Delete
-
 </button>
 
 `;
@@ -1530,7 +1505,7 @@ list.appendChild(div);
 
 },
 
-error => {
+error=>{
 
 console.error(error);
 
@@ -1561,7 +1536,9 @@ async function(id){
 try{
 
 const snap =
-await db.collection("news")
+await db.collection(
+"news"
+)
 .doc(id)
 .get();
 
@@ -1577,7 +1554,6 @@ return;
 
 const news =
 snap.data();
-
 
 editingId =
 id;
@@ -1615,11 +1591,9 @@ news.breaking
 "false";
 
 
-selectedImageData =
-"";
+selectedImageData = "";
 
-selectedVideoFile =
-null;
+selectedVideoFile = null;
 
 
 if(news.mediaUrl){
@@ -1638,6 +1612,7 @@ video.style.display =
 "block";
 
 }
+
 else{
 
 const img =
@@ -1714,7 +1689,9 @@ return;
 
 try{
 
-await db.collection("news")
+await db.collection(
+"news"
+)
 .doc(id)
 .delete();
 
@@ -1738,55 +1715,11 @@ message.textContent =
 
 
 /* =================================================
-EPAPER PDF SELECT
+EPAPER PDF UPLOAD
 ================================================= */
 
 document.getElementById(
-"pdfFile"
-).addEventListener(
-"change",
-function(){
-
-const file =
-this.files[0];
-
-if(!file)
-return;
-
-
-if(file.type !== "application/pdf"){
-
-alert(
-"শুধুমাত্র PDF ফাইল নির্বাচন করুন।"
-);
-
-this.value = "";
-
-return;
-
-}
-
-
-document.getElementById(
-"pdfFileName"
-).innerText =
-file.name;
-
-
-document.getElementById(
-"pdfPreview"
-).style.display =
-"block";
-
-});
-
-
-/* =================================================
-UPLOAD / UPDATE EPAPER
-================================================= */
-
-document.getElementById(
-"uploadPdfBtn"
+"epaperUploadBtn"
 ).onclick =
 async function(){
 
@@ -1795,14 +1728,18 @@ auth.currentUser;
 
 if(!user){
 
-document.getElementById(
-"epaperMessage"
-).innerText =
-"আগে Admin Login করুন।";
+epaperMessage.innerText =
+"❌ আগে Admin Login করুন।";
 
 return;
 
 }
+
+
+const title =
+document.getElementById(
+"epaperTitle"
+).value.trim();
 
 
 const date =
@@ -1813,145 +1750,173 @@ document.getElementById(
 
 const file =
 document.getElementById(
-"pdfFile"
+"epaperFile"
 ).files[0];
+
+
+if(!title){
+
+epaperMessage.innerText =
+"❌ ePaper-এর শিরোনাম দিন।";
+
+return;
+
+}
 
 
 if(!date){
 
-document.getElementById(
-"epaperMessage"
-).innerText =
-"পত্রিকার তারিখ নির্বাচন করুন।";
+epaperMessage.innerText =
+"❌ ePaper-এর তারিখ নির্বাচন করুন।";
 
 return;
 
 }
 
 
-/*
-নতুন E-paper হলে PDF অবশ্যই লাগবে।
-Edit হলে নতুন PDF না দিলেও Date পরিবর্তন করা যাবে।
-*/
+if(!file){
 
-if(!editingEpaperId && !file){
-
-document.getElementById(
-"epaperMessage"
-).innerText =
-"PDF ফাইল নির্বাচন করুন।";
+epaperMessage.innerText =
+"❌ একটি PDF ফাইল নির্বাচন করুন।";
 
 return;
 
 }
 
 
-if(file && file.type !== "application/pdf"){
+if(file.type !== "application/pdf"){
 
-document.getElementById(
-"epaperMessage"
-).innerText =
-"শুধুমাত্র PDF ফাইল গ্রহণযোগ্য।";
+epaperMessage.innerText =
+"❌ শুধু PDF ফাইল আপলোড করা যাবে।";
 
 return;
 
 }
 
 
-this.disabled = true;
+/* 30 MB LIMIT */
+
+if(file.size > 30 * 1024 * 1024){
+
+epaperMessage.innerText =
+"❌ PDF-এর আকার ৩০ MB-এর বেশি হতে পারবে না।";
+
+return;
+
+}
+
+
+const button =
+document.getElementById(
+"epaperUploadBtn"
+);
+
+button.disabled =
+true;
+
+
+epaperMessage.innerText =
+"⏳ PDF Upload হচ্ছে...";
+
+
+document.getElementById(
+"epaperProgress"
+).style.display =
+"block";
 
 
 try{
 
-/* =========================
-   NEW EPAPER
-========================= */
-
-if(!editingEpaperId){
-
-document.getElementById(
-"epaperMessage"
-).innerText =
-"⏳ PDF Upload হচ্ছে...";
-
-
 const safeName =
-file.name.replace(
+file.name
+.replace(
 /[^a-zA-Z0-9._-]/g,
 "_"
 );
 
 
-const storagePath =
-"epapers/" +
-date +
-"_" +
+const fileName =
 Date.now() +
 "_" +
 safeName;
 
 
-const ref =
-storage.ref().child(
-storagePath
+const storageRef =
+storage
+.ref()
+.child(
+"epaper/" +
+fileName
 );
 
 
-const task =
-ref.put(file);
+const uploadTask =
+storageRef.put(file,{
+contentType:"application/pdf"
+});
 
 
 await new Promise(
 (resolve,reject)=>{
 
-task.on(
+uploadTask.on(
+
 "state_changed",
 
-snapshot => {
+snapshot=>{
 
 const percent =
 (
 snapshot.bytesTransferred /
 snapshot.totalBytes
-) * 100;
+)*100;
+
 
 document.getElementById(
-"pdfProgress"
-).style.display =
-"block";
-
-document.getElementById(
-"pdfProgressBar"
+"epaperProgressBar"
 ).style.width =
-percent + "%";
+percent+"%";
+
+
+epaperMessage.innerText =
+"⏳ PDF Upload হচ্ছে... " +
+Math.round(percent) +
+"%";
 
 },
 
-error =>
-reject(error),
+error=>{
 
-async () => {
+reject(error);
 
-const url =
-await task.snapshot
-.ref.getDownloadURL();
+},
 
-await db.collection("epapers")
+async()=>{
+
+try{
+
+const downloadURL =
+await uploadTask
+.snapshot.ref
+.getDownloadURL();
+
+
+await db.collection(
+"epaper"
+)
 .add({
+
+title:title,
 
 date:date,
 
-title:
-"সাপ্তাহিক বার্তা — " +
-date,
+pdfUrl:downloadURL,
 
-pdfUrl:url,
+fileName:fileName,
 
-storagePath:storagePath,
+originalName:file.name,
 
-fileName:file.name,
-
-uploadedAt:
+createdAt:
 firebase.firestore.FieldValue.serverTimestamp(),
 
 updatedAt:
@@ -1962,112 +1927,16 @@ user.email || ""
 
 });
 
+
 resolve();
 
 }
 
-);
+catch(error){
 
-});
-
-
-document.getElementById(
-"epaperMessage"
-).innerText =
-"✅ PDF সফলভাবে Upload হয়েছে।";
+reject(error);
 
 }
-
-
-/* =========================
-   UPDATE EPAPER
-========================= */
-
-else{
-
-const updateData = {
-
-date:date,
-
-updatedAt:
-firebase.firestore.FieldValue.serverTimestamp()
-
-};
-
-
-/* নতুন PDF দিলে পুরোনো PDF replace হবে */
-
-if(file){
-
-document.getElementById(
-"epaperMessage"
-).innerText =
-"⏳ নতুন PDF Upload হচ্ছে...";
-
-
-const safeName =
-file.name.replace(
-/[^a-zA-Z0-9._-]/g,
-"_"
-);
-
-
-const storagePath =
-"epapers/" +
-date +
-"_" +
-Date.now() +
-"_" +
-safeName;
-
-
-const ref =
-storage.ref().child(
-storagePath
-);
-
-
-const task =
-ref.put(file);
-
-
-const url =
-await new Promise(
-(resolve,reject)=>{
-
-task.on(
-"state_changed",
-
-snapshot => {
-
-const percent =
-(
-snapshot.bytesTransferred /
-snapshot.totalBytes
-) * 100;
-
-document.getElementById(
-"pdfProgress"
-).style.display =
-"block";
-
-document.getElementById(
-"pdfProgressBar"
-).style.width =
-percent + "%";
-
-},
-
-error =>
-reject(error),
-
-async () => {
-
-const downloadURL =
-await task.snapshot
-.ref.getDownloadURL();
-
-resolve(downloadURL);
 
 }
 
@@ -2076,56 +1945,27 @@ resolve(downloadURL);
 });
 
 
-updateData.pdfUrl =
-url;
-
-updateData.storagePath =
-storagePath;
-
-updateData.fileName =
-file.name;
-
-
-/* পুরোনো PDF Delete */
-
-if(oldEpaperStoragePath){
-
-try{
-
-await storage
-.ref()
-.child(oldEpaperStoragePath)
-.delete();
-
-}
-catch(e){
-
-console.log(
-"Old PDF delete:",
-e
-);
-
-}
-
-}
-
-}
-
-
-await db.collection("epapers")
-.doc(editingEpaperId)
-.update(updateData);
+epaperMessage.innerText =
+"✅ ePaper সফলভাবে Upload হয়েছে।";
 
 
 document.getElementById(
-"epaperMessage"
-).innerText =
-"✅ E-paper সফলভাবে পরিবর্তন হয়েছে।";
+"epaperTitle"
+).value =
+"";
 
-}
+document.getElementById(
+"epaperDate"
+).value =
+"";
+
+document.getElementById(
+"epaperFile"
+).value =
+"";
 
 
-resetEpaperForm();
+loadEpaper();
 
 }
 
@@ -2133,33 +1973,32 @@ catch(error){
 
 console.error(error);
 
-document.getElementById(
-"epaperMessage"
-).innerText =
-"❌ PDF সংরক্ষণ করা যায়নি: " +
+epaperMessage.innerText =
+"❌ PDF Upload হয়নি: " +
 (error.message || "");
 
 }
 
 finally{
 
-this.disabled = false;
+button.disabled =
+false;
 
 setTimeout(
 function(){
 
 document.getElementById(
-"pdfProgress"
+"epaperProgress"
 ).style.display =
 "none";
 
 document.getElementById(
-"pdfProgressBar"
+"epaperProgressBar"
 ).style.width =
 "0%";
 
 },
-500
+1000
 );
 
 }
@@ -2168,15 +2007,15 @@ document.getElementById(
 
 
 /* =================================================
-LOAD EPAPERS
+LOAD EPAPER
 ================================================= */
 
-function loadEpapers(){
+function loadEpaper(){
 
-db.collection("epapers")
+db.collection("epaper")
 .onSnapshot(
 
-snapshot => {
+snapshot=>{
 
 const list =
 document.getElementById(
@@ -2189,21 +2028,23 @@ list.innerHTML = "";
 if(snapshot.empty){
 
 list.innerHTML =
-"<p>এখনো কোনো E-paper প্রকাশ হয়নি।</p>";
+"<p>এখনো কোনো ePaper আপলোড হয়নি।</p>";
 
 return;
 
 }
 
 
-const epapers = [];
+const papers = [];
+
 
 snapshot.forEach(
-doc => {
+doc=>{
 
-epapers.push({
+papers.push({
 
 id:doc.id,
+
 ...doc.data()
 
 });
@@ -2211,8 +2052,8 @@ id:doc.id,
 });
 
 
-epapers.sort(
-(a,b) =>
+papers.sort(
+(a,b)=>
 String(b.date || "")
 .localeCompare(
 String(a.date || "")
@@ -2220,8 +2061,8 @@ String(a.date || "")
 );
 
 
-epapers.forEach(
-paper => {
+papers.forEach(
+paper=>{
 
 const div =
 document.createElement(
@@ -2235,62 +2076,58 @@ div.className =
 div.innerHTML = `
 
 <h3>
-📰 ${
-escapeHtml(
-paper.title ||
-"সাপ্তাহিক বার্তা"
-)
-}
+📖 ${escapeHtml(
+paper.title || "সাপ্তাহিক বার্তা ePaper"
+)}
 </h3>
 
-<small>
+<div class="epaper-date">
+
 তারিখ:
 ${escapeHtml(
 paper.date || ""
 )}
-</small>
-
-<div class="pdf-name">
-
-📄 ${
-escapeHtml(
-paper.fileName ||
-"PDF"
-)
-}
 
 </div>
 
+<div class="epaper-pdf">
 
-<div class="pdf-actions">
+📄 ${escapeHtml(
+paper.originalName || "PDF"
+)}
+
+</div>
+
+<a
+href="${escapeHtml(
+paper.pdfUrl || ""
+)}"
+target="_blank">
 
 <button
-class="pdf-view"
-onclick="viewEpaper('${paper.id}')">
+class="edit">
 
-👁️ PDF দেখুন
+👁 PDF দেখুন
 
 </button>
 
+</a>
 
 <button
-class="edit"
-onclick="editEpaper('${paper.id}')">
+class="epaper-replace"
+onclick="replaceEpaper('${paper.id}')">
 
-✏️ পরিবর্তন
+🔄 পরিবর্তন
 
 </button>
 
-
 <button
-class="pdf-delete"
+class="epaper-delete"
 onclick="deleteEpaper('${paper.id}')">
 
 🗑️ Delete
 
 </button>
-
-</div>
 
 `;
 
@@ -2300,7 +2137,7 @@ list.appendChild(div);
 
 },
 
-error => {
+error=>{
 
 console.error(error);
 
@@ -2309,7 +2146,7 @@ document.getElementById(
 ).innerHTML =
 `
 <p>
-❌ E-paper লোড করা যাচ্ছে না।
+❌ ePaper লোড করা যাচ্ছে না।
 <br>
 Firestore Rules পরীক্ষা করুন।
 </p>
@@ -2323,152 +2160,176 @@ Firestore Rules পরীক্ষা করুন।
 
 
 /* =================================================
-VIEW EPAPER
+REPLACE EPAPER
 ================================================= */
 
-window.viewEpaper =
+window.replaceEpaper =
 async function(id){
+
+const fileInput =
+document.getElementById(
+"epaperFile"
+);
+
+
+const file =
+fileInput.files[0];
+
+
+if(!file){
+
+alert(
+"প্রথমে নতুন PDF ফাইল নির্বাচন করুন।"
+);
+
+fileInput.click();
+
+return;
+
+}
+
+
+if(file.type !==
+"application/pdf"){
+
+alert(
+"শুধু PDF ফাইল নির্বাচন করুন।"
+);
+
+return;
+
+}
+
+
+if(file.size >
+30 * 1024 * 1024){
+
+alert(
+"PDF-এর আকার ৩০ MB-এর বেশি হতে পারবে না।"
+);
+
+return;
+
+}
+
+
+if(
+!confirm(
+"এই ePaper-এর PDF পরিবর্তন করতে চান?"
+)
+){
+
+return;
+
+}
+
 
 try{
 
-const snap =
-await db.collection("epapers")
-.doc(id)
-.get();
+epaperMessage.innerText =
+"⏳ নতুন PDF Upload হচ্ছে...";
 
 
-if(!snap.exists){
-
-alert(
-"E-paper পাওয়া যায়নি।"
+const safeName =
+file.name
+.replace(
+/[^a-zA-Z0-9._-]/g,
+"_"
 );
 
-return;
 
-}
-
-
-const paper =
-snap.data();
+const fileName =
+Date.now() +
+"_" +
+safeName;
 
 
-if(!paper.pdfUrl){
-
-alert(
-"PDF পাওয়া যাচ্ছে না।"
+const storageRef =
+storage
+.ref()
+.child(
+"epaper/" +
+fileName
 );
 
-return;
 
-}
-
-
-window.open(
-paper.pdfUrl,
-"_blank"
-);
-
-}
-
-catch(error){
-
-console.error(error);
-
-alert(
-"PDF খোলা যাচ্ছে না।"
-);
-
-}
-
-};
+const uploadTask =
+storageRef.put(file,{
+contentType:"application/pdf"
+});
 
 
-/* =================================================
-EDIT EPAPER
-================================================= */
+const downloadURL =
+await new Promise(
+(resolve,reject)=>{
 
-window.editEpaper =
-async function(id){
+uploadTask.on(
 
-try{
+"state_changed",
 
-const snap =
-await db.collection("epapers")
-.doc(id)
-.get();
+snapshot=>{
 
-
-if(!snap.exists){
-
-alert(
-"E-paper পাওয়া যায়নি।"
-);
-
-return;
-
-}
-
-
-const paper =
-snap.data();
-
-
-editingEpaperId =
-id;
-
-oldEpaperStoragePath =
-paper.storagePath || "";
-
+const percent =
+(
+snapshot.bytesTransferred /
+snapshot.totalBytes
+)*100;
 
 document.getElementById(
-"epaperDate"
-).value =
-paper.date || "";
-
-
-document.getElementById(
-"pdfFile"
-).value =
-"";
-
-
-document.getElementById(
-"pdfFileName"
-).innerText =
-paper.fileName ||
-"বর্তমান PDF পরিবর্তন করতে নতুন PDF নির্বাচন করুন";
-
-
-document.getElementById(
-"pdfPreview"
+"epaperProgress"
 ).style.display =
 "block";
 
-
 document.getElementById(
-"uploadPdfBtn"
-).innerText =
-"✏️ E-Paper Update করুন";
+"epaperProgressBar"
+).style.width =
+percent+"%";
 
+},
 
-document.getElementById(
-"cancelPdfEditBtn"
-).style.display =
-"inline-block";
+error=>reject(error),
 
+async()=>{
 
-document.getElementById(
-"epaperMessage"
-).innerText =
-"বর্তমান PDF রাখতে চাইলে নতুন PDF নির্বাচন করবেন না।";
+const url =
+await uploadTask
+.snapshot.ref
+.getDownloadURL();
 
+resolve(url);
 
-window.scrollTo({
-top:document.querySelector(
-".epaper-box"
-).offsetTop - 20,
-behavior:"smooth"
+}
+
+);
+
 });
+
+
+await db.collection(
+"epaper"
+)
+.doc(id)
+.update({
+
+pdfUrl:downloadURL,
+
+fileName:fileName,
+
+originalName:file.name,
+
+updatedAt:
+firebase.firestore.FieldValue.serverTimestamp()
+
+});
+
+
+epaperMessage.innerText =
+"✅ ePaper PDF পরিবর্তন হয়েছে।";
+
+
+fileInput.value = "";
+
+loadEpaper();
 
 }
 
@@ -2476,9 +2337,9 @@ catch(error){
 
 console.error(error);
 
-alert(
-"E-paper Edit করা যাচ্ছে না।"
-);
+epaperMessage.innerText =
+"❌ PDF পরিবর্তন করা যায়নি: " +
+(error.message || "");
 
 }
 
@@ -2494,7 +2355,7 @@ async function(id){
 
 if(
 !confirm(
-"⚠️ এই E-paper এবং PDF সম্পূর্ণ Delete করতে চান?"
+"⚠️ এই ePaper সম্পূর্ণ Delete করতে চান?"
 )
 ){
 
@@ -2506,7 +2367,9 @@ return;
 try{
 
 const snap =
-await db.collection("epapers")
+await db.collection(
+"epaper"
+)
 .doc(id)
 .get();
 
@@ -2514,7 +2377,7 @@ await db.collection("epapers")
 if(!snap.exists){
 
 alert(
-"E-paper পাওয়া যায়নি।"
+"ePaper পাওয়া যায়নি।"
 );
 
 return;
@@ -2526,23 +2389,27 @@ const paper =
 snap.data();
 
 
-/* Delete Storage PDF */
+/* DELETE FIREBASE STORAGE FILE */
 
-if(paper.storagePath){
+if(paper.fileName){
 
 try{
 
 await storage
 .ref()
-.child(paper.storagePath)
+.child(
+"epaper/" +
+paper.fileName
+)
 .delete();
 
 }
-catch(e){
+
+catch(storageError){
 
 console.log(
-"Storage PDF delete:",
-e
+"Storage file delete:",
+storageError
 );
 
 }
@@ -2550,17 +2417,17 @@ e
 }
 
 
-/* Delete Firestore record */
+/* DELETE FIRESTORE DATA */
 
-await db.collection("epapers")
+await db.collection(
+"epaper"
+)
 .doc(id)
 .delete();
 
 
-document.getElementById(
-"epaperMessage"
-).innerText =
-"🗑️ E-paper সফলভাবে Delete হয়েছে।";
+epaperMessage.innerText =
+"🗑️ ePaper Delete হয়েছে।";
 
 }
 
@@ -2568,77 +2435,11 @@ catch(error){
 
 console.error(error);
 
-document.getElementById(
-"epaperMessage"
-).innerText =
-"❌ E-paper Delete করা যায়নি: " +
+epaperMessage.innerText =
+"❌ ePaper Delete করা যায়নি: " +
 (error.message || "");
 
 }
-
-};
-
-
-/* =================================================
-RESET EPAPER
-================================================= */
-
-function resetEpaperForm(){
-
-editingEpaperId =
-null;
-
-oldEpaperStoragePath =
-"";
-
-
-document.getElementById(
-"epaperDate"
-).value =
-"";
-
-
-document.getElementById(
-"pdfFile"
-).value =
-"";
-
-
-document.getElementById(
-"pdfPreview"
-).style.display =
-"none";
-
-
-document.getElementById(
-"uploadPdfBtn"
-).innerText =
-"📤 PDF আপলোড করুন";
-
-
-document.getElementById(
-"cancelPdfEditBtn"
-).style.display =
-"none";
-
-}
-
-
-/* =================================================
-CANCEL EPAPER EDIT
-================================================= */
-
-document.getElementById(
-"cancelPdfEditBtn"
-).onclick =
-function(){
-
-resetEpaperForm();
-
-document.getElementById(
-"epaperMessage"
-).innerText =
-"";
 
 };
 
@@ -2653,7 +2454,8 @@ try{
 
 if(
 news.publishedAt &&
-typeof news.publishedAt.toDate === "function"
+typeof news.publishedAt.toDate ===
+"function"
 ){
 
 return news.publishedAt.toDate();
@@ -2662,7 +2464,8 @@ return news.publishedAt.toDate();
 
 if(
 news.createdAt &&
-typeof news.createdAt.toDate === "function"
+typeof news.createdAt.toDate ===
+"function"
 ){
 
 return news.createdAt.toDate();
@@ -2707,41 +2510,46 @@ function timeAgo(date){
 
 const seconds =
 Math.floor(
-(new Date() - date) / 1000
+(new Date()-date)/1000
 );
 
 if(seconds < 60)
 return "এইমাত্র";
 
+
 const minutes =
-Math.floor(seconds / 60);
+Math.floor(seconds/60);
 
 if(minutes < 60)
-return minutes +
+return minutes+
 " মিনিট আগে";
 
+
 const hours =
-Math.floor(minutes / 60);
+Math.floor(minutes/60);
 
 if(hours < 24)
-return hours +
+return hours+
 " ঘণ্টা আগে";
 
+
 const days =
-Math.floor(hours / 24);
+Math.floor(hours/24);
 
 if(days < 30)
-return days +
+return days+
 " দিন আগে";
 
+
 const months =
-Math.floor(days / 30);
+Math.floor(days/30);
 
 if(months < 12)
-return months +
+return months+
 " মাস আগে";
 
-return Math.floor(months / 12) +
+
+return Math.floor(months/12)+
 " বছর আগে";
 
 }
@@ -2756,11 +2564,31 @@ text === undefined
 return "";
 
 return String(text)
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
+
+.replace(
+/&/g,
+"&amp;"
+)
+
+.replace(
+/</g,
+"&lt;"
+)
+
+.replace(
+/>/g,
+"&gt;"
+)
+
+.replace(
+/"/g,
+"&quot;"
+)
+
+.replace(
+/'/g,
+"&#039;"
+);
 
 }
 
