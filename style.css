@@ -16,8 +16,7 @@ text-decoration:none;
 color:inherit;
 }
 
-
-/* ================= TOP ================= */
+/* TOP */
 
 .topbar{
 background:#111;
@@ -33,8 +32,7 @@ font-size:13px;
 color:#fff;
 }
 
-
-/* ================= HEADER ================= */
+/* HEADER */
 
 .header{
 background:#fff;
@@ -65,8 +63,7 @@ height:auto;
 display:block;
 }
 
-
-/* ================= HEADER RIGHT ================= */
+/* HEADER RIGHT */
 
 .header-right{
 display:flex;
@@ -85,20 +82,6 @@ border-left:5px solid #d40000;
 .header-slogan span{
 color:#ddd;
 display:block;
-}
-
-.subscribe-btn{
-background:#d40000;
-color:#fff;
-border:0;
-padding:10px 17px;
-font-family:inherit;
-font-weight:800;
-cursor:pointer;
-}
-
-.subscribe-btn:hover{
-background:#a90000;
 }
 
 .search-box{
@@ -121,8 +104,24 @@ padding:0 16px;
 cursor:pointer;
 }
 
+/* SUBSCRIBE */
 
-/* ================= NAV ================= */
+.subscribe-btn{
+background:#d40000;
+color:#fff;
+border:0;
+padding:10px 16px;
+font-family:inherit;
+font-weight:800;
+cursor:pointer;
+border-radius:3px;
+}
+
+.subscribe-btn:hover{
+background:#a90000;
+}
+
+/* NAV */
 
 .navbar{
 background:#111;
@@ -141,7 +140,6 @@ padding:12px 17px;
 white-space:nowrap;
 border-right:1px solid #333;
 font-size:14px;
-font-weight:600;
 }
 
 .nav-link:hover,
@@ -149,156 +147,88 @@ font-weight:600;
 background:#d40000;
 }
 
-
-/* =================================================
-BREAKING & LATEST TICKER
-================================================= */
+/* TICKER */
 
 .breaking-wrapper,
 .latest-wrapper{
 display:flex;
 width:100%;
-height:48px;
-overflow:hidden;
+background:#fff;
 border-bottom:1px solid #ddd;
+overflow:hidden;
 }
 
-
-/* ================= BREAKING ================= */
-
-.breaking-wrapper{
-background:#fff;
+.breaking-label,
+.latest-label{
+min-width:125px;
+color:#fff;
+padding:7px 15px;
+font-weight:900;
+text-align:center;
+z-index:2;
+font-size:15px;
 }
 
 .breaking-label{
-min-width:135px;
-background:#e00000;
-color:#fff;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:0 16px;
-font-size:18px;
-font-weight:900;
-white-space:nowrap;
-position:relative;
-z-index:5;
-}
-
-.breaking-label::after{
-content:"";
-position:absolute;
-right:-12px;
-top:0;
-border-top:24px solid transparent;
-border-bottom:24px solid transparent;
-border-left:12px solid #e00000;
-}
-
-.breaking-wrapper .ticker{
-flex:1;
-overflow:hidden;
-white-space:nowrap;
-display:flex;
-align-items:center;
-background:#fff;
-}
-
-.breaking-wrapper .ticker-text{
-display:inline-block;
-padding-left:80px;
-padding-right:80px;
-font-size:18px;
-font-weight:800;
-color:#111;
-line-height:48px;
-white-space:nowrap;
-animation:breakingMove 18s linear infinite;
-}
-
-@keyframes breakingMove{
-
-0%{
-transform:translateX(100%);
-}
-
-100%{
-transform:translateX(-100%);
-}
-
-}
-
-
-/* ================= LATEST ================= */
-
-.latest-wrapper{
-background:#111;
+background:#d40000;
 }
 
 .latest-label{
-min-width:135px;
-background:#008f45;
-color:#fff;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:0 16px;
-font-size:18px;
-font-weight:900;
-white-space:nowrap;
-position:relative;
-z-index:5;
+background:#008b35;
 }
 
-.latest-label::after{
-content:"";
-position:absolute;
-right:-12px;
-top:0;
-border-top:24px solid transparent;
-border-bottom:24px solid transparent;
-border-left:12px solid #008f45;
-}
-
-.latest-wrapper .ticker{
+.ticker{
 flex:1;
 overflow:hidden;
 white-space:nowrap;
-display:flex;
-align-items:center;
-background:#111;
+position:relative;
 }
+
+/* BREAKING */
+
+.breaking-wrapper .ticker-text{
+display:inline-block;
+padding:7px 0 7px 100%;
+font-family:"Noto Sans Bengali",sans-serif;
+font-size:17px;
+font-weight:900;
+color:#d40000;
+letter-spacing:.2px;
+text-shadow:
+1px 1px 0 #fff,
+2px 2px 0 rgba(120,0,0,.25),
+0 0 3px rgba(212,0,0,.20);
+animation:breakingTicker 18s linear infinite;
+}
+
+/* LATEST */
 
 .latest-wrapper .ticker-text{
 display:inline-block;
-padding-left:80px;
-padding-right:80px;
+padding:7px 0 7px 100%;
+font-family:"Noto Sans Bengali",sans-serif;
 font-size:17px;
-font-weight:700;
-color:#fff;
-line-height:48px;
-white-space:nowrap;
-animation:latestMove 35s linear infinite;
+font-weight:900;
+color:#008b35;
+letter-spacing:.2px;
+text-shadow:
+1px 1px 0 #fff,
+2px 2px 0 rgba(0,80,30,.25),
+0 0 3px rgba(0,139,53,.20);
+animation:latestTicker 24s linear infinite;
 }
 
-.latest-wrapper .ticker-text.green{
-color:#fff;
+@keyframes breakingTicker{
+0%{transform:translateX(0);}
+100%{transform:translateX(-100%);}
 }
 
-@keyframes latestMove{
-
-0%{
-transform:translateX(100%);
+@keyframes latestTicker{
+0%{transform:translateX(0);}
+100%{transform:translateX(-100%);}
 }
 
-100%{
-transform:translateX(-100%);
-}
-
-}
-
-
-/* ================= MAIN ================= */
+/* MAIN */
 
 .container{
 max-width:1400px;
@@ -321,11 +251,9 @@ background:#fff;
 
 .section-title h2{
 font-size:23px;
-font-weight:800;
 }
 
-
-/* ================= NEWS ================= */
+/* NEWS */
 
 .news-grid{
 display:grid;
@@ -381,7 +309,6 @@ margin-bottom:7px;
 font-size:19px;
 line-height:1.5;
 margin-bottom:8px;
-font-weight:800;
 }
 
 .card-body p{
@@ -417,8 +344,7 @@ font-weight:bold;
 background:#a90000;
 }
 
-
-/* ================= SIDEBAR ================= */
+/* SIDEBAR */
 
 .sidebar{
 background:#fff;
@@ -467,8 +393,7 @@ color:#888;
 font-size:10px;
 }
 
-
-/* ================= MOST READ ================= */
+/* MOST READ */
 
 .most-read-item{
 display:flex;
@@ -485,13 +410,16 @@ background:#f7f7f7;
 .most-number{
 min-width:30px;
 height:30px;
+background:#d40000;
+color:#fff;
 display:flex;
 align-items:center;
 justify-content:center;
-background:#d40000;
-color:#fff;
-font-size:15px;
-font-weight:900;
+font-weight:bold;
+}
+
+.most-text{
+flex:1;
 }
 
 .most-text b{
@@ -513,8 +441,34 @@ color:#777;
 font-size:13px;
 }
 
+/* EPAPER SIDEBAR */
 
-/* ================= FACEBOOK ================= */
+.epaper-side-box{
+padding:15px;
+border:1px solid #ddd;
+text-align:center;
+}
+
+.epaper-side-box p{
+font-size:13px;
+color:#666;
+margin-bottom:10px;
+}
+
+.epaper-side-btn{
+display:inline-block;
+background:#d40000;
+color:#fff;
+padding:8px 15px;
+font-weight:bold;
+border-radius:3px;
+}
+
+.epaper-side-btn:hover{
+background:#a90000;
+}
+
+/* FACEBOOK */
 
 .facebook-title{
 margin-top:20px;
@@ -544,34 +498,6 @@ margin-top:10px;
 border-radius:4px;
 }
 
-
-/* ================= SUBSCRIBE ================= */
-
-.subscribe-box{
-padding:18px;
-border:1px solid #ddd;
-text-align:center;
-}
-
-.subscribe-box p{
-font-size:13px;
-color:#666;
-}
-
-.subscribe-side-btn{
-background:#d40000;
-color:#fff;
-border:0;
-padding:9px 15px;
-margin-top:10px;
-font-family:inherit;
-font-weight:bold;
-cursor:pointer;
-}
-
-
-/* ================= ADMIN ================= */
-
 .admin-btn{
 display:block;
 background:#d40000;
@@ -581,8 +507,31 @@ text-align:center;
 margin:10px;
 }
 
+/* SUBSCRIBE */
 
-/* ================= MODAL ================= */
+.subscribe-box{
+padding:15px;
+text-align:center;
+border:1px solid #ddd;
+}
+
+.subscribe-box p{
+font-size:13px;
+color:#666;
+}
+
+.subscribe-side-btn{
+margin-top:10px;
+background:#d40000;
+color:#fff;
+border:0;
+padding:9px 15px;
+font-family:inherit;
+font-weight:bold;
+cursor:pointer;
+}
+
+/* MODAL */
 
 .modal{
 position:fixed;
@@ -655,14 +604,13 @@ margin-top:20px;
 white-space:normal;
 }
 
-
-/* ================= SOCIAL ================= */
+/* SOCIAL */
 
 .social-actions{
 display:flex;
-gap:10px;
-flex-wrap:wrap;
+gap:8px;
 margin-top:20px;
+flex-wrap:wrap;
 }
 
 .like-btn,
@@ -674,6 +622,7 @@ padding:10px 18px;
 cursor:pointer;
 font-family:inherit;
 font-weight:bold;
+border-radius:3px;
 }
 
 .like-btn{
@@ -681,7 +630,7 @@ background:#1877f2;
 }
 
 .like-btn.liked{
-background:#0b55b5;
+background:#0b55b0;
 }
 
 .comment-btn{
@@ -692,13 +641,12 @@ background:#555;
 background:#1877f2;
 }
 
-
-/* ================= COMMENTS ================= */
+/* COMMENT */
 
 .comment-area{
 margin-top:25px;
-border-top:1px solid #ddd;
 padding-top:20px;
+border-top:1px solid #ddd;
 }
 
 .comment-area h3{
@@ -715,18 +663,17 @@ resize:vertical;
 }
 
 .comment-submit{
-margin-top:8px;
 background:#d40000;
 color:#fff;
 border:0;
 padding:9px 15px;
+margin-top:8px;
 font-family:inherit;
 font-weight:bold;
 cursor:pointer;
 }
 
-
-/* ================= SUBSCRIBE MODAL ================= */
+/* SUBSCRIBE MODAL */
 
 .subscribe-modal{
 position:fixed;
@@ -758,38 +705,34 @@ margin-bottom:10px;
 }
 
 .subscribe-content h2{
-font-size:25px;
 margin-bottom:8px;
 }
 
 .subscribe-content p{
 color:#666;
-font-size:14px;
 margin-bottom:15px;
 }
 
 .subscribe-content input{
 width:100%;
 padding:11px;
-margin:6px 0;
+margin:5px 0;
 border:1px solid #ccc;
 font-family:inherit;
 }
 
 .subscribe-submit{
-width:100%;
 background:#d40000;
 color:#fff;
 border:0;
-padding:11px;
-margin-top:8px;
+padding:11px 20px;
+margin-top:10px;
 font-family:inherit;
 font-weight:bold;
 cursor:pointer;
 }
 
-
-/* ================= FOOTER ================= */
+/* FOOTER */
 
 footer{
 background:#111;
@@ -821,8 +764,7 @@ padding:12px;
 font-size:12px;
 }
 
-
-/* ================= STATUS ================= */
+/* STATUS */
 
 .loading,
 .no-news{
@@ -832,8 +774,7 @@ text-align:center;
 grid-column:1/-1;
 }
 
-
-/* ================= MOBILE ================= */
+/* MOBILE */
 
 @media(max-width:1000px){
 
@@ -875,7 +816,6 @@ grid-template-columns:repeat(2,1fr);
 
 }
 
-
 @media(max-width:600px){
 
 .topbar{
@@ -895,53 +835,20 @@ width:100%;
 display:none;
 }
 
-.header-right{
-gap:8px;
-}
-
-.subscribe-btn{
-font-size:12px;
-padding:8px 10px;
-}
-
 .news-grid{
 grid-template-columns:1fr;
 }
 
-
-/* TICKER MOBILE */
-
-.breaking-wrapper,
-.latest-wrapper{
-height:43px;
-}
-
 .breaking-label,
 .latest-label{
-min-width:92px;
-height:43px;
-font-size:14px;
-padding:0 8px;
+min-width:85px;
+font-size:11px;
+padding:7px 5px;
 }
 
-.breaking-label::after,
-.latest-label::after{
-right:-9px;
-border-top-width:21.5px;
-border-bottom-width:21.5px;
-border-left-width:9px;
-}
-
-.breaking-wrapper .ticker-text{
-font-size:15px;
-line-height:43px;
-animation-duration:16s;
-}
-
+.breaking-wrapper .ticker-text,
 .latest-wrapper .ticker-text{
 font-size:14px;
-line-height:43px;
-animation-duration:32s;
 }
 
 .modal-content{
@@ -954,6 +861,16 @@ font-size:23px;
 
 .footer-grid{
 grid-template-columns:1fr;
+}
+
+.social-actions{
+flex-direction:column;
+}
+
+.like-btn,
+.comment-btn,
+.share-btn{
+width:100%;
 }
 
 }
