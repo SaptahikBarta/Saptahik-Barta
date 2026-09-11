@@ -1,27 +1,8 @@
-<!DOCTYPE html>
-<html lang="bn">
-
-<head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport"
+<!DOCTYPE html><html lang="bn"><head><meta charset="UTF-8"><meta name="viewport"
 content="width=device-width,initial-scale=1.0">
 
-<title>Admin - সাপ্তাহিক বার্তা</title>
-
-<link rel="stylesheet"
-href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&display=swap">
-
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
-
-<style>
+<title>Admin - সাপ্তাহিক বার্তা</title><link rel="stylesheet"
+href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&display=swap"><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script><style>
 
 *{
 box-sizing:border-box;
@@ -124,7 +105,8 @@ display:none;
 }
 
 #message,
-#loginMessage{
+#loginMessage,
+#epaperMessage{
 margin:15px 0;
 font-weight:bold;
 }
@@ -164,6 +146,90 @@ display:none;
 margin-top:10px;
 }
 
+/* ================= EPAPER ================= */
+
+.epaper-box{
+margin-top:30px;
+border:2px solid #ddd;
+padding:18px;
+background:#fff;
+}
+
+.epaper-box h2{
+margin-top:0;
+color:#c00;
+border-left:5px solid #c00;
+padding-left:10px;
+}
+
+.epaper-info{
+background:#f8f8f8;
+padding:12px;
+font-size:13px;
+color:#555;
+line-height:1.8;
+}
+
+.epaper-upload{
+background:#fff;
+border:1px solid #ddd;
+padding:15px;
+margin-top:15px;
+}
+
+.epaper-upload input{
+background:#fafafa;
+}
+
+.epaper-progress{
+width:100%;
+height:8px;
+background:#ddd;
+display:none;
+margin:10px 0;
+}
+
+.epaper-progress-bar{
+width:0%;
+height:100%;
+background:#c00;
+}
+
+.epaper-list{
+margin-top:20px;
+}
+
+.epaper-item{
+border:1px solid #ddd;
+padding:12px;
+margin-top:10px;
+background:#fafafa;
+}
+
+.epaper-item b{
+font-size:16px;
+}
+
+.epaper-item small{
+display:block;
+color:#777;
+margin:5px 0;
+}
+
+.epaper-view{
+display:inline-block;
+background:#075fc9;
+color:#fff;
+padding:7px 12px;
+border-radius:4px;
+margin-top:5px;
+}
+
+.epaper-delete{
+background:#900;
+margin-left:5px;
+}
+
 @media(max-width:600px){
 
 .box{
@@ -182,35 +248,16 @@ margin:0 0 10px;
 
 }
 
-</style>
-
-</head>
-
-
-<body>
-
-<div class="box">
-
-<h1>
+</style></head><body><div class="box"><h1>
 📰 সাপ্তাহিক বার্তা — Admin
-</h1>
-
-
-<!-- LOGIN -->
-
-<div id="loginBox">
-
-<p>
+</h1><!-- LOGIN --><div id="loginBox"><p>
 Admin Email দিয়ে Login করুন।
-</p>
-
-<label>Email</label>
+</p><label>Email</label>
 
 <input
 id="email"
 type="email"
 placeholder="Admin email">
-
 
 <label>Password</label>
 
@@ -219,106 +266,49 @@ id="password"
 type="password"
 placeholder="Password">
 
-
 <button id="loginBtn">
 Login
-</button>
-
-<p id="loginMessage"></p>
-
-</div>
-
-
-<!-- PANEL -->
-
-<div id="panel">
-
-<button
+</button><p id="loginMessage"></p></div><!-- PANEL --><div id="panel"><button
 class="logout"
 id="logoutBtn">
 Logout
 </button>
 
-<div style="clear:both"></div>
-
-<hr>
-
-
-<h2 id="formTitle">
+<div style="clear:both"></div><hr><!-- ================= NEWS FORM ================= --><h2 id="formTitle">
 নতুন সংবাদ প্রকাশ
-</h2>
-
-
-<label>
+</h2><label>
 শিরোনাম
-</label>
-
-<input
+</label><input
 id="title"
 type="text"
 placeholder="সংবাদের শিরোনাম লিখুন">
 
-
 <label>
 বিভাগ
-</label>
-
-<select id="cat">
-
-<option value="জাতীয়">জাতীয়</option>
-
+</label><select id="cat"><option value="জাতীয়">জাতীয়</option>
 <option value="রাজনীতি">রাজনীতি</option>
-
 <option value="আন্তর্জাতিক">আন্তর্জাতিক</option>
-
 <option value="অর্থনীতি">অর্থনীতি</option>
-
 <option value="খেলাধুলা">খেলাধুলা</option>
-
-<option value="বিজ্ঞান ও প্রযুক্তি">
-বিজ্ঞান ও প্রযুক্তি
-</option>
-
+<option value="বিজ্ঞান ও প্রযুক্তি">বিজ্ঞান ও প্রযুক্তি</option>
 <option value="মতামত">মতামত</option>
-
 <option value="ছবি">ছবি</option>
-
-<option value="ভিডিও">ভিডিও</option>
-
-</select>
-
-
-<!-- MEDIA -->
-
-<label>
+<option value="ভিডিও">ভিডিও</option></select><label>
 🖼️ ছবি অথবা 🎥 ভিডিও
-</label>
-
-<input
+</label><input
 id="mediaFile"
 type="file"
 accept="image/*,video/*">
 
+<div class="uploadInfo">মোবাইলের Gallery/Photos বা Video থেকে ফাইল নির্বাচন করুন।
 
-<div class="uploadInfo">
+<br>ছবি ছোট করে সংরক্ষণ করা হবে।
 
-মোবাইলের Gallery/Photos বা Video থেকে ফাইল নির্বাচন করুন।
+<br>ভিডিও Firebase Storage-এ upload হবে।
 
-<br>
-
-ছবি ছোট করে সংরক্ষণ করা হবে।
-
-<br>
-
-ভিডিও Firebase Storage-এ upload হবে।
-
-</div>
-
-
-<img
+</div><img
 id="previewImage"
 alt="Preview">
-
 
 <video
 id="videoPreview"
@@ -326,96 +316,93 @@ class="videoPreview"
 controls>
 </video>
 
-
 <div
 id="progress"
-class="progress">
-
-<div
+class="progress"><div
 id="progressBar"
 class="progress-bar">
-</div>
-
-</div>
-
-
-<label>
+</div></div><label>
 সংবাদের বিস্তারিত
-</label>
-
-<textarea
+</label><textarea
 id="body"
 rows="10"
 placeholder="সম্পূর্ণ সংবাদ লিখুন">
-</textarea>
-
-
-<label>
+</textarea><label>
 Breaking News?
-</label>
-
-<select id="breaking">
-
-<option value="false">
+</label><select id="breaking"><option value="false">
 না
-</option>
-
-<option value="true">
+</option><option value="true">
 হ্যাঁ
-</option>
-
-</select>
-
-
-<br><br>
-
+</option></select><br><br>
 
 <button id="publishBtn">
 সংবাদ প্রকাশ করুন
-</button>
-
-
-<button
+</button><button
 id="cancelBtn"
 class="secondary"
 style="display:none">
 
 Edit বাতিল
 
-</button>
+</button><p id="message"></p><hr><!-- ================= EPAPER UPLOAD ================= --><div class="epaper-box"><h2>
+📰 ই-পেপার আপলোড
+</h2><div class="epaper-info">মোবাইল থেকেই আপনার পত্রিকার PDF আপলোড করুন।
 
+<br>নতুন সংখ্যা আপলোড করলে সেটি ই-পেপারে
+সর্বশেষ সংখ্যা হিসেবে দেখাবে।
 
-<p id="message"></p>
+<br>পুরোনো সংখ্যাগুলোও সংরক্ষিত থাকবে।
 
+</div><div class="epaper-upload"><label>
+<strong>
+সংখ্যার নাম
+</strong>
+</label><input
+id="issueTitle"
+type="text"
+placeholder="যেমন: ১ম সংখ্যা">
 
-<hr>
+<label>
+<strong>
+প্রকাশের তারিখ
+</strong>
+</label><input
+id="issueDate"
+type="date">
 
+<label>
+<strong>
+PDF নির্বাচন করুন
+</strong>
+</label><input
+id="epaperFile"
+type="file"
+accept="application/pdf">
 
-<h2>
+<div
+class="epaper-progress"
+id="epaperProgress"><div
+class="epaper-progress-bar"
+id="epaperProgressBar">
+</div></div><button
+id="epaperUploadBtn">
+
+📰 PDF আপলোড করুন
+
+</button><p id="epaperMessage"></p></div><div class="epaper-list"><h3>
+📚 আপলোড করা ই-পেপার
+</h3><div id="epaperList">
+ই-পেপার লোড হচ্ছে...
+</div></div></div><hr><!-- ================= NEWS LIST ================= --><h2>
 📰 প্রকাশিত সংবাদ
-</h2>
-
-<div id="newsList">
+</h2><div id="newsList">
 নিউজ লোড হচ্ছে...
-</div>
-
-
-</div>
-
-
-<p>
-<a href="index.html">
+</div></div><p><a href="index.html">
 ← Website-এ ফিরে যান
-</a>
-</p>
-
-</div>
-
-
-<script>
+</a></p></div><script>
 
 /* =================================================
-FIREBASE CONFIG
+FIREBASE
 ================================================= */
 
 const firebaseConfig = {
@@ -443,12 +430,7 @@ measurementId:
 
 };
 
-
-/* INIT */
-
-firebase.initializeApp(
-firebaseConfig
-);
+firebase.initializeApp(firebaseConfig);
 
 const auth =
 firebase.auth();
@@ -460,8 +442,6 @@ const storage =
 firebase.storage();
 
 
-/* VARIABLES */
-
 let editingId = null;
 
 let selectedImageData = "";
@@ -469,181 +449,96 @@ let selectedImageData = "";
 let selectedVideoFile = null;
 
 
-/* ELEMENTS */
-
 const loginBox =
-document.getElementById(
-"loginBox"
-);
+document.getElementById("loginBox");
 
 const panel =
-document.getElementById(
-"panel"
-);
+document.getElementById("panel");
 
 const message =
-document.getElementById(
-"message"
-);
+document.getElementById("message");
 
 const loginMessage =
-document.getElementById(
-"loginMessage"
-);
+document.getElementById("loginMessage");
 
 
 /* =================================================
 MEDIA SELECT
 ================================================= */
 
-document.getElementById(
-"mediaFile"
-).addEventListener(
-"change",
-function(){
+document.getElementById("mediaFile")
+.addEventListener("change",function(){
 
-const file =
-this.files[0];
+const file=this.files[0];
 
-if(!file)
-return;
-
-
-/* VIDEO */
+if(!file)return;
 
 if(file.type.startsWith("video/")){
 
-selectedVideoFile =
-file;
+selectedVideoFile=file;
+selectedImageData="";
 
-selectedImageData =
-"";
+document.getElementById("previewImage")
+.style.display="none";
 
+const video=document.getElementById("videoPreview");
 
-document.getElementById(
-"previewImage"
-).style.display =
-"none";
-
-
-const video =
-document.getElementById(
-"videoPreview"
-);
-
-video.src =
-URL.createObjectURL(file);
-
-video.style.display =
-"block";
-
+video.src=URL.createObjectURL(file);
+video.style.display="block";
 
 return;
-
 }
-
-
-/* IMAGE */
 
 if(file.type.startsWith("image/")){
 
-selectedVideoFile =
-null;
+selectedVideoFile=null;
 
+const reader=new FileReader();
 
-const reader =
-new FileReader();
+reader.onload=function(e){
 
+const img=new Image();
 
-reader.onload =
-function(e){
+img.onload=function(){
 
-const img =
-new Image();
+const canvas=document.createElement("canvas");
 
+const maxWidth=1000;
 
-img.onload =
-function(){
+let width=img.width;
+let height=img.height;
 
-const canvas =
-document.createElement(
-"canvas"
-);
+if(width>maxWidth){
 
-const maxWidth = 1000;
-
-let width =
-img.width;
-
-let height =
-img.height;
-
-
-if(width > maxWidth){
-
-height =
-height * maxWidth / width;
-
-width =
-maxWidth;
+height=height*maxWidth/width;
+width=maxWidth;
 
 }
 
+canvas.width=width;
+canvas.height=height;
 
-canvas.width =
-width;
+const ctx=canvas.getContext("2d");
 
-canvas.height =
-height;
+ctx.drawImage(img,0,0,width,height);
 
+selectedImageData=
+canvas.toDataURL("image/jpeg",0.65);
 
-const ctx =
-canvas.getContext(
-"2d"
-);
+const preview=
+document.getElementById("previewImage");
 
+preview.src=selectedImageData;
+preview.style.display="block";
 
-ctx.drawImage(
-img,
-0,
-0,
-width,
-height
-);
-
-
-selectedImageData =
-canvas.toDataURL(
-"image/jpeg",
-0.65
-);
-
-
-const preview =
-document.getElementById(
-"previewImage"
-);
-
-preview.src =
-selectedImageData;
-
-preview.style.display =
-"block";
-
-
-document.getElementById(
-"videoPreview"
-).style.display =
-"none";
+document.getElementById("videoPreview")
+.style.display="none";
 
 };
 
-
-img.src =
-e.target.result;
+img.src=e.target.result;
 
 };
-
 
 reader.readAsDataURL(file);
 
@@ -651,10 +546,7 @@ return;
 
 }
 
-
-alert(
-"শুধু ছবি অথবা ভিডিও নির্বাচন করুন।"
-);
+alert("শুধু ছবি অথবা ভিডিও নির্বাচন করুন।");
 
 });
 
@@ -663,41 +555,31 @@ alert(
 LOGIN
 ================================================= */
 
-document.getElementById(
-"loginBtn"
-).onclick =
-async function(){
+document.getElementById("loginBtn")
+.onclick=async function(){
 
-const email =
-document.getElementById(
-"email"
-).value.trim();
+const email=
+document.getElementById("email").value.trim();
 
-const password =
-document.getElementById(
-"password"
-).value;
+const password=
+document.getElementById("password").value;
 
+if(!email||!password){
 
-if(!email || !password){
-
-loginMessage.textContent =
+loginMessage.textContent=
 "Email ও Password দিন।";
 
 return;
 
 }
 
-
 try{
 
 await auth.signInWithEmailAndPassword(
-email,
-password
+email,password
 );
 
-loginMessage.textContent =
-"";
+loginMessage.textContent="";
 
 }
 
@@ -705,7 +587,7 @@ catch(error){
 
 console.error(error);
 
-loginMessage.textContent =
+loginMessage.textContent=
 "❌ Login ব্যর্থ হয়েছে। Email/Password পরীক্ষা করুন।";
 
 }
@@ -715,10 +597,8 @@ loginMessage.textContent =
 
 /* LOGOUT */
 
-document.getElementById(
-"logoutBtn"
-).onclick =
-function(){
+document.getElementById("logoutBtn")
+.onclick=function(){
 
 auth.signOut();
 
@@ -726,31 +606,23 @@ auth.signOut();
 
 
 /* =================================================
-AUTH STATE
+AUTH
 ================================================= */
 
-auth.onAuthStateChanged(
-function(user){
+auth.onAuthStateChanged(function(user){
 
 if(user){
 
-loginBox.style.display =
-"none";
-
-panel.style.display =
-"block";
+loginBox.style.display="none";
+panel.style.display="block";
 
 loadNews();
+loadEpapers();
 
-}
+}else{
 
-else{
-
-loginBox.style.display =
-"block";
-
-panel.style.display =
-"none";
+loginBox.style.display="block";
+panel.style.display="none";
 
 }
 
@@ -758,94 +630,64 @@ panel.style.display =
 
 
 /* =================================================
-PUBLISH
+PUBLISH NEWS
 ================================================= */
 
-document.getElementById(
-"publishBtn"
-).onclick =
-async function(){
+document.getElementById("publishBtn")
+.onclick=async function(){
 
-const user =
-auth.currentUser;
+const user=auth.currentUser;
 
 if(!user){
 
-message.textContent =
+message.textContent=
 "আগে Admin Login করুন।";
 
 return;
 
 }
 
+const title=
+document.getElementById("title").value.trim();
 
-const title =
-document.getElementById(
-"title"
-).value.trim();
+const category=
+document.getElementById("cat").value;
 
+const description=
+document.getElementById("body").value.trim();
 
-const category =
-document.getElementById(
-"cat"
-).value;
+const breaking=
+document.getElementById("breaking").value==="true";
 
+if(!title||!description){
 
-const description =
-document.getElementById(
-"body"
-).value.trim();
-
-
-const breaking =
-document.getElementById(
-"breaking"
-).value === "true";
-
-
-if(!title || !description){
-
-message.textContent =
+message.textContent=
 "শিরোনাম ও বিস্তারিত সংবাদ লিখুন।";
 
 return;
 
 }
 
-
-message.textContent =
+message.textContent=
 "⏳ সংবাদ সংরক্ষণ হচ্ছে...";
 
-
-document.getElementById(
-"publishBtn"
-).disabled =
-true;
-
+document.getElementById("publishBtn").disabled=true;
 
 try{
 
-let mediaUrl =
-"";
-
-let mediaType =
-"";
+let mediaUrl="";
+let mediaType="";
 
 
-/* =================================================
-EDIT
-================================================= */
+/* EDIT */
 
 if(editingId){
 
-const updateData = {
+const updateData={
 
 title:title,
-
 category:category,
-
 description:description,
-
 breaking:breaking,
 
 updatedAt:
@@ -853,85 +695,57 @@ firebase.firestore.FieldValue.serverTimestamp()
 
 };
 
-
-/* NEW IMAGE */
-
 if(selectedImageData){
 
-updateData.mediaUrl =
-selectedImageData;
-
-updateData.mediaType =
-"image";
+updateData.mediaUrl=selectedImageData;
+updateData.mediaType="image";
 
 }
 
-
-/* NEW VIDEO */
-
 else if(selectedVideoFile){
 
-message.textContent =
+message.textContent=
 "⏳ ভিডিও Upload হচ্ছে...";
 
-
-const ref =
-storage
-.ref()
-.child(
-"news-videos/" +
-Date.now() +
-"_" +
+const ref=
+storage.ref().child(
+"news-videos/"+
+Date.now()+"_"+
 selectedVideoFile.name
 );
 
+const task=ref.put(selectedVideoFile);
 
-const task =
-ref.put(
-selectedVideoFile
-);
-
-
-await new Promise(
-(resolve,reject)=>{
+await new Promise((resolve,reject)=>{
 
 task.on(
+
 "state_changed",
 
-snapshot => {
+snapshot=>{
 
-const percent =
-(
-snapshot.bytesTransferred /
-snapshot.totalBytes
-) * 100;
+const percent=
+(snapshot.bytesTransferred/
+snapshot.totalBytes)*100;
 
-document.getElementById(
-"progress"
-).style.display =
-"block";
+document.getElementById("progress")
+.style.display="block";
 
-document.getElementById(
-"progressBar"
-).style.width =
-percent + "%";
+document.getElementById("progressBar")
+.style.width=percent+"%";
 
 },
 
-error =>
-reject(error),
+error=>reject(error),
 
-async () => {
+async()=>{
 
-const url =
-await task.snapshot
-.ref.getDownloadURL();
+const url=
+await task.snapshot.ref
+.getDownloadURL();
 
-updateData.mediaUrl =
-url;
-
-updateData.mediaType =
-"video";
+updateData.mediaUrl=url;
+updateData.mediaType="video";
 
 resolve();
 
@@ -943,102 +757,70 @@ resolve();
 
 }
 
-
-await db.collection(
-"news"
-)
+await db.collection("news")
 .doc(editingId)
 .update(updateData);
 
-
-message.textContent =
+message.textContent=
 "✅ সংবাদ সফলভাবে Update হয়েছে।";
-
 
 }
 
 
-/* =================================================
-NEW NEWS
-================================================= */
+/* NEW NEWS */
 
 else{
 
-/* IMAGE */
-
 if(selectedImageData){
 
-mediaUrl =
-selectedImageData;
-
-mediaType =
-"image";
+mediaUrl=selectedImageData;
+mediaType="image";
 
 }
 
-
-/* VIDEO */
-
 else if(selectedVideoFile){
 
-message.textContent =
+message.textContent=
 "⏳ ভিডিও Upload হচ্ছে...";
 
-
-const ref =
-storage
-.ref()
-.child(
-"news-videos/" +
-Date.now() +
-"_" +
+const ref=
+storage.ref().child(
+"news-videos/"+
+Date.now()+"_"+
 selectedVideoFile.name
 );
 
+const task=ref.put(selectedVideoFile);
 
-const task =
-ref.put(
-selectedVideoFile
-);
-
-
-await new Promise(
-(resolve,reject)=>{
+await new Promise((resolve,reject)=>{
 
 task.on(
+
 "state_changed",
 
-snapshot => {
+snapshot=>{
 
-const percent =
-(
-snapshot.bytesTransferred /
-snapshot.totalBytes
-) * 100;
+const percent=
+(snapshot.bytesTransferred/
+snapshot.totalBytes)*100;
 
-document.getElementById(
-"progress"
-).style.display =
-"block";
+document.getElementById("progress")
+.style.display="block";
 
-document.getElementById(
-"progressBar"
-).style.width =
-percent + "%";
+document.getElementById("progressBar")
+.style.width=percent+"%";
 
 },
 
-error =>
-reject(error),
+error=>reject(error),
 
-async () => {
+async()=>{
 
-mediaUrl =
-await task.snapshot
-.ref.getDownloadURL();
+mediaUrl=
+await task.snapshot.ref
+.getDownloadURL();
 
-mediaType =
-"video";
+mediaType="video";
 
 resolve();
 
@@ -1051,23 +833,13 @@ resolve();
 }
 
 
-/* ADD */
-
-await db.collection(
-"news"
-)
-.add({
+await db.collection("news").add({
 
 title:title,
-
 category:category,
-
 description:description,
-
 mediaUrl:mediaUrl,
-
 mediaType:mediaType,
-
 breaking:breaking,
 
 publishedAt:
@@ -1076,43 +848,30 @@ firebase.firestore.FieldValue.serverTimestamp(),
 updatedAt:
 firebase.firestore.FieldValue.serverTimestamp(),
 
-author:
-user.email || ""
+author:user.email||"",
+
+views:0,
+likes:0
 
 });
 
-
-message.textContent =
+message.textContent=
 "✅ সংবাদ সফলভাবে প্রকাশ হয়েছে।";
 
 }
 
-
-/* RESET */
-
-editingId =
-null;
+editingId=null;
 
 clearForm();
 
+document.getElementById("formTitle")
+.textContent="নতুন সংবাদ প্রকাশ";
 
-document.getElementById(
-"formTitle"
-).textContent =
-"নতুন সংবাদ প্রকাশ";
+document.getElementById("publishBtn")
+.textContent="সংবাদ প্রকাশ করুন";
 
-
-document.getElementById(
-"publishBtn"
-).textContent =
-"সংবাদ প্রকাশ করুন";
-
-
-document.getElementById(
-"cancelBtn"
-).style.display =
-"none";
-
+document.getElementById("cancelBtn")
+.style.display="none";
 
 }
 
@@ -1120,35 +879,26 @@ catch(error){
 
 console.error(error);
 
-message.textContent =
-"❌ সংরক্ষণ করা যায়নি: " +
-(error.message || "");
+message.textContent=
+"❌ সংরক্ষণ করা যায়নি: "+
+(error.message||"");
 
 }
 
 finally{
 
-document.getElementById(
-"publishBtn"
-).disabled =
-false;
+document.getElementById("publishBtn")
+.disabled=false;
 
-setTimeout(
-function(){
+setTimeout(function(){
 
-document.getElementById(
-"progress"
-).style.display =
-"none";
+document.getElementById("progress")
+.style.display="none";
 
-document.getElementById(
-"progressBar"
-).style.width =
-"0%";
+document.getElementById("progressBar")
+.style.width="0%";
 
-},
-500
-);
+},500);
 
 }
 
@@ -1161,80 +911,43 @@ CLEAR
 
 function clearForm(){
 
-document.getElementById(
-"title"
-).value =
-"";
+document.getElementById("title").value="";
+document.getElementById("body").value="";
+document.getElementById("breaking").value="false";
+document.getElementById("mediaFile").value="";
 
+selectedImageData="";
+selectedVideoFile=null;
 
-document.getElementById(
-"body"
-).value =
-"";
+document.getElementById("previewImage")
+.style.display="none";
 
-
-document.getElementById(
-"breaking"
-).value =
-"false";
-
-
-document.getElementById(
-"mediaFile"
-).value =
-"";
-
-
-selectedImageData =
-"";
-
-selectedVideoFile =
-null;
-
-
-document.getElementById(
-"previewImage"
-).style.display =
-"none";
-
-
-document.getElementById(
-"videoPreview"
-).style.display =
-"none";
+document.getElementById("videoPreview")
+.style.display="none";
 
 }
 
 
 /* =================================================
-CANCEL
+CANCEL EDIT
 ================================================= */
 
-document.getElementById(
-"cancelBtn"
-).onclick =
-function(){
+document.getElementById("cancelBtn")
+.onclick=function(){
 
-editingId =
-null;
+editingId=null;
 
 clearForm();
 
-document.getElementById(
-"formTitle"
-).textContent =
-"নতুন সংবাদ প্রকাশ";
+document.getElementById("formTitle")
+.textContent="নতুন সংবাদ প্রকাশ";
 
-document.getElementById(
-"publishBtn"
-).textContent =
-"সংবাদ প্রকাশ করুন";
+document.getElementById("publishBtn")
+.textContent="সংবাদ প্রকাশ করুন";
 
-this.style.display =
-"none";
+this.style.display="none";
 
-message.textContent =
-"";
+message.textContent="";
 
 };
 
@@ -1245,36 +958,27 @@ LOAD NEWS
 
 function loadNews(){
 
-db.collection("news")
-.onSnapshot(
+db.collection("news").onSnapshot(
 
-snapshot => {
+snapshot=>{
 
-const list =
-document.getElementById(
-"newsList"
-);
+const list=
+document.getElementById("newsList");
 
-list.innerHTML =
-"";
-
+list.innerHTML="";
 
 if(snapshot.empty){
 
-list.innerHTML =
+list.innerHTML=
 "<p>এখনো কোনো সংবাদ প্রকাশ হয়নি।</p>";
 
 return;
 
 }
 
+const news=[];
 
-/* SORT */
-
-const news = [];
-
-snapshot.forEach(
-doc => {
+snapshot.forEach(doc=>{
 
 news.push({
 id:doc.id,
@@ -1283,47 +987,26 @@ id:doc.id,
 
 });
 
+news.sort((a,b)=>{
 
-news.sort(
-(a,b) => {
-
-const ad =
-getDate(a);
-
-const bd =
-getDate(b);
-
-return bd - ad;
+return getDate(b)-getDate(a);
 
 });
 
+news.forEach(news=>{
 
-news.forEach(
-news => {
+const div=
+document.createElement("div");
 
-const div =
-document.createElement(
-"div"
-);
+div.className="newsItem";
 
-div.className =
-"newsItem";
+const date=getDate(news);
 
+let media="";
 
-const date =
-getDate(news);
+if(news.mediaType==="video"&&news.mediaUrl){
 
-
-let media = "";
-
-
-if(
-(news.mediaType === "video" &&
-news.mediaUrl)
-){
-
-media =
-`
+media=`
 <video
 src="${escapeHtml(news.mediaUrl)}"
 controls>
@@ -1332,31 +1015,24 @@ controls>
 
 }
 
-else if(
-news.mediaUrl ||
-news.img
-){
+else if(news.mediaUrl||news.img){
 
-media =
-`
+media=`
 <img
 src="${escapeHtml(
-news.mediaUrl || news.img
+news.mediaUrl||news.img
 )}"
 alt="সংবাদ">
 `;
 
 }
 
-
-div.innerHTML = `
+div.innerHTML=`
 
 ${media}
 
 <h3>
-${escapeHtml(
-news.title || ""
-)}
+${escapeHtml(news.title||"")}
 </h3>
 
 <div class="date">
@@ -1373,9 +1049,7 @@ ${timeAgo(date)}
 <div>
 বিভাগ:
 ${escapeHtml(
-news.category ||
-news.cat ||
-""
+news.category||news.cat||""
 )}
 </div>
 
@@ -1396,17 +1070,13 @@ news.breaking
 <button
 class="edit"
 onclick="editNews('${news.id}')">
-
 ✏️ Edit
-
 </button>
 
 <button
 class="delete"
 onclick="deleteNews('${news.id}')">
-
 🗑️ Delete
-
 </button>
 
 `;
@@ -1417,13 +1087,12 @@ list.appendChild(div);
 
 },
 
-error => {
+error=>{
 
 console.error(error);
 
-document.getElementById(
-"newsList"
-).innerHTML =
+document.getElementById("newsList")
+.innerHTML=
 `
 <p>
 ❌ নিউজ লোড করা যাচ্ছে না।<br>
@@ -1442,104 +1111,63 @@ Firestore Rules পরীক্ষা করুন।
 EDIT
 ================================================= */
 
-window.editNews =
-async function(id){
+window.editNews=async function(id){
 
 try{
 
-const snap =
-await db.collection(
-"news"
-)
-.doc(id)
-.get();
-
+const snap=
+await db.collection("news")
+.doc(id).get();
 
 if(!snap.exists){
 
 alert("নিউজ পাওয়া যায়নি।");
-
 return;
 
 }
 
+const news=snap.data();
 
-const news =
-snap.data();
+editingId=id;
 
+document.getElementById("title")
+.value=news.title||"";
 
-editingId =
-id;
-
-
-document.getElementById(
-"title"
-).value =
-news.title || "";
-
-
-document.getElementById(
-"cat"
-).value =
-news.category ||
-news.cat ||
+document.getElementById("cat")
+.value=news.category||
+news.cat||
 "জাতীয়";
 
-
-document.getElementById(
-"body"
-).value =
-news.description ||
-news.body ||
+document.getElementById("body")
+.value=news.description||
+news.body||
 "";
 
+document.getElementById("breaking")
+.value=news.breaking?"true":"false";
 
-document.getElementById(
-"breaking"
-).value =
-news.breaking
-?
-"true"
-:
-"false";
-
-
-selectedImageData =
-"";
-
-
-selectedVideoFile =
-null;
-
+selectedImageData="";
+selectedVideoFile=null;
 
 if(news.mediaUrl){
 
-if(news.mediaType === "video"){
+if(news.mediaType==="video"){
 
-const video =
-document.getElementById(
-"videoPreview"
-);
+const video=
+document.getElementById("videoPreview");
 
-video.src =
-news.mediaUrl;
-
-video.style.display =
-"block";
+video.src=news.mediaUrl;
+video.style.display="block";
 
 }
+
 else{
 
-const img =
-document.getElementById(
-"previewImage"
-);
+const img=
+document.getElementById("previewImage");
 
-img.src =
-news.mediaUrl;
-
-img.style.display =
-"block";
+img.src=news.mediaUrl;
+img.style.display="block";
 
 }
 
@@ -1547,37 +1175,22 @@ img.style.display =
 
 else if(news.img){
 
-const img =
-document.getElementById(
-"previewImage"
-);
+const img=
+document.getElementById("previewImage");
 
-img.src =
-news.img;
-
-img.style.display =
-"block";
+img.src=news.img;
+img.style.display="block";
 
 }
 
+document.getElementById("formTitle")
+.textContent="✏️ সংবাদ Edit করুন";
 
-document.getElementById(
-"formTitle"
-).textContent =
-"✏️ সংবাদ Edit করুন";
+document.getElementById("publishBtn")
+.textContent="Update করুন";
 
-
-document.getElementById(
-"publishBtn"
-).textContent =
-"Update করুন";
-
-
-document.getElementById(
-"cancelBtn"
-).style.display =
-"inline-block";
-
+document.getElementById("cancelBtn")
+.style.display="inline-block";
 
 window.scrollTo({
 top:0,
@@ -1590,9 +1203,7 @@ catch(error){
 
 console.error(error);
 
-alert(
-"Edit করা যাচ্ছে না।"
-);
+alert("Edit করা যাচ্ছে না।");
 
 }
 
@@ -1600,33 +1211,26 @@ alert(
 
 
 /* =================================================
-DELETE
+DELETE NEWS
 ================================================= */
 
-window.deleteNews =
-async function(id){
+window.deleteNews=async function(id){
 
-if(
-!confirm(
+if(!confirm(
 "⚠️ এই সংবাদটি Delete করতে চান?"
-)
-){
+)){
 
 return;
 
 }
 
-
 try{
 
-await db.collection(
-"news"
-)
+await db.collection("news")
 .doc(id)
 .delete();
 
-
-message.textContent =
+message.textContent=
 "🗑️ সংবাদ Delete হয়েছে।";
 
 }
@@ -1635,9 +1239,370 @@ catch(error){
 
 console.error(error);
 
-message.textContent =
-"❌ Delete করা যায়নি: " +
-(error.message || "");
+message.textContent=
+"❌ Delete করা যায়নি: "+
+(error.message||"");
+
+}
+
+};
+
+
+/* =================================================
+EPAPER UPLOAD
+================================================= */
+
+document.getElementById("epaperUploadBtn")
+.onclick=async function(){
+
+const user=auth.currentUser;
+
+if(!user){
+
+document.getElementById("epaperMessage")
+.textContent=
+"আগে Admin Login করুন।";
+
+return;
+
+}
+
+const title=
+document.getElementById("issueTitle")
+.value.trim();
+
+const date=
+document.getElementById("issueDate")
+.value;
+
+const file=
+document.getElementById("epaperFile")
+.files[0];
+
+const msg=
+document.getElementById("epaperMessage");
+
+if(!title){
+
+msg.textContent=
+"দয়া করে সংখ্যার নাম লিখুন।";
+
+return;
+
+}
+
+if(!date){
+
+msg.textContent=
+"দয়া করে প্রকাশের তারিখ দিন।";
+
+return;
+
+}
+
+if(!file){
+
+msg.textContent=
+"দয়া করে PDF নির্বাচন করুন।";
+
+return;
+
+}
+
+if(file.type!=="application/pdf"){
+
+msg.textContent=
+"❌ শুধু PDF ফাইল আপলোড করুন।";
+
+return;
+
+}
+
+if(file.size>50*1024*1024){
+
+msg.textContent=
+"❌ PDF সর্বোচ্চ 50 MB হতে পারবে।";
+
+return;
+
+}
+
+const btn=
+document.getElementById("epaperUploadBtn");
+
+btn.disabled=true;
+
+msg.textContent=
+"⏳ PDF Upload হচ্ছে...";
+
+document.getElementById("epaperProgress")
+.style.display="block";
+
+
+try{
+
+const safeName=
+file.name.replace(
+/[^a-zA-Z0-9._-]/g,
+"_"
+);
+
+const path=
+"epapers/"+
+Date.now()+
+"_"+safeName;
+
+const ref=
+storage.ref().child(path);
+
+const task=
+ref.put(file);
+
+
+await new Promise((resolve,reject)=>{
+
+task.on(
+
+"state_changed",
+
+snapshot=>{
+
+const percent=
+(snapshot.bytesTransferred/
+snapshot.totalBytes)*100;
+
+document.getElementById(
+"epaperProgressBar"
+).style.width=
+percent+"%";
+
+},
+
+error=>reject(error),
+
+resolve
+
+);
+
+});
+
+
+const url=
+await task.snapshot.ref
+.getDownloadURL();
+
+
+await db.collection("epapers")
+.add({
+
+title:title,
+
+date:date,
+
+fileUrl:url,
+
+filePath:path,
+
+fileName:file.name,
+
+createdAt:
+firebase.firestore.FieldValue.serverTimestamp(),
+
+uploadedBy:user.email||""
+
+});
+
+
+msg.textContent=
+"✅ ই-পেপার সফলভাবে আপলোড হয়েছে।";
+
+
+document.getElementById("issueTitle")
+.value="";
+
+document.getElementById("issueDate")
+.value="";
+
+document.getElementById("epaperFile")
+.value="";
+
+
+loadEpapers();
+
+}
+
+catch(error){
+
+console.error(error);
+
+msg.textContent=
+"❌ PDF আপলোড করা যায়নি: "+
+(error.message||"");
+
+}
+
+finally{
+
+btn.disabled=false;
+
+setTimeout(function(){
+
+document.getElementById(
+"epaperProgress"
+).style.display="none";
+
+document.getElementById(
+"epaperProgressBar"
+).style.width="0%";
+
+},500);
+
+}
+
+};
+
+
+/* =================================================
+LOAD EPAPERS
+================================================= */
+
+function loadEpapers(){
+
+db.collection("epapers")
+.onSnapshot(
+
+snapshot=>{
+
+const list=
+document.getElementById("epaperList");
+
+list.innerHTML="";
+
+if(snapshot.empty){
+
+list.innerHTML=
+"<p>এখনো কোনো ই-পেপার আপলোড হয়নি।</p>";
+
+return;
+
+}
+
+const papers=[];
+
+snapshot.forEach(doc=>{
+
+papers.push({
+id:doc.id,
+...doc.data()
+});
+
+});
+
+papers.sort((a,b)=>{
+
+return String(b.date||"")
+.localeCompare(String(a.date||""));
+
+});
+
+
+papers.forEach((paper,index)=>{
+
+const div=
+document.createElement("div");
+
+div.className="epaper-item";
+
+div.innerHTML=`
+
+<b>
+📰 ${escapeHtml(paper.title||"ই-পেপার")}
+</b>
+
+<small>
+প্রকাশের তারিখ:
+${escapeHtml(paper.date||"")}
+</small>
+
+<a
+href="${escapeHtml(paper.fileUrl||"#")}"
+target="_blank"
+class="epaper-view">
+
+📖 ই-পেপার দেখুন
+
+</a>
+
+<button
+class="epaper-delete"
+onclick="deleteEpaper('${paper.id}','${escapeHtml(paper.filePath||"")}')">
+
+🗑️ Delete
+
+</button>
+
+`;
+
+list.appendChild(div);
+
+});
+
+},
+
+error=>{
+
+console.error(error);
+
+document.getElementById("epaperList")
+.innerHTML=
+"<p>❌ ই-পেপার লোড করা যাচ্ছে না।</p>";
+
+}
+
+);
+
+}
+
+
+/* =================================================
+DELETE EPAPER
+================================================= */
+
+window.deleteEpaper=async function(id,path){
+
+if(!confirm(
+"⚠️ এই ই-পেপারটি Delete করতে চান?"
+)){
+
+return;
+
+}
+
+try{
+
+if(path){
+
+await storage.ref(path).delete()
+.catch(()=>{});
+
+}
+
+await db.collection("epapers")
+.doc(id)
+.delete();
+
+alert("✅ ই-পেপার Delete হয়েছে।");
+
+}
+
+catch(error){
+
+console.error(error);
+
+alert(
+"❌ Delete করা যায়নি: "+
+(error.message||"")
+);
 
 }
 
@@ -1652,19 +1617,15 @@ function getDate(news){
 
 try{
 
-if(
-news.publishedAt &&
-typeof news.publishedAt.toDate === "function"
-){
+if(news.publishedAt&&
+typeof news.publishedAt.toDate==="function"){
 
 return news.publishedAt.toDate();
 
 }
 
-if(
-news.createdAt &&
-typeof news.createdAt.toDate === "function"
-){
+if(news.createdAt&&
+typeof news.createdAt.toDate==="function"){
 
 return news.createdAt.toDate();
 
@@ -1706,52 +1667,47 @@ minute:"2-digit"
 
 function timeAgo(date){
 
-const seconds =
+const seconds=
 Math.floor(
-(new Date() - date) / 1000
+(new Date()-date)/1000
 );
 
-if(seconds < 60)
+if(seconds<60)
 return "এইমাত্র";
 
-const minutes =
-Math.floor(seconds / 60);
+const minutes=
+Math.floor(seconds/60);
 
-if(minutes < 60)
-return minutes +
-" মিনিট আগে";
+if(minutes<60)
+return minutes+" মিনিট আগে";
 
-const hours =
-Math.floor(minutes / 60);
+const hours=
+Math.floor(minutes/60);
 
-if(hours < 24)
-return hours +
-" ঘণ্টা আগে";
+if(hours<24)
+return hours+" ঘণ্টা আগে";
 
-const days =
-Math.floor(hours / 24);
+const days=
+Math.floor(hours/24);
 
-if(days < 30)
-return days +
-" দিন আগে";
+if(days<30)
+return days+" দিন আগে";
 
-const months =
-Math.floor(days / 30);
+const months=
+Math.floor(days/30);
 
-if(months < 12)
-return months +
-" মাস আগে";
+if(months<12)
+return months+" মাস আগে";
 
-return Math.floor(months / 12) +
-" বছর আগে";
+return Math.floor(months/12)+" বছর আগে";
 
 }
 
 
 function escapeHtml(text){
 
-if(text === null ||
-text === undefined)
+if(text===null||
+text===undefined)
 return "";
 
 return String(text)
@@ -1763,7 +1719,4 @@ return String(text)
 
 }
 
-</script>
-
-</body>
-</html>
+</script></body></html>
