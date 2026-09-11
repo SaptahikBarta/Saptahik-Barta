@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0">
+
+<title>ই-পেপার | সাপ্তাহিক বার্তা</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800;900&display=swap">
+
+<style>
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+body{
+font-family:"Noto Sans Bengali",sans-serif;
+background:#eee;
+color:#222;
+}
+
+.topbar{
+background:#111;
+color:#fff;
+padding:8px 5%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+font-size:13px;
+}
+
+.header{
+background:#fff;
+padding:18px 5%;
+border-bottom:1px solid #ddd;
+text-align:center;
+}
+
+.header h1{
+font-size:32px;
+color:#b00000;
+font-weight:900;
+}
+
+.header p{
+color:#666;
+font-size:14px;
+}
+
+.nav{
+background:#111;
+padding:10px;
+text-align:center;
+}
+
+.nav a{
+color:#fff;
+text-decoration:none;
+font-weight:bold;
+margin:0 8px;
+}
+
+.nav a:hover{
+color:#ff3333;
+}
+
+.paper-area{
+max-width:1100px;
+margin:25px auto;
+padding:0 15px;
+}
+
+.paper-title{
+background:#fff;
+border-left:5px solid #d40000;
+padding:12px 15px;
+margin-bottom:20px;
+}
+
+.paper-title h2{
+font-size:24px;
+}
+
+.paper-title p{
+font-size:13px;
+color:#777;
+}
+
+.paper{
+background:#fff;
+padding:15px;
+margin-bottom:25px;
+box-shadow:0 2px 10px rgba(0,0,0,.12);
+}
+
+.paper h3{
+background:#111;
+color:#fff;
+padding:9px 12px;
+margin-bottom:15px;
+font-size:18px;
+}
+
+.paper img{
+display:block;
+width:100%;
+height:auto;
+margin:auto;
+}
+
+.pdf-box{
+background:#fff;
+padding:25px;
+text-align:center;
+margin-bottom:25px;
+box-shadow:0 2px 10px rgba(0,0,0,.12);
+}
+
+.pdf-box h2{
+margin-bottom:10px;
+}
+
+.pdf-box p{
+color:#666;
+font-size:14px;
+margin-bottom:15px;
+}
+
+.pdf-btn{
+display:inline-block;
+background:#d40000;
+color:#fff;
+padding:10px 20px;
+text-decoration:none;
+font-weight:bold;
+border-radius:3px;
+}
+
+.pdf-btn:hover{
+background:#a90000;
+}
+
+.back-btn{
+display:inline-block;
+background:#111;
+color:#fff;
+padding:9px 18px;
+text-decoration:none;
+margin-bottom:20px;
+border-radius:3px;
+}
+
+footer{
+background:#111;
+color:#ddd;
+text-align:center;
+padding:25px 15px;
+margin-top:40px;
+}
+
+footer h2{
+color:#fff;
+margin-bottom:5px;
+}
+
+footer p{
+font-size:13px;
+}
+
+@media(max-width:600px){
+
+.topbar{
+font-size:10px;
+}
+
+.header h1{
+font-size:25px;
+}
+
+.paper-area{
+padding:0 8px;
+}
+
+.paper{
+padding:8px;
+}
+
+.paper h3{
+font-size:15px;
+}
+
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="topbar">
+
+<span id="date"></span>
+
+<a href="index.html"
+style="color:#fff;text-decoration:none;">
+← মূল ওয়েবসাইট
+</a>
+
+</div>
+
+<header class="header">
+
+<h1>📰 সাপ্তাহিক বার্তা</h1>
+
+<p>
+ই-পেপার | সত্যের সন্ধানে, মানুষের পাশে
+</p>
+
+</header>
+
+<nav class="nav">
+
+<a href="index.html">🏠 প্রচ্ছদ</a>
+
+<a href="index.html">সর্বশেষ সংবাদ</a>
+
+<a href="admin.html">🔐 Admin</a>
+
+</nav>
+
+<main class="paper-area">
+
+<a href="index.html" class="back-btn">
+← মূল ওয়েবসাইটে ফিরে যান
+</a>
+
+<div class="paper-title">
+
+<h2>📰 ই-পেপার</h2>
+
+<p>
+সাপ্তাহিক বার্তার মুদ্রিত পত্রিকার
+ইলেকট্রনিক সংস্করণ
+</p>
+
+</div>
+
+<!--
+==================================================
+প্রথম সংখ্যা প্রকাশের সময় এখানে PDF-এর লিংক বসাবেন
+==================================================
+-->
+
+<div class="pdf-box">
+
+<h2>সাপ্তাহিক বার্তা — মুদ্রিত সংস্করণ</h2>
+
+<p>
+পত্রিকার PDF প্রকাশিত হলে এখানে
+ক্লিক করে সম্পূর্ণ পত্রিকা পড়তে পারবেন।
+</p>
+
+<!--
+PDF তৈরি হলে নিচের # এর জায়গায়
+আপনার PDF ফাইলের নাম দিতে হবে।
+
+উদাহরণ:
+href="epaper-01.pdf"
+
+-->
+
+<a href="#"
+class="pdf-btn"
+onclick="alert('ই-পেপারের PDF শিগগিরই প্রকাশ করা হবে।');return false;">
+📖 সম্পূর্ণ ই-পেপার পড়ুন
+</a>
+
+</div>
+
+
+<!--
+==================================================
+পত্রিকার পাতার ছবি প্রকাশ করার জায়গা
+
+পরে যেমন:
+epaper-page-1.jpg
+epaper-page-2.jpg
+
+এই ছবিগুলো GitHub repository-তে upload করবেন।
+==================================================
+-->
+
+<div class="paper">
+
+<h3>প্রথম পাতা</h3>
+
+<div style="
+background:#f3f3f3;
+padding:60px 20px;
+text-align:center;
+color:#777;
+">
+
+প্রথম সংখ্যা প্রকাশের পর
+এখানে পত্রিকার প্রথম পাতা দেখা যাবে।
+
+</div>
+
+</div>
+
+
+<div class="paper">
+
+<h3>দ্বিতীয় পাতা</h3>
+
+<div style="
+background:#f3f3f3;
+padding:60px 20px;
+text-align:center;
+color:#777;
+">
+
+পত্রিকার দ্বিতীয় পাতা এখানে
+প্রকাশ করা হবে।
+
+</div>
+
+</div>
+
+
+<div class="paper">
+
+<h3>তৃতীয় পাতা</h3>
+
+<div style="
+background:#f3f3f3;
+padding:60px 20px;
+text-align:center;
+color:#777;
+">
+
+পত্রিকার তৃতীয় পাতা এখানে
+প্রকাশ করা হবে।
+
+</div>
+
+</div>
+
+
+<div class="paper">
+
+<h3>চতুর্থ পাতা</h3>
+
+<div style="
+background:#f3f3f3;
+padding:60px 20px;
+text-align:center;
+color:#777;
+">
+
+পত্রিকার চতুর্থ পাতা এখানে
+প্রকাশ করা হবে।
+
+</div>
+
+</div>
+
+</main>
+
+<footer>
+
+<h2>সাপ্তাহিক বার্তা</h2>
+
+<p>
+সত্যের সন্ধানে, মানুষের পাশে
+</p>
+
+<p>
+সম্পাদক: মোঃ নুরুল ইসলাম
+</p>
+
+<p>
+সহ সম্পাদক ও প্রকাশক: মোঃ আরিফুল ইসলাম
+</p>
+
+<p>
+Delduar, Tangail
+</p>
+
+</footer>
+
+<script>
+
+const days=[
+"রবিবার","সোমবার","মঙ্গলবার","বুধবার",
+"বৃহস্পতিবার","শুক্রবার","শনিবার"
+];
+
+const months=[
+"জানুয়ারি","ফেব্রুয়ারি","মার্চ","এপ্রিল",
+"মে","জুন","জুলাই","আগস্ট",
+"সেপ্টেম্বর","অক্টোবর","নভেম্বর","ডিসেম্বর"
+];
+
+function updateDate(){
+
+const now=new Date();
+
+document.getElementById("date").innerText=
+days[now.getDay()]+" "+
+now.getDate()+" "+
+months[now.getMonth()]+" "+
+now.getFullYear();
+
+}
+
+updateDate();
+
+</script>
+
+</body>
+</html>
