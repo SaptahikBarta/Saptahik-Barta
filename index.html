@@ -6,6 +6,9 @@
 
 <title>সাপ্তাহিক বার্তা | সত্যের সন্ধানে, মানুষের পাশে</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link rel="stylesheet"
 href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800;900&display=swap">
 
@@ -17,30 +20,31 @@ href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;60
 
 <body>
 
-<!-- TOP -->
+<!-- ================= TOP ================= -->
+
 <div class="topbar">
+
     <div id="currentDate">লোড হচ্ছে...</div>
 
     <div class="top-links">
         <a href="admin.html">🔐 Admin</a>
     </div>
+
 </div>
 
 
-<!-- HEADER -->
+<!-- ================= HEADER ================= -->
+
 <header class="header">
 
     <div class="logo-area">
 
-        <!-- আপনার logo-live.png -->
         <div class="logo-wrapper">
 
+            <!-- শুধু আপনার আসল লোগো -->
             <img src="logo-live.png"
                  class="main-logo"
-                 alt="সাপ্তাহিক বার্তা LIVE">
-
-            <!-- ঘূর্ণায়মান পৃথিবী -->
-            <div class="rotating-globe">🌍</div>
+                 alt="সাপ্তাহিক বার্তা">
 
         </div>
 
@@ -51,16 +55,22 @@ href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;60
 
         <div class="header-slogan">
             <b>সঠিক খবর</b>
-            <br>
             <span>সচেতন সমাজ</span>
         </div>
 
+        <button class="subscribe-btn"
+                onclick="openSubscribe()">
+            🔔 সাবস্ক্রাইব
+        </button>
+
         <div class="search-box">
+
             <input id="searchInput"
                    type="text"
                    placeholder="খবর খুঁজুন...">
 
             <button onclick="searchNews()">🔍</button>
+
         </div>
 
     </div>
@@ -68,7 +78,8 @@ href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;60
 </header>
 
 
-<!-- NAVIGATION -->
+<!-- ================= NAVIGATION ================= -->
+
 <nav class="navbar">
 
 <div class="nav-container">
@@ -137,103 +148,147 @@ onclick="showCategory('ভিডিও',this);return false;">
 </nav>
 
 
-<!-- BREAKING -->
+<!-- ================= BREAKING ================= -->
+
 <div class="breaking-wrapper">
 
-<div class="breaking-label">
-🔴 ব্রেকিং
+    <div class="breaking-label">
+        🔴 ব্রেকিং
+    </div>
+
+    <div class="ticker">
+        <div id="breakingTicker" class="ticker-text">
+            এই মুহূর্তে কোনো ব্রেকিং নিউজ নেই
+        </div>
+    </div>
+
 </div>
 
-<div class="ticker">
-<div id="breakingTicker" class="ticker-text">
-এই মুহূর্তে কোনো ব্রেকিং নিউজ নেই
-</div>
-</div>
 
-</div>
+<!-- ================= LATEST ================= -->
 
-
-<!-- LATEST -->
 <div class="latest-wrapper">
 
-<div class="latest-label">
-🟢 সর্বশেষ
+    <div class="latest-label">
+        🟢 সর্বশেষ
+    </div>
+
+    <div class="ticker">
+
+        <div id="latestTicker"
+             class="ticker-text green">
+            সর্বশেষ সংবাদ আসছে...
+        </div>
+
+    </div>
+
 </div>
 
-<div class="ticker">
-<div id="latestTicker" class="ticker-text green">
-সর্বশেষ সংবাদ আসছে...
-</div>
-</div>
 
-</div>
+<!-- ================= MAIN ================= -->
 
-
-<!-- MAIN -->
 <main class="container">
 
 <section>
 
 <div class="section-title">
 
-<h2 id="sectionHeading">
-সর্বশেষ সংবাদ
-</h2>
+    <h2 id="sectionHeading">
+        সর্বশেষ সংবাদ
+    </h2>
 
-<span id="newsCount"></span>
+    <span id="newsCount"></span>
 
 </div>
 
 
 <div id="newsGrid" class="news-grid">
 
-<div class="loading">
-সংবাদ লোড হচ্ছে...
-</div>
+    <div class="loading">
+        সংবাদ লোড হচ্ছে...
+    </div>
 
 </div>
 
 </section>
 
 
-<!-- SIDEBAR -->
+<!-- ================= SIDEBAR ================= -->
+
 <aside class="sidebar">
 
+
+<!-- MOST READ -->
+
+<div class="side-title most-read-title">
+    🔥 সর্বাধিক পঠিত
+</div>
+
+<div id="mostRead"></div>
+
+
+<!-- LATEST -->
+
 <div class="side-title">
-সর্বশেষ সংবাদ
+    সর্বশেষ সংবাদ
 </div>
 
 <div id="sideLatest"></div>
 
 
+<!-- FACEBOOK -->
+
 <div class="side-title facebook-title">
-আমাদের ফেসবুক পেজ
+    আমাদের ফেসবুক পেজ
 </div>
 
 <div class="facebook-box">
 
-<h3>সাপ্তাহিক বার্তা</h3>
+    <h3>সাপ্তাহিক বার্তা</h3>
 
-<p>
-সত্যের সন্ধানে, মানুষের পাশে
-</p>
+    <p>
+        সত্যের সন্ধানে, মানুষের পাশে
+    </p>
 
-<a href="https://www.facebook.com/"
-target="_blank"
-class="facebook-btn">
-Facebook Page
-</a>
+    <a href="https://www.facebook.com/"
+       target="_blank"
+       class="facebook-btn">
+        Facebook Page
+    </a>
 
 </div>
 
 
+<!-- SUBSCRIBE -->
+
 <div class="side-title">
-নিউজ প্রকাশ
+    🔔 আমাদের সাবস্ক্রাইব করুন
+</div>
+
+<div class="subscribe-box">
+
+    <p>
+        নতুন খবর প্রকাশ হলে আপডেট পেতে
+        আমাদের সঙ্গে থাকুন।
+    </p>
+
+    <button onclick="openSubscribe()"
+            class="subscribe-side-btn">
+        🔔 সাবস্ক্রাইব করুন
+    </button>
+
+</div>
+
+
+<!-- ADMIN -->
+
+<div class="side-title">
+    নিউজ প্রকাশ
 </div>
 
 <a href="admin.html"
 class="admin-btn">
-🔐 Admin Panel
+    🔐 Admin Panel
 </a>
 
 </aside>
@@ -241,7 +296,8 @@ class="admin-btn">
 </main>
 
 
-<!-- MODAL -->
+<!-- ================= NEWS MODAL ================= -->
+
 <div id="newsModal" class="modal">
 
 <div class="modal-content">
@@ -262,36 +318,137 @@ class="modal-time"></div>
 <div id="modalDescription"
 class="modal-description"></div>
 
+
+<!-- SOCIAL -->
+
+<div class="social-actions">
+
+<button id="likeButton"
+class="like-btn">
+👍 লাইক <span id="likeCount">0</span>
+</button>
+
+<button id="commentButton"
+class="comment-btn"
+onclick="focusComment()">
+💬 মন্তব্য
+</button>
+
 <button id="facebookShare"
 class="share-btn">
-f Facebook-এ শেয়ার করুন
+↗ শেয়ার
 </button>
 
 </div>
+
+
+<!-- COMMENT -->
+
+<div class="comment-area">
+
+<h3>💬 মন্তব্য করুন</h3>
+
+<textarea id="commentText"
+placeholder="আপনার মন্তব্য লিখুন..."></textarea>
+
+<button onclick="submitComment()"
+class="comment-submit">
+মন্তব্য প্রকাশ করুন
+</button>
+
+<div id="commentMessage"></div>
+
+</div>
+
+</div>
 </div>
 
 
-<!-- FOOTER -->
+<!-- ================= SUBSCRIBE MODAL ================= -->
+
+<div id="subscribeModal" class="subscribe-modal">
+
+<div class="subscribe-content">
+
+<button class="close-btn"
+onclick="closeSubscribe()">×</button>
+
+<div class="subscribe-icon">
+🔔
+</div>
+
+<h2>
+সাপ্তাহিক বার্তা সাবস্ক্রাইব করুন
+</h2>
+
+<p>
+নতুন সংবাদ ও গুরুত্বপূর্ণ আপডেট পেতে
+আপনার তথ্য দিন।
+</p>
+
+<input id="subscriberName"
+type="text"
+placeholder="আপনার নাম">
+
+<input id="subscriberEmail"
+type="email"
+placeholder="আপনার ই-মেইল">
+
+<button onclick="submitSubscribe()"
+class="subscribe-submit">
+সাবস্ক্রাইব করুন
+</button>
+
+<div id="subscribeMessage"></div>
+
+</div>
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+
 <footer>
 
 <div class="footer-grid">
 
 <div>
+
 <h2>সাপ্তাহিক বার্তা</h2>
-<p>সত্যের সন্ধানে, মানুষের পাশে</p>
+
+<p>
+সত্যের সন্ধানে, মানুষের পাশে
+</p>
+
 </div>
+
 
 <div>
-<p>সম্পাদক: মোঃ নুরুল ইসলাম</p>
-<p>সহ সম্পাদক ও প্রকাশক: মোঃ আরিফুল ইসলাম</p>
-<p>Delduar, Tangail</p>
+
+<p>
+সম্পাদক: মোঃ নুরুল ইসলাম
+</p>
+
+<p>
+সহ সম্পাদক ও প্রকাশক: মোঃ আরিফুল ইসলাম
+</p>
+
+<p>
+Delduar, Tangail
+</p>
+
 </div>
+
 
 <div>
-<p>ই-মেইল: pressarif160@gmail.com</p>
+
+<p>
+ই-মেইল: pressarif160@gmail.com
+</p>
+
 </div>
 
 </div>
+
 
 <div class="copyright">
 © 2026 সাপ্তাহিক বার্তা — সর্বস্বত্ব সংরক্ষিত
@@ -303,7 +460,7 @@ f Facebook-এ শেয়ার করুন
 <script>
 
 /* =================================================
-FIREBASE CONFIG
+FIREBASE
 ================================================= */
 
 const firebaseConfig = {
@@ -342,8 +499,12 @@ let allNews = [];
 
 let selectedCategory = "all";
 
+let currentNewsId = null;
 
-/* DATE */
+
+/* =================================================
+DATE
+================================================= */
 
 function updateDate(){
 
@@ -397,7 +558,7 @@ setInterval(updateDate,1000);
 
 
 /* =================================================
-GET DATE SAFELY
+DATE
 ================================================= */
 
 function getNewsDate(news){
@@ -433,7 +594,7 @@ return new Date();
 
 
 /* =================================================
-NORMALIZE OLD + NEW NEWS
+NORMALIZE
 ================================================= */
 
 function normalizeNews(doc){
@@ -467,6 +628,10 @@ n.mediaType ||
 
 breaking:n.breaking === true,
 
+views:Number(n.views || 0),
+
+likes:Number(n.likes || 0),
+
 publishedAt:
 n.publishedAt ||
 n.createdAt ||
@@ -499,8 +664,6 @@ normalizeNews(doc)
 });
 
 
-/* DATE SORT */
-
 allNews.sort(
 (a,b) =>
 getNewsDate(b) -
@@ -513,6 +676,8 @@ updateBreaking();
 updateLatestTicker();
 
 displayNews();
+
+displayMostRead();
 
 },
 
@@ -534,7 +699,7 @@ Firestore Rules পরীক্ষা করুন।
 
 
 /* =================================================
-BREAKING ONE
+BREAKING
 ================================================= */
 
 function updateBreaking(){
@@ -664,8 +829,6 @@ getNewsDate(news);
 let media = "";
 
 
-/* VIDEO */
-
 if(
 news.mediaType === "video" &&
 news.mediaUrl
@@ -682,9 +845,6 @@ class="card-media">
 
 }
 
-
-/* IMAGE */
-
 else if(news.mediaUrl){
 
 media = `
@@ -696,9 +856,6 @@ onerror="this.style.display='none'">
 `;
 
 }
-
-
-/* NO IMAGE */
 
 else{
 
@@ -812,6 +969,72 @@ ${timeAgo(date)}
 
 
 /* =================================================
+MOST READ
+================================================= */
+
+function displayMostRead(){
+
+const box =
+document.getElementById("mostRead");
+
+const most =
+[...allNews]
+.sort(
+(a,b) =>
+Number(b.views || 0) -
+Number(a.views || 0)
+)
+.slice(0,7);
+
+if(!most.length){
+
+box.innerHTML =
+`
+<div class="empty-most">
+এখনো কোনো সংবাদ নেই।
+</div>
+`;
+
+return;
+
+}
+
+box.innerHTML =
+most.map(
+(n,i) => {
+
+return `
+
+<div class="most-read-item"
+onclick="openNews('${n.id}')">
+
+<div class="most-number">
+${i+1}
+</div>
+
+<div class="most-text">
+
+<b>
+${escapeHtml(n.title)}
+</b>
+
+<small>
+👁 ${Number(n.views || 0)} বার পঠিত
+</small>
+
+</div>
+
+</div>
+
+`;
+
+}
+).join("");
+
+}
+
+
+/* =================================================
 CATEGORY
 ================================================= */
 
@@ -859,7 +1082,7 @@ behavior:"smooth"
 
 
 /* =================================================
-OPEN
+OPEN NEWS
 ================================================= */
 
 function openNews(id){
@@ -870,6 +1093,9 @@ n => n.id === id
 );
 
 if(!news) return;
+
+
+currentNewsId = id;
 
 
 document.getElementById(
@@ -944,6 +1170,40 @@ news.description
 
 
 document.getElementById(
+"likeCount"
+).innerText =
+Number(news.likes || 0);
+
+
+const liked =
+localStorage.getItem(
+"liked_" + id
+);
+
+const likeButton =
+document.getElementById(
+"likeButton"
+);
+
+if(liked){
+
+likeButton.classList.add("liked");
+
+}else{
+
+likeButton.classList.remove("liked");
+
+}
+
+
+/* VIEW COUNT */
+
+addView(id);
+
+
+/* FACEBOOK SHARE */
+
+document.getElementById(
 "facebookShare"
 ).onclick =
 function(){
@@ -972,7 +1232,206 @@ document.getElementById(
 }
 
 
-/* CLOSE */
+/* =================================================
+VIEW COUNT
+================================================= */
+
+function addView(id){
+
+const key =
+"viewed_" + id;
+
+if(sessionStorage.getItem(key)){
+
+return;
+
+}
+
+sessionStorage.setItem(key,"1");
+
+db.collection("news")
+.doc(id)
+.update({
+
+views:
+firebase.firestore.FieldValue.increment(1)
+
+})
+.then(() => {
+
+const news =
+allNews.find(
+n => n.id === id
+);
+
+if(news){
+
+news.views =
+Number(news.views || 0) + 1;
+
+}
+
+displayMostRead();
+
+})
+.catch(
+error =>
+console.log(
+"View update:",
+error
+)
+);
+
+}
+
+
+/* =================================================
+LIKE
+================================================= */
+
+document.getElementById(
+"likeButton"
+)
+.addEventListener(
+"click",
+function(){
+
+if(!currentNewsId)
+return;
+
+const key =
+"liked_" +
+currentNewsId;
+
+if(localStorage.getItem(key)){
+
+return;
+
+}
+
+localStorage.setItem(
+key,
+"1"
+);
+
+this.classList.add("liked");
+
+
+const news =
+allNews.find(
+n => n.id === currentNewsId
+);
+
+if(!news) return;
+
+
+db.collection("news")
+.doc(currentNewsId)
+.update({
+
+likes:
+firebase.firestore.FieldValue.increment(1)
+
+})
+.then(() => {
+
+news.likes =
+Number(news.likes || 0) + 1;
+
+document.getElementById(
+"likeCount"
+).innerText =
+news.likes;
+
+})
+.catch(
+error =>
+console.log(
+"Like update:",
+error
+)
+);
+
+});
+
+
+/* =================================================
+COMMENT
+================================================= */
+
+function focusComment(){
+
+document.getElementById(
+"commentText"
+).focus();
+
+}
+
+
+function submitComment(){
+
+if(!currentNewsId)
+return;
+
+const text =
+document.getElementById(
+"commentText"
+)
+.value
+.trim();
+
+const message =
+document.getElementById(
+"commentMessage"
+);
+
+if(!text){
+
+message.innerText =
+"দয়া করে মন্তব্য লিখুন।";
+
+return;
+
+}
+
+db.collection("comments")
+.add({
+
+newsId:
+currentNewsId,
+
+comment:
+text,
+
+createdAt:
+firebase.firestore.FieldValue.serverTimestamp()
+
+})
+.then(() => {
+
+document.getElementById(
+"commentText"
+).value = "";
+
+message.innerText =
+"✅ আপনার মন্তব্য গ্রহণ করা হয়েছে।";
+
+})
+.catch(error => {
+
+console.error(error);
+
+message.innerText =
+"❌ মন্তব্য পাঠানো যায়নি।";
+
+});
+
+}
+
+
+/* =================================================
+CLOSE NEWS
+================================================= */
 
 function closeNews(){
 
@@ -1090,6 +1549,91 @@ searchNews();
 
 
 /* =================================================
+SUBSCRIBE
+================================================= */
+
+function openSubscribe(){
+
+document.getElementById(
+"subscribeModal"
+).classList.add("show");
+
+}
+
+
+function closeSubscribe(){
+
+document.getElementById(
+"subscribeModal"
+).classList.remove("show");
+
+}
+
+
+function submitSubscribe(){
+
+const name =
+document.getElementById(
+"subscriberName"
+).value.trim();
+
+const email =
+document.getElementById(
+"subscriberEmail"
+).value.trim();
+
+const message =
+document.getElementById(
+"subscribeMessage"
+);
+
+if(!name || !email){
+
+message.innerText =
+"নাম ও ই-মেইল দিন।";
+
+return;
+
+}
+
+db.collection("subscribers")
+.add({
+
+name:name,
+
+email:email,
+
+createdAt:
+firebase.firestore.FieldValue.serverTimestamp()
+
+})
+.then(() => {
+
+message.innerText =
+"✅ সফলভাবে সাবস্ক্রাইব করেছেন।";
+
+document.getElementById(
+"subscriberName"
+).value = "";
+
+document.getElementById(
+"subscriberEmail"
+).value = "";
+
+})
+.catch(error => {
+
+console.error(error);
+
+message.innerText =
+"❌ সাবস্ক্রাইব করা যায়নি।";
+
+});
+
+}
+
+
+/* =================================================
 HELPERS
 ================================================= */
 
@@ -1191,7 +1735,7 @@ return String(text)
 
 
 /* =================================================
-OPEN NEWS FROM ?news=
+OPEN FROM ?news=
 ================================================= */
 
 window.addEventListener(
