@@ -1,75 +1,143 @@
 <!DOCTYPE html>
 <html lang="bn">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>সাপ্তাহিক বার্তা | সত্যের সন্ধানে, মানুষের পাশে</title>
 
-<link rel="stylesheet"
-href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&display=swap">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800;900&display=swap"
+rel="stylesheet">
 
 <link rel="stylesheet" href="style.css">
 
+
+<!-- FIREBASE -->
+
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
 </head>
 
+
 <body>
+
 
 <!-- TOP BAR -->
 
 <div class="topbar">
-  <div id="currentDate">লোড হচ্ছে...</div>
 
-  <div class="top-links">
-    <a href="admin.html">🔐 Admin</a>
-  </div>
+<div id="currentDate">
+লোড হচ্ছে...
 </div>
+
+<div class="top-links">
+
+<a href="admin.html">
+🔐 Admin
+</a>
+
+</div>
+
+</div>
+
 
 
 <!-- HEADER -->
 
 <header class="header">
 
-  <div class="logo-area">
 
-    <div class="globe-box">
-      <img src="globe.png"
-           class="rotating-globe"
-           alt="সাপ্তাহিক বার্তা">
-    </div>
-
-    <div class="brand">
-      <img src="brand.png"
-           class="brand-image"
-           alt="সাপ্তাহিক বার্তা LIVE">
-    </div>
-
-  </div>
+<div class="logo-area">
 
 
-  <div class="header-right">
+<!-- ONLY GLOBE ROTATES -->
 
-    <div class="header-slogan">
-      <b>সঠিক খবর</b>
-      <br>
-      <span>সচেতন সমাজ</span>
-    </div>
+<div class="globe-box">
 
-    <div class="search-box">
-      <input
-        type="text"
-        id="searchInput"
-        placeholder="খবর খুঁজুন...">
+<img
+src="globe.png"
+class="globe"
+alt="সাপ্তাহিক বার্তা পৃথিবী">
 
-      <button onclick="searchNews()">🔍</button>
-    </div>
+</div>
 
-  </div>
+
+
+<div class="brand">
+
+<div class="small-title">
+সাপ্তাহিক
+</div>
+
+<div class="main-title">
+বার্তা
+
+<span>
+LIVE
+</span>
+
+</div>
+
+<div class="tagline">
+সত্যের সন্ধানে, মানুষের পাশে
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="header-right">
+
+
+<div class="header-slogan">
+
+<b>
+সঠিক খবর
+</b>
+
+<br>
+
+<span>
+সচেতন সমাজ
+</span>
+
+</div>
+
+
+
+<div class="search-box">
+
+<input
+type="text"
+id="searchInput"
+placeholder="খবর খুঁজুন...">
+
+<button
+onclick="searchNews()">
+
+🔍
+
+</button>
+
+</div>
+
+</div>
 
 </header>
+
 
 
 <!-- NAVIGATION -->
@@ -78,68 +146,111 @@ href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;60
 
 <div class="nav-container">
 
-<a href="#"
+
+<a
+href="#"
 class="nav-link active"
 onclick="showCategory('all',this);return false;">
+
 🏠 প্রচ্ছদ
+
 </a>
 
-<a href="#"
+
+<a
+href="#"
 class="nav-link"
 onclick="showCategory('জাতীয়',this);return false;">
+
 জাতীয়
+
 </a>
 
-<a href="#"
+
+<a
+href="#"
 class="nav-link"
 onclick="showCategory('রাজনীতি',this);return false;">
+
 রাজনীতি
+
 </a>
 
-<a href="#"
+
+<a
+href="#"
 class="nav-link"
 onclick="showCategory('আন্তর্জাতিক',this);return false;">
+
 আন্তর্জাতিক
+
 </a>
 
-<a href="#"
+
+<a
+href="#"
 class="nav-link"
 onclick="showCategory('অর্থনীতি',this);return false;">
+
 অর্থনীতি
+
 </a>
 
-<a href="#"
+
+<a
+href="#"
 class="nav-link"
 onclick="showCategory('খেলাধুলা',this);return false;">
+
 খেলাধুলা
+
 </a>
 
-<a href="#"
+
+<a
+href="#"
 class="nav-link"
 onclick="showCategory('বিজ্ঞান ও প্রযুক্তি',this);return false;">
+
 বিজ্ঞান ও প্রযুক্তি
+
 </a>
 
-<a href="#"
+
+<a
+href="#"
 class="nav-link"
 onclick="showCategory('মতামত',this);return false;">
+
 মতামত
+
 </a>
 
-<a href="#"
+
+<a
+href="#"
 class="nav-link"
 onclick="showCategory('ছবি',this);return false;">
+
 ছবি
+
 </a>
 
-<a href="#"
+
+<a
+href="#"
 class="nav-link"
 onclick="showCategory('ভিডিও',this);return false;">
+
 ভিডিও
+
 </a>
 
+
 </div>
+
 </nav>
+
 
 
 <!-- BREAKING -->
@@ -152,13 +263,18 @@ onclick="showCategory('ভিডিও',this);return false;">
 
 <div class="ticker">
 
-<div id="breakingTicker"
+<div
+id="breakingTicker"
 class="ticker-text">
+
 ব্রেকিং নিউজ আসছে...
+
 </div>
 
 </div>
+
 </div>
+
 
 
 <!-- LATEST -->
@@ -171,20 +287,27 @@ class="ticker-text">
 
 <div class="ticker">
 
-<div id="latestTicker"
+<div
+id="latestTicker"
 class="ticker-text green">
+
 সর্বশেষ সংবাদ আসছে...
+
 </div>
 
 </div>
+
 </div>
+
 
 
 <!-- MAIN -->
 
 <main class="container">
 
+
 <section>
+
 
 <div class="section-title">
 
@@ -192,12 +315,15 @@ class="ticker-text green">
 সর্বশেষ সংবাদ
 </h2>
 
-<span id="newsCount"></span>
+<span id="newsCount">
+</span>
 
 </div>
 
 
-<div id="newsGrid"
+
+<div
+id="newsGrid"
 class="news-grid">
 
 <div class="loading">
@@ -206,90 +332,132 @@ class="news-grid">
 
 </div>
 
+
 </section>
+
 
 
 <!-- SIDEBAR -->
 
 <aside class="sidebar">
 
+
 <div class="side-title">
 সর্বশেষ সংবাদ
 </div>
 
-<div id="sideLatest"></div>
+
+<div id="sideLatest">
+</div>
+
 
 
 <div class="side-title facebook-title">
 আমাদের ফেসবুক পেজ
 </div>
 
+
 <div class="facebook-box">
 
-<h3>সাপ্তাহিক বার্তা</h3>
+<h3>
+সাপ্তাহিক বার্তা
+</h3>
 
 <p>
 সত্যের সন্ধানে, মানুষের পাশে
 </p>
 
-<a href="https://www.facebook.com/"
+<a
+href="https://www.facebook.com/"
 target="_blank"
 class="facebook-btn">
+
 Facebook Page
+
 </a>
 
 </div>
+
 
 
 <div class="side-title">
 নিউজ প্রকাশ
 </div>
 
-<a href="admin.html"
+
+<a
+href="admin.html"
 class="admin-btn">
+
 🔐 Admin Panel
+
 </a>
+
 
 </aside>
 
 </main>
 
 
+
 <!-- NEWS MODAL -->
 
-<div id="newsModal"
+<div
+id="newsModal"
 class="modal">
+
 
 <div class="modal-content">
 
-<button class="close-btn"
+
+<button
+class="close-btn"
 onclick="closeNews()">
+
 ×
+
 </button>
 
-<div id="modalCategory"
+
+<div
+id="modalCategory"
 class="modal-category">
 </div>
 
-<h1 id="modalTitle"></h1>
 
-<div id="modalTime"
+<h1 id="modalTitle">
+</h1>
+
+
+<div
+id="modalTime"
 class="modal-time">
 </div>
 
-<div id="modalMedia"></div>
 
-<div id="modalDescription"
+<div id="modalMedia">
+</div>
+
+
+<div
+id="modalDescription"
 class="modal-description">
 </div>
 
-<button id="facebookShare"
+
+<button
+id="facebookShare"
 class="share-btn">
+
 f Facebook-এ শেয়ার করুন
+
 </button>
 
+
 </div>
+
 </div>
+
 
 
 <!-- FOOTER -->
@@ -298,203 +466,330 @@ f Facebook-এ শেয়ার করুন
 
 <div class="footer-grid">
 
-<div>
-<h2>সাপ্তাহিক বার্তা</h2>
-<p>সত্যের সন্ধানে, মানুষের পাশে</p>
-</div>
 
 <div>
-<p>সম্পাদক: মোঃ নুরুল ইসলাম</p>
-<p>সহ সম্পাদক ও প্রকাশক: মোঃ আরিফুল ইসলাম</p>
-<p>Delduar, Tangail</p>
+
+<h2>
+সাপ্তাহিক বার্তা
+</h2>
+
+<p>
+সত্যের সন্ধানে, মানুষের পাশে
+</p>
+
 </div>
+
+
 
 <div>
-<p>ই-মেইল: pressarif160@gmail.com</p>
-</div>
+
+<p>
+সম্পাদক: মোঃ নুরুল ইসলাম
+</p>
+
+<p>
+সহ সম্পাদক ও প্রকাশক: মোঃ আরিফুল ইসলাম
+</p>
+
+<p>
+Delduar, Tangail
+</p>
 
 </div>
+
+
+
+<div>
+
+<p>
+ই-মেইল: pressarif160@gmail.com
+</p>
+
+</div>
+
+
+</div>
+
+
 
 <div class="copyright">
+
 © 2026 সাপ্তাহিক বার্তা — সর্বস্বত্ব সংরক্ষিত
+
 </div>
 
 </footer>
 
 
+
 <script>
 
-/* ================= FIREBASE ================= */
+
+/* ======================================================
+FIREBASE CONFIG
+====================================================== */
 
 const firebaseConfig = {
 
-apiKey:"AIzaSyDugMsCaCtCZwKzBHhYQJbgsySRwA6ikXg",
+apiKey:
+"AIzaSyDugMsCaCtCZwKzBHhYQJbgsySRwA6ikXg",
 
-authDomain:"saptahik-barta.firebaseapp.com",
+authDomain:
+"saptahik-barta.firebaseapp.com",
 
-projectId:"saptahik-barta",
+projectId:
+"saptahik-barta",
 
-storageBucket:"saptahik-barta.firebasestorage.app",
+storageBucket:
+"saptahik-barta.firebasestorage.app",
 
-messagingSenderId:"64482849817",
+messagingSenderId:
+"64482849817",
 
-appId:"1:64482849817:web:67af4e2b46d9bf2b7f2688",
+appId:
+"1:64482849817:web:67af4e2b46d9bf2b7f2688",
 
-measurementId:"G-L100GNJ7JM"
+measurementId:
+"G-L100GNJ7JM"
 
 };
 
+
 firebase.initializeApp(firebaseConfig);
 
-const db=firebase.firestore();
+const db =
+firebase.firestore();
 
 
-/* ================= VARIABLES ================= */
 
-let allNews=[];
-let selectedCategory="all";
+/* VARIABLES */
+
+let allNews = [];
+
+let selectedCategory = "all";
 
 
-/* ================= DATE ================= */
+
+/* DATE */
 
 function updateDate(){
 
-const now=new Date();
+const now = new Date();
 
-const days=[
-"রবিবার","সোমবার","মঙ্গলবার",
-"বুধবার","বৃহস্পতিবার","শুক্রবার","শনিবার"
+const days = [
+
+"রবিবার",
+"সোমবার",
+"মঙ্গলবার",
+"বুধবার",
+"বৃহস্পতিবার",
+"শুক্রবার",
+"শনিবার"
+
 ];
 
-const months=[
-"জানুয়ারি","ফেব্রুয়ারি","মার্চ","এপ্রিল",
-"মে","জুন","জুলাই","আগস্ট",
-"সেপ্টেম্বর","অক্টোবর","নভেম্বর","ডিসেম্বর"
+
+const months = [
+
+"জানুয়ারি",
+"ফেব্রুয়ারি",
+"মার্চ",
+"এপ্রিল",
+"মে",
+"জুন",
+"জুলাই",
+"আগস্ট",
+"সেপ্টেম্বর",
+"অক্টোবর",
+"নভেম্বর",
+"ডিসেম্বর"
+
 ];
 
-document.getElementById("currentDate").innerText=
-days[now.getDay()]+", "+
-now.getDate()+" "+
-months[now.getMonth()]+" "+
-now.getFullYear()+" | "+
+
+document.getElementById("currentDate").innerText =
+
+days[now.getDay()] +
+", " +
+now.getDate() +
+" " +
+months[now.getMonth()] +
+" " +
+now.getFullYear() +
+" | " +
 now.toLocaleTimeString("bn-BD");
 
 }
 
+
 updateDate();
+
 setInterval(updateDate,1000);
 
 
-/* ================= LOAD NEWS ================= */
+
+/* LOAD NEWS */
 
 db.collection("news")
 .orderBy("createdAt","desc")
 .onSnapshot(
 
-snapshot=>{
+snapshot => {
 
-allNews=[];
 
-snapshot.forEach(doc=>{
+allNews = [];
+
+
+snapshot.forEach(doc => {
+
+
+const data = doc.data();
+
 
 allNews.push({
+
 id:doc.id,
-...doc.data()
-});
+
+...data
 
 });
+
+
+});
+
 
 updateBreaking();
+
 updateLatestTicker();
+
 displayNews();
+
 
 },
 
-error=>{
+error => {
+
 
 console.error(error);
 
-document.getElementById("newsGrid").innerHTML=
+
+document.getElementById("newsGrid").innerHTML =
+
 `<div class="no-news">
-নিউজ লোড করা যাচ্ছে না। Firebase/Firestore Rules পরীক্ষা করুন।
+
+❌ সংবাদ লোড করা যাচ্ছে না।<br>
+Firestore Rules অথবা Firebase Config পরীক্ষা করুন।
+
 </div>`;
+
 
 }
 
 );
 
 
-/* ================= BREAKING ONE ================= */
+
+/* BREAKING - ONLY ONE */
 
 function updateBreaking(){
 
-const breaking=
-allNews.find(n=>n.breaking===true);
 
-const el=
+const breaking =
+allNews.find(
+n => n.breaking === true
+);
+
+
+const el =
 document.getElementById("breakingTicker");
+
 
 if(!breaking){
 
-el.innerText=
+el.innerText =
 "এই মুহূর্তে কোনো ব্রেকিং নিউজ নেই";
 
 return;
-}
-
-el.innerText=breaking.title;
 
 }
 
 
-/* ================= LATEST 10 ================= */
+el.innerText =
+breaking.title;
+
+
+}
+
+
+
+/* LATEST 10 */
 
 function updateLatestTicker(){
 
-const latest=allNews.slice(0,10);
 
-const el=
+const latest =
+allNews.slice(0,10);
+
+
+const el =
 document.getElementById("latestTicker");
 
-if(!latest.length){
 
-el.innerText="কোনো সংবাদ নেই";
+if(latest.length === 0){
+
+el.innerText =
+"কোনো সংবাদ নেই";
 
 return;
 
 }
 
-el.innerText=
-latest.map(n=>n.title).join("   •   ");
+
+el.innerText =
+latest
+.map(n => n.title)
+.join("   •   ");
+
 
 }
 
 
-/* ================= DISPLAY ================= */
+
+/* DISPLAY */
 
 function displayNews(){
 
-let filtered=allNews;
 
-if(selectedCategory!=="all"){
+let filtered =
+allNews;
 
-filtered=allNews.filter(
-n=>n.cat===selectedCategory
+
+if(selectedCategory !== "all"){
+
+filtered =
+allNews.filter(
+n => n.category === selectedCategory
 );
 
 }
 
-document.getElementById("newsCount").innerText=
-filtered.length+"টি সংবাদ";
 
-const grid=
+document.getElementById("newsCount").innerText =
+filtered.length + "টি সংবাদ";
+
+
+const grid =
 document.getElementById("newsGrid");
 
-if(!filtered.length){
 
-grid.innerHTML=
+if(filtered.length === 0){
+
+grid.innerHTML =
+
 `<div class="no-news">
+
 এই বিভাগে এখনো কোনো সংবাদ প্রকাশিত হয়নি।
+
 </div>`;
 
 displaySidebar([]);
@@ -503,57 +798,76 @@ return;
 
 }
 
-grid.innerHTML=
-filtered.map(createCard).join("");
+
+grid.innerHTML =
+filtered
+.map(news => createCard(news))
+.join("");
+
 
 displaySidebar(filtered);
 
 }
 
 
-/* ================= CARD ================= */
+
+/* CARD */
 
 function createCard(news){
 
-const time=getDate(news.createdAt);
 
-let media="";
+const date =
+getDate(news.createdAt);
 
-if(news.mediaType==="video" && news.mediaUrl){
 
-media=`
+let media = "";
+
+
+if(news.mediaType === "video" && news.mediaUrl){
+
+media = `
+
 <video
-src="${escapeHtml(news.mediaUrl)}"
+src="${safeUrl(news.mediaUrl)}"
 controls
 class="card-media">
+
 </video>
+
 `;
 
 }
 
-else if(news.img){
+else if(news.mediaUrl){
 
-media=`
+media = `
+
 <img
-src="${escapeHtml(news.img)}"
+src="${safeUrl(news.mediaUrl)}"
 class="card-media"
-alt="${escapeHtml(news.title)}">
+alt="সংবাদ">
+
 `;
 
 }
 
 else{
 
-media=`
+media = `
+
 <div class="no-image">
+
 সাপ্তাহিক বার্তা
+
 </div>
+
 `;
 
 }
 
 
-return`
+
+return `
 
 <article class="news-card">
 
@@ -561,31 +875,50 @@ ${media}
 
 <div class="card-body">
 
+
 <span class="category">
-${escapeHtml(news.cat||"প্রচ্ছদ")}
+
+${escapeHtml(
+news.category || "প্রচ্ছদ"
+)}
+
 </span>
 
+
 <h3>
-${escapeHtml(news.title||"")}
+
+${escapeHtml(
+news.title || ""
+)}
+
 </h3>
 
+
 <p>
+
 ${escapeHtml(
-shortText(news.body||"",140)
+shortText(news.description || "",140)
 )}
+
 </p>
+
 
 <div class="card-footer">
 
 <span>
-${formatDate(time)}
+
+${formatDate(date)}
+
 </span>
 
 <span>
-${timeAgo(time)}
+
+${timeAgo(date)}
+
 </span>
 
 </div>
+
 
 <button
 class="read-btn"
@@ -594,6 +927,7 @@ onclick="openNews('${news.id}')">
 বিস্তারিত পড়ুন →
 
 </button>
+
 
 </div>
 
@@ -604,30 +938,45 @@ onclick="openNews('${news.id}')">
 }
 
 
-/* ================= SIDEBAR ================= */
+
+/* SIDEBAR */
 
 function displaySidebar(news){
 
-const list=
+
+const list =
 document.getElementById("sideLatest");
 
-list.innerHTML=
-news.slice(0,10).map((n,i)=>{
 
-const date=getDate(n.createdAt);
+list.innerHTML =
 
-return`
+news
+.slice(0,10)
+.map((n,i)=>{
 
-<div class="side-news"
+
+const date =
+getDate(n.createdAt);
+
+
+return `
+
+<div
+class="side-news"
 onclick="openNews('${n.id}')">
 
-<span>${i+1}</span>
+
+<span>
+${i+1}
+</span>
+
 
 <div>
 
 <b>
-${escapeHtml(n.title||"")}
+${escapeHtml(n.title || "")}
 </b>
+
 
 <small>
 ${timeAgo(date)}
@@ -635,148 +984,224 @@ ${timeAgo(date)}
 
 </div>
 
+
 </div>
 
 `;
 
-}).join("");
+})
+.join("");
+
 
 }
 
 
-/* ================= CATEGORY ================= */
+
+/* CATEGORY */
 
 function showCategory(category,element){
 
-selectedCategory=category;
 
-document.querySelectorAll(".nav-link")
-.forEach(x=>x.classList.remove("active"));
+selectedCategory =
+category;
+
+
+document
+.querySelectorAll(".nav-link")
+.forEach(x =>
+x.classList.remove("active")
+);
+
 
 element.classList.add("active");
 
-document.getElementById("sectionHeading").innerText=
-category==="all"
-?"সর্বশেষ সংবাদ"
-:category;
+
+document.getElementById("sectionHeading").innerText =
+
+category === "all"
+?
+"সর্বশেষ সংবাদ"
+:
+category;
+
 
 displayNews();
 
+
 window.scrollTo({
-top:document.querySelector(".container").offsetTop-20,
+
+top:
+document.querySelector(".container").offsetTop - 20,
+
 behavior:"smooth"
+
 });
 
 }
 
 
-/* ================= OPEN ================= */
+
+/* OPEN NEWS */
 
 function openNews(id){
 
-const news=
-allNews.find(n=>n.id===id);
 
-if(!news)return;
-
-document.getElementById("modalCategory").innerText=
-news.cat||"প্রচ্ছদ";
-
-document.getElementById("modalTitle").innerText=
-news.title||"";
-
-const date=getDate(news.createdAt);
-
-document.getElementById("modalTime").innerText=
-formatDate(date)+" • "+timeAgo(date);
+const news =
+allNews.find(n => n.id === id);
 
 
-let media="";
+if(!news)
+return;
 
-if(news.mediaType==="video" && news.mediaUrl){
 
-media=`
+document.getElementById("modalCategory").innerText =
+
+news.category ||
+"প্রচ্ছদ";
+
+
+document.getElementById("modalTitle").innerText =
+
+news.title ||
+"";
+
+
+const date =
+getDate(news.createdAt);
+
+
+document.getElementById("modalTime").innerText =
+
+formatDate(date) +
+" • " +
+timeAgo(date);
+
+
+let media = "";
+
+
+if(news.mediaType === "video" && news.mediaUrl){
+
+media = `
+
 <video
-src="${escapeHtml(news.mediaUrl)}"
+src="${safeUrl(news.mediaUrl)}"
 controls
 autoplay
 class="modal-media">
+
 </video>
+
 `;
 
 }
 
-else if(news.img){
+else if(news.mediaUrl){
 
-media=`
+media = `
+
 <img
-src="${escapeHtml(news.img)}"
-class="modal-media"
-alt="সংবাদ ছবি">
+src="${safeUrl(news.mediaUrl)}"
+class="modal-media">
+
 `;
 
 }
 
-document.getElementById("modalMedia").innerHTML=media;
 
-document.getElementById("modalDescription").innerHTML=
-escapeHtml(news.body||"")
+document.getElementById("modalMedia").innerHTML =
+media;
+
+
+document.getElementById("modalDescription").innerHTML =
+
+escapeHtml(
+news.description || ""
+)
 .replace(/\n/g,"<br>");
 
 
-document.getElementById("facebookShare").onclick=
+document.getElementById("facebookShare").onclick =
+
 function(){
 
-const url=
-window.location.href.split("?")[0]+
-"?news="+id;
+
+const url =
+window.location.href.split("?")[0]
++
+"?news="
++
+id;
+
 
 window.open(
-"https://www.facebook.com/sharer/sharer.php?u="+
+
+"https://www.facebook.com/sharer/sharer.php?u="
++
 encodeURIComponent(url),
+
 "_blank"
+
 );
+
 
 };
 
 
-document.getElementById("newsModal")
+document
+.getElementById("newsModal")
 .classList.add("show");
+
 
 }
 
 
+
+/* CLOSE */
+
 function closeNews(){
 
-document.getElementById("newsModal")
+document
+.getElementById("newsModal")
 .classList.remove("show");
 
 }
 
 
-window.onclick=function(e){
+window.onclick =
+function(e){
 
-const modal=
+const modal =
 document.getElementById("newsModal");
 
-if(e.target===modal){
+
+if(e.target === modal){
+
 closeNews();
+
 }
 
 };
 
 
-/* ================= SEARCH ================= */
+
+/* SEARCH */
 
 function searchNews(){
 
-const text=
-document.getElementById("searchInput")
-.value.trim().toLowerCase();
+
+const text =
+
+document
+.getElementById("searchInput")
+.value
+.trim()
+.toLowerCase();
+
 
 if(!text){
 
-selectedCategory="all";
+selectedCategory = "all";
 
 displayNews();
 
@@ -784,62 +1209,108 @@ return;
 
 }
 
-const result=
-allNews.filter(n=>
-(n.title||"").toLowerCase().includes(text) ||
-(n.body||"").toLowerCase().includes(text)
+
+const result =
+
+allNews.filter(n =>
+
+(n.title || "")
+.toLowerCase()
+.includes(text)
+
+||
+
+(n.description || "")
+.toLowerCase()
+.includes(text)
+
 );
 
-document.getElementById("sectionHeading").innerText=
+
+document.getElementById("sectionHeading").innerText =
 "অনুসন্ধানের ফলাফল";
 
-document.getElementById("newsCount").innerText=
-result.length+"টি সংবাদ";
 
-document.getElementById("newsGrid").innerHTML=
+document.getElementById("newsCount").innerText =
+result.length + "টি সংবাদ";
+
+
+const grid =
+document.getElementById("newsGrid");
+
+
+grid.innerHTML =
+
 result.length
-?result.map(createCard).join("")
-:`<div class="no-news">
+
+?
+
+result.map(n => createCard(n)).join("")
+
+:
+
+`<div class="no-news">
+
 কোনো সংবাদ পাওয়া যায়নি।
+
 </div>`;
 
 }
 
 
-document.getElementById("searchInput")
-.addEventListener("keyup",function(e){
 
-if(e.key==="Enter"){
+document
+.getElementById("searchInput")
+.addEventListener(
+"keyup",
+function(e){
+
+if(e.key === "Enter"){
+
 searchNews();
+
 }
 
 });
 
 
-/* ================= HELPERS ================= */
+
+/* HELPERS */
 
 function getDate(timestamp){
 
-if(!timestamp)return new Date();
+if(
+timestamp &&
+typeof timestamp.toDate === "function"
+){
 
-if(timestamp.toDate){
 return timestamp.toDate();
-}
-
-return new Date(timestamp);
 
 }
+
+return new Date();
+
+}
+
 
 
 function shortText(text,length){
 
-if(!text)return "";
+if(!text)
+return "";
 
-return text.length>length
-?text.substring(0,length)+"..."
-:text;
+return text.length > length
+
+?
+
+text.substring(0,length) + "..."
+
+:
+
+text;
 
 }
+
 
 
 function formatDate(date){
@@ -847,78 +1318,119 @@ function formatDate(date){
 return date.toLocaleDateString(
 "bn-BD",
 {
+
 weekday:"long",
+
 day:"numeric",
+
 month:"long",
+
 year:"numeric"
+
 }
-)+" "+
+)
++
+" "
++
 date.toLocaleTimeString(
 "bn-BD",
 {
+
 hour:"numeric",
+
 minute:"2-digit"
+
 }
 );
 
 }
 
 
+
 function timeAgo(date){
 
-const seconds=
-Math.floor((new Date()-date)/1000);
+const seconds =
+Math.floor(
+(new Date() - date) / 1000
+);
 
-if(seconds<60)return"এইমাত্র";
 
-const minutes=Math.floor(seconds/60);
+if(seconds < 60)
+return "এইমাত্র";
 
-if(minutes<60)
-return minutes+" মিনিট আগে";
 
-const hours=Math.floor(minutes/60);
+const minutes =
+Math.floor(seconds / 60);
 
-if(hours<24)
-return hours+" ঘণ্টা আগে";
 
-const days=Math.floor(hours/24);
+if(minutes < 60)
+return minutes + " মিনিট আগে";
 
-if(days<30)
-return days+" দিন আগে";
 
-const months=Math.floor(days/30);
+const hours =
+Math.floor(minutes / 60);
 
-if(months<12)
-return months+" মাস আগে";
 
-return Math.floor(months/12)+" বছর আগে";
+if(hours < 24)
+return hours + " ঘণ্টা আগে";
+
+
+const days =
+Math.floor(hours / 24);
+
+
+if(days < 30)
+return days + " দিন আগে";
+
+
+const months =
+Math.floor(days / 30);
+
+
+if(months < 12)
+return months + " মাস আগে";
+
+
+return Math.floor(months / 12)
++
+" বছর আগে";
 
 }
 
 
+
 function escapeHtml(text){
 
-if(text==null)return"";
+if(!text)
+return "";
+
 
 return String(text)
+
 .replace(/&/g,"&amp;")
+
 .replace(/</g,"&lt;")
+
 .replace(/>/g,"&gt;")
+
 .replace(/"/g,"&quot;")
+
 .replace(/'/g,"&#039;");
 
 }
 
 
-/* TIME AGO UPDATE */
 
-setInterval(()=>{
+function safeUrl(url){
 
-displayNews();
+return String(url || "")
+.replace(/"/g,"&quot;");
 
-},60000);
+}
+
 
 </script>
 
 </body>
+
 </html>
