@@ -201,25 +201,179 @@ white-space:nowrap;
 
 
 /* ================= BREAKING NEWS ================= */
-/* আগের HD / 3D effect রাখা হয়েছে */
+/* 🔴 শুধুমাত্র এখানে 3D / HD effect যোগ করা হয়েছে */
+
+.breaking-wrapper{
+position:relative;
+background:#080808;
+
+border-top:2px solid #ff0000;
+border-bottom:2px solid #8b0000;
+
+box-shadow:
+0 0 8px rgba(255,0,0,.75),
+0 0 20px rgba(255,0,0,.35),
+inset 0 2px 4px rgba(255,255,255,.12),
+inset 0 -3px 6px rgba(0,0,0,.8);
+}
+
+
+/* BREAKING LABEL */
+
+.breaking-label{
+position:relative;
+
+background:linear-gradient(
+145deg,
+#ff2b2b 0%,
+#e00000 45%,
+#850000 100%
+);
+
+color:#fff;
+
+font-weight:900;
+font-size:16px;
+
+text-shadow:
+1px 1px 0 #650000,
+2px 2px 0 #400000,
+0 0 8px rgba(255,255,255,.5);
+
+box-shadow:
+inset 0 2px 2px rgba(255,255,255,.35),
+inset 0 -3px 5px rgba(0,0,0,.4),
+4px 0 8px rgba(0,0,0,.4);
+
+animation:breakingLabelPulse 1.8s ease-in-out infinite;
+}
+
+
+/* MOVING BREAKING TEXT */
 
 .breaking-wrapper .ticker-text{
 display:inline-block;
+
 padding:7px 0 7px 100%;
 
-animation:breakingTicker 18s linear infinite;
+white-space:nowrap;
+
+animation:
+breakingTicker 18s linear infinite,
+breakingTextGlow 1.5s ease-in-out infinite alternate;
 
 font-weight:900;
-font-size:18px;
+font-size:20px;
+letter-spacing:.4px;
 
-color:#d40000;
+/* 🔴 লাল ফন্ট */
+color:#ff0000 !important;
 
+/* 🔴 3D / HD TEXT */
 text-shadow:
-1px 1px 0 #fff,
-2px 2px 2px rgba(0,0,0,.25),
-0 0 5px rgba(255,0,0,.20);
+1px 1px 0 #7a0000,
+2px 2px 0 #550000,
+3px 3px 0 #300000,
+0 0 5px #ff0000,
+0 0 10px rgba(255,0,0,.9),
+0 0 18px rgba(255,0,0,.55);
 }
 
+
+/* 3D SHINE */
+
+.breaking-wrapper::after{
+content:"";
+
+position:absolute;
+top:0;
+left:-130%;
+
+width:70%;
+height:100%;
+
+pointer-events:none;
+
+background:linear-gradient(
+110deg,
+transparent 0%,
+rgba(255,255,255,.05) 35%,
+rgba(255,255,255,.5) 50%,
+rgba(255,255,255,.05) 65%,
+transparent 100%
+);
+
+transform:skewX(-20deg);
+
+animation:breakingShine 4s linear infinite;
+}
+
+
+/* LABEL PULSE */
+
+@keyframes breakingLabelPulse{
+
+0%,100%{
+box-shadow:
+inset 0 2px 2px rgba(255,255,255,.35),
+inset 0 -3px 5px rgba(0,0,0,.4),
+4px 0 8px rgba(0,0,0,.4),
+0 0 5px rgba(255,0,0,.4);
+}
+
+50%{
+box-shadow:
+inset 0 2px 2px rgba(255,255,255,.45),
+inset 0 -3px 5px rgba(0,0,0,.4),
+4px 0 8px rgba(0,0,0,.4),
+0 0 18px rgba(255,0,0,.9);
+}
+
+}
+
+
+/* TEXT GLOW */
+
+@keyframes breakingTextGlow{
+
+from{
+text-shadow:
+1px 1px 0 #7a0000,
+2px 2px 0 #550000,
+3px 3px 0 #300000,
+0 0 5px #ff0000,
+0 0 10px rgba(255,0,0,.7);
+}
+
+to{
+text-shadow:
+1px 1px 0 #7a0000,
+2px 2px 0 #550000,
+3px 3px 0 #300000,
+0 0 8px #ff0000,
+0 0 18px #ff0000,
+0 0 28px rgba(255,0,0,.7);
+}
+
+}
+
+
+/* SHINE */
+
+@keyframes breakingShine{
+
+0%{
+left:-130%;
+}
+
+45%,100%{
+left:130%;
+}
+
+}
+
+
+/* SCROLL */
 
 @keyframes breakingTicker{
 
@@ -235,8 +389,7 @@ transform:translateX(-100%);
 
 
 /* ================= LATEST NEWS ================= */
-/* শুধু গতি ধীর করা হয়েছে */
-/* কোনো 3D / HD effect নেই */
+/* কোনো ডিজাইন পরিবর্তন করা হয়নি */
 
 .latest-wrapper .ticker-text{
 display:inline-block;
@@ -683,7 +836,8 @@ font-size:12px;
 }
 
 .breaking-wrapper .ticker-text{
-font-size:14px;
+font-size:16px;
+font-weight:900;
 }
 
 .latest-wrapper .ticker-text{
