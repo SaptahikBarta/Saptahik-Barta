@@ -4,11 +4,15 @@ margin:0;
 padding:0;
 }
 
+html{
+scroll-behavior:smooth;
+}
+
 body{
 font-family:"Noto Sans Bengali",sans-serif;
-background:#f3f3f3;
-color:#222;
-line-height:1.7;
+background:#f1f1f1;
+color:#191919;
+line-height:1.75;
 }
 
 a{
@@ -20,17 +24,22 @@ color:inherit;
 /* ================= TOP ================= */
 
 .topbar{
-background:#111;
+background:#151515;
 color:#fff;
-padding:6px 5%;
+padding:6px 4%;
 display:flex;
 justify-content:space-between;
 align-items:center;
-font-size:13px;
+font-size:14px;
 }
 
 .top-links a{
 color:#fff;
+font-weight:600;
+}
+
+.top-links a:hover{
+color:#ffcc00;
 }
 
 
@@ -38,26 +47,26 @@ color:#fff;
 
 .header{
 background:#fff;
-padding:14px 5%;
+padding:10px 4%;
 display:flex;
 justify-content:space-between;
 align-items:center;
-gap:25px;
-border-bottom:1px solid #ddd;
+gap:20px;
+border-bottom:1px solid #d6d6d6;
 }
+
+
+/* LOGO */
 
 .logo-area{
 display:flex;
 align-items:center;
 }
 
-
-/* LOGO */
-
 .logo-wrapper{
 position:relative;
-width:440px;
-max-width:70vw;
+width:330px;
+max-width:52vw;
 display:flex;
 align-items:center;
 }
@@ -69,35 +78,7 @@ display:block;
 }
 
 
-/*
-ঘূর্ণায়মান পৃথিবী।
-logo-live.png-এর বাম পাশের পৃথিবীর ওপর
-এই globe বসবে।
-*/
-
-.rotating-globe{
-position:absolute;
-left:3%;
-top:50%;
-transform:translateY(-50%);
-font-size:75px;
-line-height:1;
-animation:globeRotate 5s linear infinite;
-z-index:3;
-pointer-events:none;
-}
-
-@keyframes globeRotate{
-
-0%{
-transform:translateY(-50%) rotate(0deg);
-}
-
-100%{
-transform:translateY(-50%) rotate(360deg);
-}
-
-}
+/* NO ROTATING GLOBE */
 
 
 /* HEADER RIGHT */
@@ -105,46 +86,82 @@ transform:translateY(-50%) rotate(360deg);
 .header-right{
 display:flex;
 align-items:center;
-gap:20px;
+justify-content:flex-end;
+gap:12px;
 }
 
 .header-slogan{
 background:#222;
 color:#fff;
-padding:10px 20px;
+padding:8px 15px;
 text-align:center;
-border-left:5px solid #d40000;
+border-left:4px solid #c90000;
+font-size:14px;
+line-height:1.4;
+}
+
+.header-slogan b{
+display:block;
+font-size:16px;
 }
 
 .header-slogan span{
 color:#ddd;
 }
 
+
 .search-box{
 display:flex;
+height:40px;
 }
 
 .search-box input{
 width:220px;
-padding:10px;
-border:1px solid #ccc;
+padding:7px 12px;
+border:1px solid #cfcfcf;
 outline:none;
 font-family:inherit;
+font-size:14px;
+}
+
+.search-box input:focus{
+border-color:#b40000;
 }
 
 .search-box button{
 border:0;
-background:#d40000;
+background:#c90000;
 color:#fff;
-padding:0 16px;
+padding:0 15px;
 cursor:pointer;
+font-size:16px;
+}
+
+
+/* SUBSCRIBE */
+
+.subscribe-btn{
+border:0;
+background:#087f3d;
+color:#fff;
+padding:9px 15px;
+font-family:inherit;
+font-size:14px;
+font-weight:700;
+cursor:pointer;
+white-space:nowrap;
+}
+
+.subscribe-btn:hover{
+background:#056630;
 }
 
 
 /* ================= NAV ================= */
 
 .navbar{
-background:#111;
+background:#151515;
+border-top:3px solid #b90000;
 }
 
 .nav-container{
@@ -152,19 +169,25 @@ max-width:1400px;
 margin:auto;
 display:flex;
 overflow-x:auto;
+scrollbar-width:none;
+}
+
+.nav-container::-webkit-scrollbar{
+display:none;
 }
 
 .nav-link{
 color:#fff;
-padding:12px 17px;
+padding:11px 17px;
 white-space:nowrap;
 border-right:1px solid #333;
-font-size:14px;
+font-size:15px;
+font-weight:600;
 }
 
 .nav-link:hover,
 .nav-link.active{
-background:#d40000;
+background:#c90000;
 }
 
 
@@ -177,44 +200,61 @@ width:100%;
 background:#fff;
 border-bottom:1px solid #ddd;
 overflow:hidden;
+height:42px;
 }
 
 .breaking-label,
 .latest-label{
-min-width:125px;
+min-width:120px;
 color:#fff;
-padding:7px 15px;
-font-weight:bold;
+padding:7px 12px;
+font-weight:800;
+font-size:15px;
 text-align:center;
 z-index:2;
 }
 
 .breaking-label{
-background:#d40000;
+background:#c90000;
 }
 
 .latest-label{
-background:#008b35;
+background:#07863b;
 }
 
 .ticker{
 flex:1;
 overflow:hidden;
 white-space:nowrap;
+position:relative;
 }
 
 .ticker-text{
 display:inline-block;
-padding:7px 0 7px 100%;
-animation:ticker 28s linear infinite;
-font-weight:600;
+padding:5px 0 5px 100%;
+animation:breakingTicker 20s linear infinite;
+font-size:16px;
+font-weight:700;
 }
 
 .ticker-text.green{
-color:#008b35;
+color:#087d3a;
+animation:latestTicker 38s linear infinite;
 }
 
-@keyframes ticker{
+@keyframes breakingTicker{
+
+0%{
+transform:translateX(0);
+}
+
+100%{
+transform:translateX(-100%);
+}
+
+}
+
+@keyframes latestTicker{
 
 0%{
 transform:translateX(0);
@@ -234,7 +274,7 @@ max-width:1400px;
 margin:25px auto;
 padding:0 15px;
 display:grid;
-grid-template-columns:minmax(0,1fr) 340px;
+grid-template-columns:minmax(0,1fr) 330px;
 gap:25px;
 }
 
@@ -242,14 +282,21 @@ gap:25px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-border-left:5px solid #d40000;
-padding:8px 12px;
+border-left:5px solid #c90000;
+padding:8px 13px;
 margin-bottom:18px;
 background:#fff;
+border-bottom:1px solid #ddd;
 }
 
 .section-title h2{
-font-size:23px;
+font-size:25px;
+font-weight:800;
+}
+
+#newsCount{
+font-size:13px;
+color:#777;
 }
 
 
@@ -258,7 +305,7 @@ font-size:23px;
 .news-grid{
 display:grid;
 grid-template-columns:repeat(3,1fr);
-gap:20px;
+gap:18px;
 }
 
 .news-card{
@@ -269,27 +316,27 @@ transition:.25s;
 }
 
 .news-card:hover{
-transform:translateY(-4px);
+transform:translateY(-3px);
 box-shadow:0 5px 18px rgba(0,0,0,.12);
 }
 
 .card-media{
 width:100%;
-height:210px;
+height:205px;
 object-fit:cover;
 display:block;
 background:#111;
 }
 
 .no-image{
-height:210px;
+height:205px;
 display:flex;
 align-items:center;
 justify-content:center;
-background:#222;
+background:#292929;
 color:#fff;
 font-size:25px;
-font-weight:bold;
+font-weight:800;
 }
 
 .card-body{
@@ -298,23 +345,26 @@ padding:15px;
 
 .category{
 display:inline-block;
-background:#d40000;
+background:#c90000;
 color:#fff;
-padding:2px 8px;
-font-size:12px;
+padding:2px 9px;
+font-size:13px;
 margin-bottom:7px;
+font-weight:700;
 }
 
 .card-body h3{
-font-size:19px;
+font-size:21px;
+font-weight:800;
 line-height:1.5;
 margin-bottom:8px;
 }
 
 .card-body p{
-color:#666;
-font-size:14px;
-min-height:48px;
+color:#555;
+font-size:15px;
+line-height:1.7;
+min-height:52px;
 }
 
 .card-footer{
@@ -331,17 +381,18 @@ padding-top:7px;
 .read-btn{
 width:100%;
 border:0;
-background:#d40000;
+background:#c90000;
 color:#fff;
-padding:8px;
+padding:9px;
 margin-top:12px;
 cursor:pointer;
 font-family:inherit;
-font-weight:bold;
+font-weight:800;
+font-size:14px;
 }
 
 .read-btn:hover{
-background:#a90000;
+background:#a50000;
 }
 
 
@@ -350,21 +401,28 @@ background:#a90000;
 .sidebar{
 background:#fff;
 height:max-content;
+border:1px solid #ddd;
 }
 
 .side-title{
-background:#111;
+background:#171717;
 color:#fff;
-border-left:5px solid #d40000;
-padding:8px 12px;
-font-weight:bold;
-margin-bottom:8px;
+border-left:5px solid #c90000;
+padding:9px 12px;
+font-size:17px;
+font-weight:800;
+margin-bottom:0;
 }
+
+.most-read-title{
+background:#242424;
+}
+
 
 .side-news{
 display:flex;
 gap:10px;
-padding:10px;
+padding:11px;
 border-bottom:1px solid #eee;
 cursor:pointer;
 }
@@ -374,25 +432,80 @@ background:#f7f7f7;
 }
 
 .side-news>span{
-min-width:25px;
-height:25px;
+min-width:26px;
+height:26px;
 border-radius:50%;
-background:#d40000;
+background:#c90000;
 color:#fff;
 text-align:center;
 font-size:13px;
+font-weight:bold;
+line-height:26px;
 }
 
 .side-news b{
 display:block;
-font-size:13px;
-line-height:1.5;
+font-size:14px;
+line-height:1.55;
 }
 
 .side-news small{
 color:#888;
 font-size:10px;
 }
+
+
+/* ================= MOST READ ================= */
+
+.most-read-item{
+display:flex;
+gap:10px;
+padding:12px;
+border-bottom:1px solid #eee;
+cursor:pointer;
+}
+
+.most-read-item:hover{
+background:#f8f8f8;
+}
+
+.most-number{
+min-width:30px;
+height:30px;
+background:#c90000;
+color:#fff;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:15px;
+font-weight:900;
+}
+
+.most-text{
+flex:1;
+}
+
+.most-text b{
+display:block;
+font-size:14px;
+line-height:1.55;
+}
+
+.most-text small{
+display:block;
+color:#888;
+font-size:11px;
+margin-top:3px;
+}
+
+.empty-most{
+padding:15px;
+font-size:13px;
+color:#777;
+}
+
+
+/* ================= FACEBOOK ================= */
 
 .facebook-title{
 margin-top:20px;
@@ -406,38 +519,77 @@ text-align:center;
 
 .facebook-box h3{
 margin-bottom:4px;
+font-size:19px;
 }
 
 .facebook-box p{
 color:#666;
-font-size:13px;
+font-size:14px;
 }
 
 .facebook-btn{
 display:inline-block;
 background:#1877f2;
 color:#fff;
-padding:7px 15px;
+padding:8px 17px;
 margin-top:10px;
 border-radius:4px;
+font-weight:bold;
 }
+
+
+/* ================= SUBSCRIBE BOX ================= */
+
+.subscribe-box{
+padding:18px;
+text-align:center;
+border-bottom:1px solid #ddd;
+}
+
+.subscribe-box p{
+font-size:14px;
+color:#555;
+margin-bottom:10px;
+}
+
+.subscribe-side-btn{
+border:0;
+background:#087f3d;
+color:#fff;
+padding:9px 18px;
+font-family:inherit;
+font-weight:800;
+cursor:pointer;
+}
+
+.subscribe-side-btn:hover{
+background:#056630;
+}
+
+
+/* ================= ADMIN ================= */
 
 .admin-btn{
 display:block;
-background:#d40000;
+background:#c90000;
 color:#fff;
 padding:10px;
 text-align:center;
 margin:10px;
+font-weight:800;
+}
+
+.admin-btn:hover{
+background:#a50000;
 }
 
 
-/* ================= MODAL ================= */
+/* ================= NEWS MODAL ================= */
 
 .modal{
 position:fixed;
 inset:0;
-background:rgba(0,0,0,.75);
+background:rgba(0,0,0,.78);
 display:none;
 align-items:center;
 justify-content:center;
@@ -455,7 +607,7 @@ max-width:100%;
 max-height:95vh;
 overflow-y:auto;
 background:#fff;
-padding:25px;
+padding:27px;
 position:relative;
 }
 
@@ -466,7 +618,7 @@ top:8px;
 width:35px;
 height:35px;
 border:0;
-background:#d40000;
+background:#c90000;
 color:#fff;
 font-size:25px;
 cursor:pointer;
@@ -474,16 +626,18 @@ cursor:pointer;
 
 .modal-category{
 display:inline-block;
-background:#d40000;
+background:#c90000;
 color:#fff;
 padding:3px 10px;
 margin-bottom:10px;
+font-weight:700;
 }
 
 .modal-content h1{
-font-size:32px;
+font-size:34px;
 line-height:1.5;
 padding-right:40px;
+font-weight:900;
 }
 
 .modal-time{
@@ -500,27 +654,163 @@ background:#111;
 }
 
 .modal-description{
-font-size:17px;
+font-size:18px;
+line-height:2;
 margin-top:20px;
-white-space:normal;
+}
+
+
+/* ================= SOCIAL ================= */
+
+.social-actions{
+display:flex;
+gap:8px;
+margin-top:20px;
+border-top:1px solid #eee;
+padding-top:15px;
+}
+
+.like-btn,
+.comment-btn,
+.share-btn{
+border:0;
+color:#fff;
+padding:9px 15px;
+cursor:pointer;
+font-family:inherit;
+font-weight:700;
+}
+
+.like-btn{
+background:#1769aa;
+}
+
+.like-btn.liked{
+background:#0b4f83;
+}
+
+.comment-btn{
+background:#555;
 }
 
 .share-btn{
-margin-top:20px;
-border:0;
 background:#1877f2;
+}
+
+
+/* ================= COMMENTS ================= */
+
+.comment-area{
+margin-top:22px;
+padding-top:18px;
+border-top:1px solid #ddd;
+}
+
+.comment-area h3{
+font-size:19px;
+margin-bottom:10px;
+}
+
+.comment-area textarea{
+width:100%;
+min-height:100px;
+padding:10px;
+border:1px solid #ccc;
+resize:vertical;
+font-family:inherit;
+font-size:15px;
+outline:none;
+}
+
+.comment-submit{
+margin-top:8px;
+border:0;
+background:#c90000;
 color:#fff;
-padding:10px 18px;
-cursor:pointer;
+padding:9px 15px;
 font-family:inherit;
 font-weight:bold;
+cursor:pointer;
+}
+
+#commentMessage,
+#subscribeMessage{
+margin-top:8px;
+font-size:13px;
+font-weight:bold;
+}
+
+
+/* ================= SUBSCRIBE MODAL ================= */
+
+.subscribe-modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.78);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:10000;
+padding:15px;
+}
+
+.subscribe-modal.show{
+display:flex;
+}
+
+.subscribe-content{
+width:460px;
+max-width:100%;
+background:#fff;
+padding:35px 25px 25px;
+position:relative;
+text-align:center;
+}
+
+.subscribe-icon{
+font-size:45px;
+margin-bottom:8px;
+}
+
+.subscribe-content h2{
+font-size:25px;
+font-weight:900;
+margin-bottom:5px;
+}
+
+.subscribe-content p{
+color:#666;
+font-size:14px;
+margin-bottom:18px;
+}
+
+.subscribe-content input{
+width:100%;
+padding:11px;
+border:1px solid #ccc;
+margin-bottom:10px;
+font-family:inherit;
+font-size:14px;
+outline:none;
+}
+
+.subscribe-submit{
+width:100%;
+border:0;
+background:#087f3d;
+color:#fff;
+padding:11px;
+font-family:inherit;
+font-size:15px;
+font-weight:800;
+cursor:pointer;
 }
 
 
 /* ================= FOOTER ================= */
 
 footer{
-background:#111;
+background:#151515;
 color:#ddd;
 margin-top:40px;
 }
@@ -536,10 +826,11 @@ gap:30px;
 
 .footer-grid h2{
 color:#fff;
+font-size:23px;
 }
 
 .footer-grid p{
-font-size:13px;
+font-size:14px;
 }
 
 .copyright{
@@ -558,35 +849,25 @@ background:#fff;
 padding:40px;
 text-align:center;
 grid-column:1/-1;
+font-size:16px;
 }
 
 
 /* ================= MOBILE ================= */
 
-@media(max-width:1000px){
+@media(max-width:1100px){
 
 .header{
-flex-direction:column;
-align-items:flex-start;
-}
-
-.logo-wrapper{
-width:430px;
-max-width:100%;
-}
-
-.header-right{
-width:100%;
 flex-wrap:wrap;
 }
 
-.search-box{
-width:100%;
+.logo-wrapper{
+width:300px;
 }
 
-.search-box input{
-flex:1;
+.header-right{
 width:auto;
+flex-wrap:wrap;
 }
 
 .container{
@@ -603,55 +884,136 @@ grid-template-columns:repeat(2,1fr);
 
 }
 
-@media(max-width:600px){
+
+@media(max-width:700px){
 
 .topbar{
-font-size:10px;
+font-size:11px;
 padding:6px 10px;
 }
 
 .header{
 padding:10px;
+align-items:center;
 }
 
 .logo-wrapper{
-width:100%;
+width:250px;
+max-width:75vw;
 }
 
-.rotating-globe{
-font-size:48px;
-left:2%;
+.header-right{
+width:100%;
+justify-content:center;
 }
 
 .header-slogan{
 display:none;
 }
 
-.news-grid{
-grid-template-columns:1fr;
+.subscribe-btn{
+font-size:13px;
+padding:8px 12px;
+}
+
+.search-box{
+width:100%;
+}
+
+.search-box input{
+flex:1;
+width:auto;
+}
+
+.nav-link{
+font-size:14px;
+padding:10px 13px;
+}
+
+.breaking-wrapper,
+.latest-wrapper{
+height:40px;
 }
 
 .breaking-label,
 .latest-label{
-min-width:85px;
-font-size:11px;
+min-width:82px;
+font-size:12px;
 padding:7px 5px;
 }
 
 .ticker-text{
-font-size:12px;
+font-size:14px;
+}
+
+.news-grid{
+grid-template-columns:1fr;
+}
+
+.section-title h2{
+font-size:22px;
+}
+
+.card-media,
+.no-image{
+height:220px;
+}
+
+.card-body h3{
+font-size:20px;
+}
+
+.card-body p{
+font-size:15px;
 }
 
 .modal-content{
-padding:18px;
+padding:20px;
 }
 
 .modal-content h1{
-font-size:23px;
+font-size:25px;
+}
+
+.modal-description{
+font-size:16px;
+}
+
+.social-actions{
+flex-wrap:wrap;
+}
+
+.like-btn,
+.comment-btn,
+.share-btn{
+flex:1;
+min-width:100px;
 }
 
 .footer-grid{
 grid-template-columns:1fr;
+}
+
+}
+
+
+@media(max-width:400px){
+
+.logo-wrapper{
+width:220px;
+}
+
+.subscribe-btn{
+font-size:12px;
+padding:7px 9px;
+}
+
+.ticker-text{
+font-size:13px;
+}
+
+.card-body h3{
+font-size:19px;
 }
 
 }
