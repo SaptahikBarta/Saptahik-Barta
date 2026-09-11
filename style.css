@@ -17,7 +17,7 @@ color:inherit;
 }
 
 
-/* ================= TOP ================= */
+/* TOP BAR */
 
 .topbar{
 background:#111;
@@ -34,73 +34,70 @@ color:#fff;
 }
 
 
-/* ================= HEADER ================= */
+/* HEADER */
 
 .header{
 background:#fff;
-padding:14px 5%;
+padding:18px 5%;
 display:flex;
 justify-content:space-between;
 align-items:center;
-gap:25px;
+gap:30px;
 border-bottom:1px solid #ddd;
 }
 
 .logo-area{
 display:flex;
 align-items:center;
+gap:5px;
 }
 
-
-/* LOGO */
-
-.logo-wrapper{
-position:relative;
-width:440px;
-max-width:70vw;
+.globe-box{
+width:115px;
+height:115px;
 display:flex;
 align-items:center;
+justify-content:center;
+overflow:hidden;
+flex-shrink:0;
 }
-
-.main-logo{
-width:100%;
-height:auto;
-display:block;
-}
-
-
-/*
-ঘূর্ণায়মান পৃথিবী।
-logo-live.png-এর বাম পাশের পৃথিবীর ওপর
-এই globe বসবে।
-*/
 
 .rotating-globe{
-position:absolute;
-left:3%;
-top:50%;
-transform:translateY(-50%);
-font-size:75px;
-line-height:1;
+width:110px;
+height:110px;
+object-fit:contain;
+display:block;
+
 animation:globeRotate 5s linear infinite;
-z-index:3;
-pointer-events:none;
+
+transform-origin:center center;
+
+will-change:transform;
 }
 
 @keyframes globeRotate{
 
-0%{
-transform:translateY(-50%) rotate(0deg);
+from{
+transform:rotate(0deg);
 }
 
-100%{
-transform:translateY(-50%) rotate(360deg);
+to{
+transform:rotate(360deg);
 }
 
 }
 
+.brand{
+display:flex;
+align-items:center;
+}
 
-/* HEADER RIGHT */
+.brand-image{
+width:600px;
+max-width:100%;
+height:auto;
+display:block;
+}
 
 .header-right{
 display:flex;
@@ -129,7 +126,6 @@ width:220px;
 padding:10px;
 border:1px solid #ccc;
 outline:none;
-font-family:inherit;
 }
 
 .search-box button{
@@ -141,7 +137,7 @@ cursor:pointer;
 }
 
 
-/* ================= NAV ================= */
+/* NAV */
 
 .navbar{
 background:#111;
@@ -168,7 +164,7 @@ background:#d40000;
 }
 
 
-/* ================= TICKER ================= */
+/* TICKERS */
 
 .breaking-wrapper,
 .latest-wrapper{
@@ -186,7 +182,8 @@ color:#fff;
 padding:7px 15px;
 font-weight:bold;
 text-align:center;
-z-index:2;
+z-index:5;
+flex-shrink:0;
 }
 
 .breaking-label{
@@ -201,20 +198,47 @@ background:#008b35;
 flex:1;
 overflow:hidden;
 white-space:nowrap;
+position:relative;
 }
 
 .ticker-text{
 display:inline-block;
 padding:7px 0 7px 100%;
-animation:ticker 28s linear infinite;
-font-weight:600;
+font-weight:700;
+will-change:transform;
 }
 
-.ticker-text.green{
+#breakingTicker{
+
+color:#d40000;
+
+animation:
+breakingMove 11s linear infinite;
+
+}
+
+#latestTicker{
+
 color:#008b35;
+
+animation:
+latestMove 15s linear infinite;
+
 }
 
-@keyframes ticker{
+@keyframes breakingMove{
+
+0%{
+transform:translateX(0);
+}
+
+100%{
+transform:translateX(-100%);
+}
+
+}
+
+@keyframes latestMove{
 
 0%{
 transform:translateX(0);
@@ -227,7 +251,7 @@ transform:translateX(-100%);
 }
 
 
-/* ================= MAIN ================= */
+/* CONTAINER */
 
 .container{
 max-width:1400px;
@@ -243,9 +267,11 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 border-left:5px solid #d40000;
-padding:8px 12px;
+padding-left:12px;
 margin-bottom:18px;
 background:#fff;
+padding-top:8px;
+padding-bottom:8px;
 }
 
 .section-title h2{
@@ -253,7 +279,7 @@ font-size:23px;
 }
 
 
-/* ================= NEWS ================= */
+/* NEWS GRID */
 
 .news-grid{
 display:grid;
@@ -314,13 +340,11 @@ margin-bottom:8px;
 .card-body p{
 color:#666;
 font-size:14px;
-min-height:48px;
 }
 
 .card-footer{
 display:flex;
 justify-content:space-between;
-gap:8px;
 color:#777;
 font-size:11px;
 border-top:1px solid #eee;
@@ -345,11 +369,10 @@ background:#a90000;
 }
 
 
-/* ================= SIDEBAR ================= */
+/* SIDEBAR */
 
 .sidebar{
 background:#fff;
-height:max-content;
 }
 
 .side-title{
@@ -432,7 +455,7 @@ margin:10px;
 }
 
 
-/* ================= MODAL ================= */
+/* MODAL */
 
 .modal{
 position:fixed;
@@ -517,7 +540,7 @@ font-weight:bold;
 }
 
 
-/* ================= FOOTER ================= */
+/* FOOTER */
 
 footer{
 background:#111;
@@ -550,7 +573,7 @@ font-size:12px;
 }
 
 
-/* ================= STATUS ================= */
+/* OTHER */
 
 .loading,
 .no-news{
@@ -561,18 +584,13 @@ grid-column:1/-1;
 }
 
 
-/* ================= MOBILE ================= */
+/* MOBILE */
 
 @media(max-width:1000px){
 
 .header{
 flex-direction:column;
 align-items:flex-start;
-}
-
-.logo-wrapper{
-width:430px;
-max-width:100%;
 }
 
 .header-right{
@@ -603,24 +621,35 @@ grid-template-columns:repeat(2,1fr);
 
 }
 
+
 @media(max-width:600px){
 
 .topbar{
 font-size:10px;
-padding:6px 10px;
 }
 
 .header{
-padding:10px;
+padding:12px;
 }
 
-.logo-wrapper{
+.logo-area{
 width:100%;
+gap:2px;
+}
+
+.globe-box{
+width:75px;
+height:75px;
 }
 
 .rotating-globe{
-font-size:48px;
-left:2%;
+width:72px;
+height:72px;
+}
+
+.brand-image{
+width:100%;
+max-width:330px;
 }
 
 .header-slogan{
@@ -642,16 +671,8 @@ padding:7px 5px;
 font-size:12px;
 }
 
-.modal-content{
-padding:18px;
-}
-
 .modal-content h1{
 font-size:23px;
-}
-
-.footer-grid{
-grid-template-columns:1fr;
 }
 
 }
