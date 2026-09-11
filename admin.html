@@ -1,572 +1,714 @@
-<!DOCTYPE html><html lang="bn"><head><meta charset="UTF-8"><meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html lang="bn">
 
-<title>Admin - সাপ্তাহিক বার্তা</title><style>
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0">
+
+<title>Admin - সাপ্তাহিক বার্তা</title>
+
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&display=swap">
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+
+<style>
 
 *{
-    box-sizing:border-box;
+box-sizing:border-box;
 }
 
 body{
-    margin:0;
-
-    font-family:
-    Arial,
-    "Noto Sans Bengali",
-    sans-serif;
-
-    background:#f3f3f3;
+margin:0;
+font-family:"Noto Sans Bengali",Arial,sans-serif;
+background:#f3f3f3;
 }
 
 .box{
-    max-width:700px;
-
-    margin:25px auto;
-
-    background:#fff;
-
-    padding:22px;
-
-    box-shadow:
-    0 2px 10px #ccc;
+max-width:750px;
+margin:25px auto;
+background:#fff;
+padding:22px;
+box-shadow:0 2px 10px #ccc;
 }
 
 h1{
-    color:#c00;
+color:#c00;
 }
 
 input,
 textarea,
 select{
-
-    width:100%;
-
-    padding:12px;
-
-    margin:7px 0 14px;
-
-    border:1px solid #ccc;
-
-    border-radius:4px;
+width:100%;
+padding:12px;
+margin:7px 0 14px;
+border:1px solid #ccc;
+border-radius:4px;
+font-family:inherit;
 }
 
 button{
-
-    background:#c00;
-
-    color:#fff;
-
-    border:0;
-
-    padding:11px 17px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    border-radius:4px;
+background:#c00;
+color:#fff;
+border:0;
+padding:11px 17px;
+font-weight:bold;
+cursor:pointer;
+border-radius:4px;
+font-family:inherit;
 }
 
 button:hover{
-    opacity:.85;
+opacity:.85;
 }
 
 .secondary{
-    background:#333;
+background:#333;
 }
 
 .edit{
-    background:#075fc9;
+background:#075fc9;
 }
 
 .delete{
-    background:#900;
+background:#900;
 }
 
 .logout{
-    background:#555;
-
-    float:right;
+background:#555;
+float:right;
 }
 
 .newsItem{
-
-    border:1px solid #ddd;
-
-    margin-top:15px;
-
-    padding:15px;
-
-    background:#fafafa;
+border:1px solid #ddd;
+margin-top:15px;
+padding:15px;
+background:#fafafa;
+overflow:hidden;
 }
 
-.newsItem img{
-
-    width:120px;
-
-    height:80px;
-
-    object-fit:cover;
-
-    float:left;
-
-    margin-right:12px;
+.newsItem img,
+.newsItem video{
+width:150px;
+height:100px;
+object-fit:cover;
+float:left;
+margin-right:12px;
 }
 
 .newsItem h3{
-    margin:0 0 7px;
+margin:0 0 7px;
 }
 
 .date{
-    color:#777;
-
-    font-size:13px;
-
-    margin:6px 0;
+color:#777;
+font-size:13px;
+margin:6px 0;
 }
 
 .clear{
-    clear:both;
+clear:both;
 }
 
 #panel{
-    display:none;
+display:none;
 }
 
-#message{
-
-    margin:15px 0;
-
-    font-weight:bold;
+#message,
+#loginMessage{
+margin:15px 0;
+font-weight:bold;
 }
 
 #previewImage{
-
-    max-width:100%;
-
-    max-height:300px;
-
-    display:none;
-
-    margin-top:10px;
+max-width:100%;
+max-height:300px;
+display:none;
+margin-top:10px;
 }
 
 .uploadInfo{
+font-size:13px;
+color:#666;
+line-height:1.7;
+margin-bottom:10px;
+}
 
-    font-size:13px;
+.progress{
+width:100%;
+height:8px;
+background:#ddd;
+display:none;
+margin:10px 0;
+}
 
-    color:#666;
+.progress-bar{
+width:0%;
+height:100%;
+background:#c00;
+}
 
-    line-height:1.7;
-
-    margin-bottom:10px;
+.videoPreview{
+max-width:100%;
+max-height:250px;
+display:none;
+margin-top:10px;
 }
 
 @media(max-width:600px){
 
-    .box{
+.box{
+margin:0;
+min-height:100vh;
+padding:15px;
+}
 
-        margin:0;
-
-        min-height:100vh;
-
-        padding:15px;
-    }
-
-    .newsItem img{
-
-        width:100%;
-
-        height:180px;
-
-        float:none;
-
-        margin:0 0 10px;
-    }
+.newsItem img,
+.newsItem video{
+width:100%;
+height:180px;
+float:none;
+margin:0 0 10px;
+}
 
 }
 
-</style></head><body><div class="box"><h1>
+</style>
+
+</head>
+
+
+<body>
+
+<div class="box">
+
+<h1>
 📰 সাপ্তাহিক বার্তা — Admin
-</h1><!-- LOGIN --><div id="loginBox"><p>
+</h1>
+
+
+<!-- LOGIN -->
+
+<div id="loginBox">
+
+<p>
 Admin Email দিয়ে Login করুন।
-</p><label>
-Email
-</label><input
+</p>
+
+<label>Email</label>
+
+<input
 id="email"
 type="email"
 placeholder="Admin email">
 
-<label>
-Password
-</label><input
+
+<label>Password</label>
+
+<input
 id="password"
 type="password"
 placeholder="Password">
 
+
 <button id="loginBtn">
 Login
-</button><p id="loginMessage"></p></div><!-- ADMIN PANEL --><div id="panel"><button
+</button>
+
+<p id="loginMessage"></p>
+
+</div>
+
+
+<!-- PANEL -->
+
+<div id="panel">
+
+<button
 class="logout"
 id="logoutBtn">
-
 Logout
+</button>
 
-</button><div style="clear:both"></div><hr><h2 id="formTitle">
+<div style="clear:both"></div>
+
+<hr>
+
+
+<h2 id="formTitle">
 নতুন সংবাদ প্রকাশ
-</h2><label>
+</h2>
+
+
+<label>
 শিরোনাম
-</label><input
+</label>
+
+<input
 id="title"
 type="text"
 placeholder="সংবাদের শিরোনাম লিখুন">
 
+
 <label>
 বিভাগ
-</label><select id="cat"><option>জাতীয়</option><option>রাজনীতি</option><option>আন্তর্জাতিক</option><option>অর্থনীতি</option><option>খেলাধুলা</option><option>বিজ্ঞান ও প্রযুক্তি</option><option>মতামত</option></select><!-- IMAGE --><label>
-🖼️ সংবাদ ছবি
-</label><input
-id="imageFile"
+</label>
+
+<select id="cat">
+
+<option value="জাতীয়">জাতীয়</option>
+
+<option value="রাজনীতি">রাজনীতি</option>
+
+<option value="আন্তর্জাতিক">আন্তর্জাতিক</option>
+
+<option value="অর্থনীতি">অর্থনীতি</option>
+
+<option value="খেলাধুলা">খেলাধুলা</option>
+
+<option value="বিজ্ঞান ও প্রযুক্তি">
+বিজ্ঞান ও প্রযুক্তি
+</option>
+
+<option value="মতামত">মতামত</option>
+
+<option value="ছবি">ছবি</option>
+
+<option value="ভিডিও">ভিডিও</option>
+
+</select>
+
+
+<!-- MEDIA -->
+
+<label>
+🖼️ ছবি অথবা 🎥 ভিডিও
+</label>
+
+<input
+id="mediaFile"
 type="file"
-accept="image/*">
+accept="image/*,video/*">
 
-<div class="uploadInfo">মোবাইল থেকে Gallery/Photos থেকে ছবি নির্বাচন করুন।
 
-<br>ছবি স্বয়ংক্রিয়ভাবে ছোট করে সংরক্ষণ করা হবে।
+<div class="uploadInfo">
 
-</div><img
+মোবাইলের Gallery/Photos বা Video থেকে ফাইল নির্বাচন করুন।
+
+<br>
+
+ছবি ছোট করে সংরক্ষণ করা হবে।
+
+<br>
+
+ভিডিও Firebase Storage-এ upload হবে।
+
+</div>
+
+
+<img
 id="previewImage"
-alt="ছবির Preview">
+alt="Preview">
+
+
+<video
+id="videoPreview"
+class="videoPreview"
+controls>
+</video>
+
+
+<div
+id="progress"
+class="progress">
+
+<div
+id="progressBar"
+class="progress-bar">
+</div>
+
+</div>
+
 
 <label>
 সংবাদের বিস্তারিত
-</label><textarea
+</label>
+
+<textarea
 id="body"
 rows="10"
 placeholder="সম্পূর্ণ সংবাদ লিখুন">
-</textarea><label>
+</textarea>
+
+
+<label>
 Breaking News?
-</label><select id="breaking"><option value="false">
+</label>
+
+<select id="breaking">
+
+<option value="false">
 না
-</option><option value="true">
+</option>
+
+<option value="true">
 হ্যাঁ
-</option></select><br><br>
+</option>
+
+</select>
+
+
+<br><br>
+
 
 <button id="publishBtn">
 সংবাদ প্রকাশ করুন
-</button><button
+</button>
+
+
+<button
 id="cancelBtn"
 class="secondary"
 style="display:none">
 
 Edit বাতিল
 
-</button><p id="message"></p><hr><h2>
+</button>
+
+
+<p id="message"></p>
+
+
+<hr>
+
+
+<h2>
 📰 প্রকাশিত সংবাদ
-</h2><div id="newsList">
+</h2>
+
+<div id="newsList">
 নিউজ লোড হচ্ছে...
-</div></div><p><a href="index.html">
+</div>
+
+
+</div>
+
+
+<p>
+<a href="index.html">
 ← Website-এ ফিরে যান
-</a></p></div><script type="module">
+</a>
+</p>
+
+</div>
 
 
-/* FIREBASE */
+<script>
 
-import {
-    initializeApp
-}
-from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-
-
-/* AUTH */
-
-import {
-    getAuth,
-    signInWithEmailAndPassword,
-    onAuthStateChanged,
-    signOut
-}
-from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-
-
-/* FIRESTORE */
-
-import {
-    getFirestore,
-    collection,
-    addDoc,
-    updateDoc,
-    deleteDoc,
-    doc,
-    query,
-    orderBy,
-    onSnapshot,
-    serverTimestamp
-}
-from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-
-
-/* CONFIG */
+/* =================================================
+FIREBASE CONFIG
+================================================= */
 
 const firebaseConfig = {
 
-    apiKey:
-    "AIzaSyDugMsCaCtCZwKzBHhYQJbgsySRwA6ikXg",
+apiKey:
+"AIzaSyDugMsCaCtCZwKzBHhYQJbgsySRwA6ikXg",
 
-    authDomain:
-    "saptahik-barta.firebaseapp.com",
+authDomain:
+"saptahik-barta.firebaseapp.com",
 
-    projectId:
-    "saptahik-barta",
+projectId:
+"saptahik-barta",
 
-    storageBucket:
-    "saptahik-barta.firebasestorage.app",
+storageBucket:
+"saptahik-barta.firebasestorage.app",
 
-    messagingSenderId:
-    "64482849817",
+messagingSenderId:
+"64482849817",
 
-    appId:
-    "1:64482849817:web:67af4e2b46d9bf2b7f2688",
+appId:
+"1:64482849817:web:67af4e2b46d9bf2b7f2688",
 
-    measurementId:
-    "G-L100GNJ7JM"
+measurementId:
+"G-L100GNJ7JM"
 
 };
 
 
-const app =
-initializeApp(firebaseConfig);
+/* INIT */
 
+firebase.initializeApp(
+firebaseConfig
+);
 
 const auth =
-getAuth(app);
-
+firebase.auth();
 
 const db =
-getFirestore(app);
+firebase.firestore();
+
+const storage =
+firebase.storage();
 
 
 /* VARIABLES */
 
-let editingId =
-null;
+let editingId = null;
 
-let selectedImageData =
-"";
+let selectedImageData = "";
+
+let selectedVideoFile = null;
 
 
 /* ELEMENTS */
 
 const loginBox =
 document.getElementById(
-    "loginBox"
+"loginBox"
 );
 
 const panel =
 document.getElementById(
-    "panel"
-);
-
-const loginMessage =
-document.getElementById(
-    "loginMessage"
+"panel"
 );
 
 const message =
 document.getElementById(
-    "message"
+"message"
+);
+
+const loginMessage =
+document.getElementById(
+"loginMessage"
 );
 
 
-/* IMAGE SELECT */
+/* =================================================
+MEDIA SELECT
+================================================= */
 
 document.getElementById(
-    "imageFile"
+"mediaFile"
 ).addEventListener(
-    "change",
-    function(){
+"change",
+function(){
 
-        const file =
-        this.files[0];
+const file =
+this.files[0];
 
-
-        if(!file)
-            return;
-
-
-        if(
-            !file.type.startsWith(
-                "image/"
-            )
-        ){
-
-            alert(
-                "শুধু ছবি নির্বাচন করুন।"
-            );
-
-            return;
-
-        }
+if(!file)
+return;
 
 
-        const reader =
-        new FileReader();
+/* VIDEO */
+
+if(file.type.startsWith("video/")){
+
+selectedVideoFile =
+file;
+
+selectedImageData =
+"";
 
 
-        reader.onload =
-        function(event){
-
-            const img =
-            new Image();
-
-
-            img.onload =
-            function(){
-
-                const canvas =
-                document.createElement(
-                    "canvas"
-                );
+document.getElementById(
+"previewImage"
+).style.display =
+"none";
 
 
-                const maxWidth =
-                1000;
+const video =
+document.getElementById(
+"videoPreview"
+);
+
+video.src =
+URL.createObjectURL(file);
+
+video.style.display =
+"block";
 
 
-                let width =
-                img.width;
+return;
 
-                let height =
-                img.height;
+}
 
 
-                if(
-                    width >
-                    maxWidth
-                ){
+/* IMAGE */
 
-                    height =
-                    height *
-                    maxWidth /
-                    width;
+if(file.type.startsWith("image/")){
 
-                    width =
-                    maxWidth;
-
-                }
+selectedVideoFile =
+null;
 
 
-                canvas.width =
-                width;
-
-                canvas.height =
-                height;
+const reader =
+new FileReader();
 
 
-                const ctx =
-                canvas.getContext(
-                    "2d"
-                );
+reader.onload =
+function(e){
+
+const img =
+new Image();
 
 
-                ctx.drawImage(
-                    img,
-                    0,
-                    0,
-                    width,
-                    height
-                );
+img.onload =
+function(){
+
+const canvas =
+document.createElement(
+"canvas"
+);
+
+const maxWidth = 1000;
+
+let width =
+img.width;
+
+let height =
+img.height;
 
 
-                selectedImageData =
-                canvas.toDataURL(
-                    "image/jpeg",
-                    0.60
-                );
+if(width > maxWidth){
+
+height =
+height * maxWidth / width;
+
+width =
+maxWidth;
+
+}
 
 
-                const preview =
-                document.getElementById(
-                    "previewImage"
-                );
+canvas.width =
+width;
+
+canvas.height =
+height;
 
 
-                preview.src =
-                selectedImageData;
-
-
-                preview.style.display =
-                "block";
-
-            };
-
-
-            img.src =
-            event.target.result;
-
-        };
-
-
-        reader.readAsDataURL(file);
-
-    }
+const ctx =
+canvas.getContext(
+"2d"
 );
 
 
-/* LOGIN */
+ctx.drawImage(
+img,
+0,
+0,
+width,
+height
+);
+
+
+selectedImageData =
+canvas.toDataURL(
+"image/jpeg",
+0.65
+);
+
+
+const preview =
+document.getElementById(
+"previewImage"
+);
+
+preview.src =
+selectedImageData;
+
+preview.style.display =
+"block";
+
 
 document.getElementById(
-    "loginBtn"
+"videoPreview"
+).style.display =
+"none";
+
+};
+
+
+img.src =
+e.target.result;
+
+};
+
+
+reader.readAsDataURL(file);
+
+return;
+
+}
+
+
+alert(
+"শুধু ছবি অথবা ভিডিও নির্বাচন করুন।"
+);
+
+});
+
+
+/* =================================================
+LOGIN
+================================================= */
+
+document.getElementById(
+"loginBtn"
 ).onclick =
 async function(){
 
-    const email =
-    document.getElementById(
-        "email"
-    ).value.trim();
+const email =
+document.getElementById(
+"email"
+).value.trim();
+
+const password =
+document.getElementById(
+"password"
+).value;
 
 
-    const password =
-    document.getElementById(
-        "password"
-    ).value;
+if(!email || !password){
+
+loginMessage.textContent =
+"Email ও Password দিন।";
+
+return;
+
+}
 
 
-    if(
-        !email ||
-        !password
-    ){
+try{
 
-        loginMessage.textContent =
-        "Email ও Password দিন।";
+await auth.signInWithEmailAndPassword(
+email,
+password
+);
 
-        return;
+loginMessage.textContent =
+"";
 
-    }
+}
 
+catch(error){
 
-    try{
+console.error(error);
 
-        await signInWithEmailAndPassword(
-            auth,
-            email,
-            password
-        );
+loginMessage.textContent =
+"❌ Login ব্যর্থ হয়েছে। Email/Password পরীক্ষা করুন।";
 
-
-        loginMessage.textContent =
-        "";
-
-    }
-
-    catch(error){
-
-        console.error(error);
-
-        loginMessage.textContent =
-        "Login ব্যর্থ হয়েছে। Email/Password পরীক্ষা করুন।";
-
-    }
+}
 
 };
 
@@ -574,672 +716,1054 @@ async function(){
 /* LOGOUT */
 
 document.getElementById(
-    "logoutBtn"
+"logoutBtn"
 ).onclick =
 function(){
 
-    signOut(auth);
+auth.signOut();
 
 };
 
 
-/* AUTH STATE */
+/* =================================================
+AUTH STATE
+================================================= */
 
-onAuthStateChanged(
-    auth,
-    user => {
+auth.onAuthStateChanged(
+function(user){
 
-        if(user){
+if(user){
 
-            loginBox.style.display =
-            "none";
+loginBox.style.display =
+"none";
 
-            panel.style.display =
-            "block";
+panel.style.display =
+"block";
 
-        }
+loadNews();
 
-        else{
+}
 
-            loginBox.style.display =
-            "block";
+else{
 
-            panel.style.display =
-            "none";
+loginBox.style.display =
+"block";
 
-        }
+panel.style.display =
+"none";
 
-    }
-);
+}
+
+});
 
 
-/* PUBLISH */
+/* =================================================
+PUBLISH
+================================================= */
 
 document.getElementById(
-    "publishBtn"
+"publishBtn"
 ).onclick =
 async function(){
 
-    const title =
-    document.getElementById(
-        "title"
-    ).value.trim();
+const user =
+auth.currentUser;
 
+if(!user){
 
-    const cat =
-    document.getElementById(
-        "cat"
-    ).value;
+message.textContent =
+"আগে Admin Login করুন।";
 
-
-    const body =
-    document.getElementById(
-        "body"
-    ).value.trim();
-
-
-    const breaking =
-    document.getElementById(
-        "breaking"
-    ).value === "true";
-
-
-    if(
-        !title ||
-        !body
-    ){
-
-        message.textContent =
-        "শিরোনাম ও বিস্তারিত সংবাদ লিখুন।";
-
-        return;
-
-    }
-
-
-    if(
-        selectedImageData &&
-        selectedImageData.length >
-        900000
-    ){
-
-        message.textContent =
-        "ছবিটি অনেক বড়। অন্য ছবি নির্বাচন করুন।";
-
-        return;
-
-    }
-
-
-    message.textContent =
-    "⏳ সংবাদ সংরক্ষণ হচ্ছে...";
-
-
-    try{
-
-
-        if(editingId){
-
-            const updateData = {
-
-                title:title,
-
-                cat:cat,
-
-                body:body,
-
-                breaking:breaking,
-
-                updatedAt:
-                serverTimestamp()
-
-            };
-
-
-            if(selectedImageData){
-
-                updateData.img =
-                selectedImageData;
-
-            }
-
-
-            await updateDoc(
-
-                doc(
-                    db,
-                    "news",
-                    editingId
-                ),
-
-                updateData
-
-            );
-
-
-            message.textContent =
-            "✅ সংবাদ সফলভাবে Edit হয়েছে।";
-
-
-            editingId =
-            null;
-
-
-            document.getElementById(
-                "formTitle"
-            ).textContent =
-            "নতুন সংবাদ প্রকাশ";
-
-
-            document.getElementById(
-                "publishBtn"
-            ).textContent =
-            "সংবাদ প্রকাশ করুন";
-
-
-            document.getElementById(
-                "cancelBtn"
-            ).style.display =
-            "none";
-
-        }
-
-        else{
-
-            await addDoc(
-
-                collection(
-                    db,
-                    "news"
-                ),
-
-                {
-
-                    title:title,
-
-                    cat:cat,
-
-                    img:
-                    selectedImageData || "",
-
-                    body:body,
-
-                    breaking:breaking,
-
-                    createdAt:
-                    serverTimestamp(),
-
-                    updatedAt:
-                    serverTimestamp()
-
-                }
-
-            );
-
-
-            message.textContent =
-            "✅ সংবাদ সফলভাবে প্রকাশ হয়েছে।";
-
-        }
-
-
-        clearForm();
-
-    }
-
-    catch(error){
-
-        console.error(error);
-
-        message.textContent =
-        "❌ সংবাদ সংরক্ষণ করা যায়নি।";
-
-    }
-
-};
-
-
-/* CLEAR */
-
-function clearForm(){
-
-    document.getElementById(
-        "title"
-    ).value = "";
-
-
-    document.getElementById(
-        "body"
-    ).value = "";
-
-
-    document.getElementById(
-        "breaking"
-    ).value =
-    "false";
-
-
-    document.getElementById(
-        "imageFile"
-    ).value = "";
-
-
-    selectedImageData =
-    "";
-
-
-    document.getElementById(
-        "previewImage"
-    ).style.display =
-    "none";
+return;
 
 }
 
 
-/* CANCEL EDIT */
+const title =
+document.getElementById(
+"title"
+).value.trim();
+
+
+const category =
+document.getElementById(
+"cat"
+).value;
+
+
+const description =
+document.getElementById(
+"body"
+).value.trim();
+
+
+const breaking =
+document.getElementById(
+"breaking"
+).value === "true";
+
+
+if(!title || !description){
+
+message.textContent =
+"শিরোনাম ও বিস্তারিত সংবাদ লিখুন।";
+
+return;
+
+}
+
+
+message.textContent =
+"⏳ সংবাদ সংরক্ষণ হচ্ছে...";
+
 
 document.getElementById(
-    "cancelBtn"
-).onclick =
-function(){
-
-    editingId =
-    null;
+"publishBtn"
+).disabled =
+true;
 
 
-    clearForm();
+try{
+
+let mediaUrl =
+"";
+
+let mediaType =
+"";
 
 
-    document.getElementById(
-        "formTitle"
-    ).textContent =
-    "নতুন সংবাদ প্রকাশ";
+/* =================================================
+EDIT
+================================================= */
 
+if(editingId){
 
-    document.getElementById(
-        "publishBtn"
-    ).textContent =
-    "সংবাদ প্রকাশ করুন";
+const updateData = {
 
+title:title,
 
-    this.style.display =
-    "none";
+category:category,
+
+description:description,
+
+breaking:breaking,
+
+updatedAt:
+firebase.firestore.FieldValue.serverTimestamp()
 
 };
 
 
-/* LOAD NEWS */
+/* NEW IMAGE */
 
-const newsQuery =
-query(
-    collection(db,"news"),
-    orderBy(
-        "createdAt",
-        "desc"
-    )
+if(selectedImageData){
+
+updateData.mediaUrl =
+selectedImageData;
+
+updateData.mediaType =
+"image";
+
+}
+
+
+/* NEW VIDEO */
+
+else if(selectedVideoFile){
+
+message.textContent =
+"⏳ ভিডিও Upload হচ্ছে...";
+
+
+const ref =
+storage
+.ref()
+.child(
+"news-videos/" +
+Date.now() +
+"_" +
+selectedVideoFile.name
 );
 
 
-onSnapshot(
-
-    newsQuery,
-
-    snapshot => {
-
-        const list =
-        document.getElementById(
-            "newsList"
-        );
-
-
-        list.innerHTML =
-        "";
-
-
-        if(snapshot.empty){
-
-            list.innerHTML =
-            "<p>এখনো কোনো সংবাদ প্রকাশ হয়নি।</p>";
-
-            return;
-
-        }
-
-
-        snapshot.forEach(
-            item => {
-
-                const news =
-                item.data();
-
-
-                const div =
-                document.createElement(
-                    "div"
-                );
-
-
-                div.className =
-                "newsItem";
-
-
-                let date =
-                "";
-
-
-                if(news.createdAt){
-
-                    date =
-                    news.createdAt
-                    .toDate()
-                    .toLocaleString(
-                        "bn-BD",
-                        {
-                            dateStyle:
-                            "full",
-
-                            timeStyle:
-                            "short"
-                        }
-                    );
-
-                }
-
-
-                div.innerHTML = `
-
-                    ${
-                        news.img
-                        ?
-                        `<img
-                            src="${escapeHtml(news.img)}"
-                            alt="সংবাদ">`
-                        :
-                        ""
-                    }
-
-
-                    <h3>
-                        ${escapeHtml(news.title || "")}
-                    </h3>
-
-
-                    <div class="date">
-                        প্রকাশ:
-                        ${date}
-                    </div>
-
-
-                    <div>
-                        বিভাগ:
-                        ${escapeHtml(news.cat || "")}
-                    </div>
-
-
-                    ${
-                        news.breaking
-                        ?
-                        `<b style="color:red">
-                            ⚡ Breaking News
-                        </b>`
-                        :
-                        ""
-                    }
-
-
-                    <div class="clear"></div>
-
-                    <br>
-
-
-                    <button
-                        class="edit"
-                        onclick="editNews('${item.id}')">
-
-                        ✏️ Edit
-
-                    </button>
-
-
-                    <button
-                        class="delete"
-                        onclick="deleteNews('${item.id}')">
-
-                        🗑️ Delete
-
-                    </button>
-
-                `;
-
-
-                list.appendChild(div);
-
-            }
-        );
-
-    },
-
-
-    error => {
-
-        console.error(error);
-
-        document.getElementById(
-            "newsList"
-        ).innerHTML =
-        "<p>নিউজ লোড করা যাচ্ছে না। Firestore Rules পরীক্ষা করুন।</p>";
-
-    }
-
+const task =
+ref.put(
+selectedVideoFile
 );
 
 
-/* EDIT */
+await new Promise(
+(resolve,reject)=>{
+
+task.on(
+"state_changed",
+
+snapshot => {
+
+const percent =
+(
+snapshot.bytesTransferred /
+snapshot.totalBytes
+) * 100;
+
+document.getElementById(
+"progress"
+).style.display =
+"block";
+
+document.getElementById(
+"progressBar"
+).style.width =
+percent + "%";
+
+},
+
+error =>
+reject(error),
+
+async () => {
+
+const url =
+await task.snapshot
+.ref.getDownloadURL();
+
+updateData.mediaUrl =
+url;
+
+updateData.mediaType =
+"video";
+
+resolve();
+
+}
+
+);
+
+});
+
+}
+
+
+await db.collection(
+"news"
+)
+.doc(editingId)
+.update(updateData);
+
+
+message.textContent =
+"✅ সংবাদ সফলভাবে Update হয়েছে।";
+
+
+}
+
+
+/* =================================================
+NEW NEWS
+================================================= */
+
+else{
+
+/* IMAGE */
+
+if(selectedImageData){
+
+mediaUrl =
+selectedImageData;
+
+mediaType =
+"image";
+
+}
+
+
+/* VIDEO */
+
+else if(selectedVideoFile){
+
+message.textContent =
+"⏳ ভিডিও Upload হচ্ছে...";
+
+
+const ref =
+storage
+.ref()
+.child(
+"news-videos/" +
+Date.now() +
+"_" +
+selectedVideoFile.name
+);
+
+
+const task =
+ref.put(
+selectedVideoFile
+);
+
+
+await new Promise(
+(resolve,reject)=>{
+
+task.on(
+"state_changed",
+
+snapshot => {
+
+const percent =
+(
+snapshot.bytesTransferred /
+snapshot.totalBytes
+) * 100;
+
+document.getElementById(
+"progress"
+).style.display =
+"block";
+
+document.getElementById(
+"progressBar"
+).style.width =
+percent + "%";
+
+},
+
+error =>
+reject(error),
+
+async () => {
+
+mediaUrl =
+await task.snapshot
+.ref.getDownloadURL();
+
+mediaType =
+"video";
+
+resolve();
+
+}
+
+);
+
+});
+
+}
+
+
+/* ADD */
+
+await db.collection(
+"news"
+)
+.add({
+
+title:title,
+
+category:category,
+
+description:description,
+
+mediaUrl:mediaUrl,
+
+mediaType:mediaType,
+
+breaking:breaking,
+
+publishedAt:
+firebase.firestore.FieldValue.serverTimestamp(),
+
+updatedAt:
+firebase.firestore.FieldValue.serverTimestamp(),
+
+author:
+user.email || ""
+
+});
+
+
+message.textContent =
+"✅ সংবাদ সফলভাবে প্রকাশ হয়েছে।";
+
+}
+
+
+/* RESET */
+
+editingId =
+null;
+
+clearForm();
+
+
+document.getElementById(
+"formTitle"
+).textContent =
+"নতুন সংবাদ প্রকাশ";
+
+
+document.getElementById(
+"publishBtn"
+).textContent =
+"সংবাদ প্রকাশ করুন";
+
+
+document.getElementById(
+"cancelBtn"
+).style.display =
+"none";
+
+
+}
+
+catch(error){
+
+console.error(error);
+
+message.textContent =
+"❌ সংরক্ষণ করা যায়নি: " +
+(error.message || "");
+
+}
+
+finally{
+
+document.getElementById(
+"publishBtn"
+).disabled =
+false;
+
+setTimeout(
+function(){
+
+document.getElementById(
+"progress"
+).style.display =
+"none";
+
+document.getElementById(
+"progressBar"
+).style.width =
+"0%";
+
+},
+500
+);
+
+}
+
+};
+
+
+/* =================================================
+CLEAR
+================================================= */
+
+function clearForm(){
+
+document.getElementById(
+"title"
+).value =
+"";
+
+
+document.getElementById(
+"body"
+).value =
+"";
+
+
+document.getElementById(
+"breaking"
+).value =
+"false";
+
+
+document.getElementById(
+"mediaFile"
+).value =
+"";
+
+
+selectedImageData =
+"";
+
+selectedVideoFile =
+null;
+
+
+document.getElementById(
+"previewImage"
+).style.display =
+"none";
+
+
+document.getElementById(
+"videoPreview"
+).style.display =
+"none";
+
+}
+
+
+/* =================================================
+CANCEL
+================================================= */
+
+document.getElementById(
+"cancelBtn"
+).onclick =
+function(){
+
+editingId =
+null;
+
+clearForm();
+
+document.getElementById(
+"formTitle"
+).textContent =
+"নতুন সংবাদ প্রকাশ";
+
+document.getElementById(
+"publishBtn"
+).textContent =
+"সংবাদ প্রকাশ করুন";
+
+this.style.display =
+"none";
+
+message.textContent =
+"";
+
+};
+
+
+/* =================================================
+LOAD NEWS
+================================================= */
+
+function loadNews(){
+
+db.collection("news")
+.onSnapshot(
+
+snapshot => {
+
+const list =
+document.getElementById(
+"newsList"
+);
+
+list.innerHTML =
+"";
+
+
+if(snapshot.empty){
+
+list.innerHTML =
+"<p>এখনো কোনো সংবাদ প্রকাশ হয়নি।</p>";
+
+return;
+
+}
+
+
+/* SORT */
+
+const news = [];
+
+snapshot.forEach(
+doc => {
+
+news.push({
+id:doc.id,
+...doc.data()
+});
+
+});
+
+
+news.sort(
+(a,b) => {
+
+const ad =
+getDate(a);
+
+const bd =
+getDate(b);
+
+return bd - ad;
+
+});
+
+
+news.forEach(
+news => {
+
+const div =
+document.createElement(
+"div"
+);
+
+div.className =
+"newsItem";
+
+
+const date =
+getDate(news);
+
+
+let media = "";
+
+
+if(
+(news.mediaType === "video" &&
+news.mediaUrl)
+){
+
+media =
+`
+<video
+src="${escapeHtml(news.mediaUrl)}"
+controls>
+</video>
+`;
+
+}
+
+else if(
+news.mediaUrl ||
+news.img
+){
+
+media =
+`
+<img
+src="${escapeHtml(
+news.mediaUrl || news.img
+)}"
+alt="সংবাদ">
+`;
+
+}
+
+
+div.innerHTML = `
+
+${media}
+
+<h3>
+${escapeHtml(
+news.title || ""
+)}
+</h3>
+
+<div class="date">
+
+প্রকাশ:
+${formatDate(date)}
+
+<br>
+
+${timeAgo(date)}
+
+</div>
+
+<div>
+বিভাগ:
+${escapeHtml(
+news.category ||
+news.cat ||
+""
+)}
+</div>
+
+${
+news.breaking
+?
+`<b style="color:red">
+⚡ Breaking News
+</b>`
+:
+""
+}
+
+<div class="clear"></div>
+
+<br>
+
+<button
+class="edit"
+onclick="editNews('${news.id}')">
+
+✏️ Edit
+
+</button>
+
+<button
+class="delete"
+onclick="deleteNews('${news.id}')">
+
+🗑️ Delete
+
+</button>
+
+`;
+
+list.appendChild(div);
+
+});
+
+},
+
+error => {
+
+console.error(error);
+
+document.getElementById(
+"newsList"
+).innerHTML =
+`
+<p>
+❌ নিউজ লোড করা যাচ্ছে না।<br>
+Firestore Rules পরীক্ষা করুন।
+</p>
+`;
+
+}
+
+);
+
+}
+
+
+/* =================================================
+EDIT
+================================================= */
 
 window.editNews =
 async function(id){
 
-    const news =
-    await getNewsData(id);
+try{
+
+const snap =
+await db.collection(
+"news"
+)
+.doc(id)
+.get();
 
 
-    if(!news)
-        return;
+if(!snap.exists){
 
+alert("নিউজ পাওয়া যায়নি।");
 
-    editingId =
-    id;
-
-
-    document.getElementById(
-        "title"
-    ).value =
-    news.title || "";
-
-
-    document.getElementById(
-        "cat"
-    ).value =
-    news.cat || "জাতীয়";
-
-
-    document.getElementById(
-        "body"
-    ).value =
-    news.body || "";
-
-
-    document.getElementById(
-        "breaking"
-    ).value =
-    news.breaking
-    ? "true"
-    : "false";
-
-
-    selectedImageData =
-    news.img || "";
-
-
-    if(news.img){
-
-        const preview =
-        document.getElementById(
-            "previewImage"
-        );
-
-
-        preview.src =
-        news.img;
-
-
-        preview.style.display =
-        "block";
-
-    }
-
-
-    document.getElementById(
-        "formTitle"
-    ).textContent =
-    "✏️ সংবাদ Edit করুন";
-
-
-    document.getElementById(
-        "publishBtn"
-    ).textContent =
-    "Update করুন";
-
-
-    document.getElementById(
-        "cancelBtn"
-    ).style.display =
-    "inline-block";
-
-
-    window.scrollTo({
-
-        top:0,
-
-        behavior:"smooth"
-
-    });
-
-};
-
-
-/* GET NEWS */
-
-async function getNewsData(id){
-
-    return new Promise(
-        resolve => {
-
-            const unsubscribe =
-            onSnapshot(
-
-                doc(
-                    db,
-                    "news",
-                    id
-                ),
-
-                snap => {
-
-                    unsubscribe();
-
-
-                    if(
-                        snap.exists()
-                    ){
-
-                        resolve(
-                            snap.data()
-                        );
-
-                    }
-
-                    else{
-
-                        resolve(null);
-
-                    }
-
-                }
-
-            );
-
-        }
-    );
+return;
 
 }
 
 
-/* DELETE */
+const news =
+snap.data();
+
+
+editingId =
+id;
+
+
+document.getElementById(
+"title"
+).value =
+news.title || "";
+
+
+document.getElementById(
+"cat"
+).value =
+news.category ||
+news.cat ||
+"জাতীয়";
+
+
+document.getElementById(
+"body"
+).value =
+news.description ||
+news.body ||
+"";
+
+
+document.getElementById(
+"breaking"
+).value =
+news.breaking
+?
+"true"
+:
+"false";
+
+
+selectedImageData =
+"";
+
+
+selectedVideoFile =
+null;
+
+
+if(news.mediaUrl){
+
+if(news.mediaType === "video"){
+
+const video =
+document.getElementById(
+"videoPreview"
+);
+
+video.src =
+news.mediaUrl;
+
+video.style.display =
+"block";
+
+}
+else{
+
+const img =
+document.getElementById(
+"previewImage"
+);
+
+img.src =
+news.mediaUrl;
+
+img.style.display =
+"block";
+
+}
+
+}
+
+else if(news.img){
+
+const img =
+document.getElementById(
+"previewImage"
+);
+
+img.src =
+news.img;
+
+img.style.display =
+"block";
+
+}
+
+
+document.getElementById(
+"formTitle"
+).textContent =
+"✏️ সংবাদ Edit করুন";
+
+
+document.getElementById(
+"publishBtn"
+).textContent =
+"Update করুন";
+
+
+document.getElementById(
+"cancelBtn"
+).style.display =
+"inline-block";
+
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+catch(error){
+
+console.error(error);
+
+alert(
+"Edit করা যাচ্ছে না।"
+);
+
+}
+
+};
+
+
+/* =================================================
+DELETE
+================================================= */
 
 window.deleteNews =
 async function(id){
 
-    if(
-        !confirm(
-            "এই সংবাদটি Delete করতে চান?"
-        )
-    ){
+if(
+!confirm(
+"⚠️ এই সংবাদটি Delete করতে চান?"
+)
+){
 
-        return;
+return;
 
-    }
-
-
-    try{
-
-        await deleteDoc(
-
-            doc(
-                db,
-                "news",
-                id
-            )
-
-        );
+}
 
 
-        message.textContent =
-        "🗑️ সংবাদ Delete হয়েছে।";
+try{
 
-    }
+await db.collection(
+"news"
+)
+.doc(id)
+.delete();
 
-    catch(error){
 
-        console.error(error);
+message.textContent =
+"🗑️ সংবাদ Delete হয়েছে।";
 
-        message.textContent =
-        "Delete করা যায়নি।";
+}
 
-    }
+catch(error){
+
+console.error(error);
+
+message.textContent =
+"❌ Delete করা যায়নি: " +
+(error.message || "");
+
+}
 
 };
 
 
-/* SECURITY */
+/* =================================================
+HELPERS
+================================================= */
 
-function escapeHtml(text){
+function getDate(news){
 
-    const div =
-    document.createElement(
-        "div"
-    );
+try{
 
+if(
+news.publishedAt &&
+typeof news.publishedAt.toDate === "function"
+){
 
-    div.textContent =
-    text == null
-    ? ""
-    : text;
-
-
-    return div.innerHTML;
+return news.publishedAt.toDate();
 
 }
 
-</script></body>
+if(
+news.createdAt &&
+typeof news.createdAt.toDate === "function"
+){
+
+return news.createdAt.toDate();
+
+}
+
+}
+
+catch(e){}
+
+return new Date();
+
+}
+
+
+function formatDate(date){
+
+return date.toLocaleDateString(
+"bn-BD",
+{
+weekday:"long",
+day:"numeric",
+month:"long",
+year:"numeric"
+}
+)
++
+" • "
++
+date.toLocaleTimeString(
+"bn-BD",
+{
+hour:"numeric",
+minute:"2-digit"
+}
+);
+
+}
+
+
+function timeAgo(date){
+
+const seconds =
+Math.floor(
+(new Date() - date) / 1000
+);
+
+if(seconds < 60)
+return "এইমাত্র";
+
+const minutes =
+Math.floor(seconds / 60);
+
+if(minutes < 60)
+return minutes +
+" মিনিট আগে";
+
+const hours =
+Math.floor(minutes / 60);
+
+if(hours < 24)
+return hours +
+" ঘণ্টা আগে";
+
+const days =
+Math.floor(hours / 24);
+
+if(days < 30)
+return days +
+" দিন আগে";
+
+const months =
+Math.floor(days / 30);
+
+if(months < 12)
+return months +
+" মাস আগে";
+
+return Math.floor(months / 12) +
+" বছর আগে";
+
+}
+
+
+function escapeHtml(text){
+
+if(text === null ||
+text === undefined)
+return "";
+
+return String(text)
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+</script>
+
+</body>
 </html>
